@@ -1,0 +1,96 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.ar.cloud;
+
+import java.util.List;
+
+/**
+ *
+ * @author laszlo.toth
+ */
+public class Result {
+
+    private List<String> error;
+    private String nodename;
+    private long nodetime;
+    private String version;
+
+    /**
+     *
+     * @return
+     */
+    public String getNodename() {
+        return nodename;
+    }
+
+    /**
+     *
+     * @param nodename
+     */
+    public void setNodename(String nodename) {
+        this.nodename = nodename;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public long getNodetime() {
+        return nodetime;
+    }
+
+    /**
+     *
+     * @param nodetime
+     */
+    public void setNodetime(long nodetime) {
+        this.nodetime = nodetime;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public List<String> getError() {
+        return error;
+    }
+
+    /**
+     *
+     * @param error
+     */
+    public void setError(List<String> error) {
+        this.error = error;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public String getVersion() {
+        return version;
+    }
+
+    /**
+     *
+     * @param version
+     */
+    public void setVersion(String version) {
+        this.version = version;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Result{nodename=").append(nodename);
+        sb.append(", nodetime=").append(nodetime);
+        sb.append(", error=").append(error);
+        sb.append(", version=").append(version);
+        sb.append('}');
+        return sb.toString();
+    }
+
+}
