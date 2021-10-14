@@ -17,6 +17,13 @@ public interface Handler<R extends Result, S extends Object> {
 
     /**
      * 
+     * @param nodeName
+     * @param lazy
+     */
+    public void init(String nodeName, boolean lazy);
+
+    /**
+     * 
      * @return 
      */
     public R createResult();
