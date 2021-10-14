@@ -16,31 +16,31 @@ import java.util.Map;
 public interface Handler<R extends Result, S extends Object> {
 
     /**
-     * 
+     *
      * @param nodeName
      * @param lazy
      */
     public void init(String nodeName, boolean lazy);
 
     /**
-     * 
-     * @return 
+     *
+     * @return
      */
     public R createResult();
 
     /**
-     * 
-     * @return 
+     *
+     * @return
      */
     public S createStatistics();
 
     /**
-     * 
+     *
      * @param region
      * @param parameters
      * @param result
-     * @param statitics
-     * @return 
+     * @param statistics
+     * @return
      */
-    public int processRequest(String region, Map<String, byte[]> parameters, R result, S statitics);
+    public int processRequest(String region, Map<String, byte[]> parameters, R result, S statistics);
 }
