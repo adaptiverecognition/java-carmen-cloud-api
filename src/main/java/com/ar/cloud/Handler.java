@@ -24,18 +24,6 @@ public interface Handler<R extends Result, S extends Object> {
 
     /**
      *
-     * @return
-     */
-    public R createResult();
-
-    /**
-     *
-     * @return
-     */
-    public S createStatistics();
-
-    /**
-     *
      * @param region
      * @param parameters
      * @param result
