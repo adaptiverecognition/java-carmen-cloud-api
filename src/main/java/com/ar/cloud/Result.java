@@ -11,12 +11,28 @@ import java.util.List;
  *
  * @author laszlo.toth
  */
-public class Result {
+public abstract class Result {
 
     private List<String> error;
     private String nodename;
     private long nodetime;
     private String version;
+
+    /**
+     *
+     * @return
+     */
+    public String getVersion() {
+        return version;
+    }
+
+    /**
+     *
+     * @param version
+     */
+    public void setVersion(String version) {
+        this.version = version;
+    }
 
     /**
      *
@@ -66,29 +82,13 @@ public class Result {
         this.error = error;
     }
 
-    /**
-     *
-     * @return
-     */
-    public String getVersion() {
-        return version;
-    }
-
-    /**
-     *
-     * @param version
-     */
-    public void setVersion(String version) {
-        this.version = version;
-    }
-
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Result{nodename=").append(nodename);
         sb.append(", nodetime=").append(nodetime);
         sb.append(", error=").append(error);
-        sb.append(", version=").append(version);
+        sb.append(", version=").append(getVersion());
         sb.append('}');
         return sb.toString();
     }
