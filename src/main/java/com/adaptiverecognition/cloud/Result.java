@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.ar.cloud;
+package com.adaptiverecognition.cloud;
 
 import java.util.List;
 
