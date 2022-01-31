@@ -24,6 +24,11 @@ public interface Handler<R extends Result, S extends Object> {
 
     /**
      *
+     */
+    public void stop();
+
+    /**
+     *
      * @param region
      * @param parameters
      * @param result
