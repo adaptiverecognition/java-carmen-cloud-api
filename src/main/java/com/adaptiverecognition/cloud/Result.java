@@ -5,15 +5,13 @@
  */
 package com.adaptiverecognition.cloud;
 
-import java.util.List;
-
 /**
  *
  * @author laszlo.toth
  */
 public abstract class Result {
 
-    private List<String> error;
+    private String error;
     private String nodename;
     private long nodetime;
     private String version;
@@ -70,7 +68,7 @@ public abstract class Result {
      *
      * @return
      */
-    public List<String> getError() {
+    public String getError() {
         return error;
     }
 
@@ -78,7 +76,7 @@ public abstract class Result {
      *
      * @param error
      */
-    public void setError(List<String> error) {
+    public void setError(String error) {
         this.error = error;
     }
 
