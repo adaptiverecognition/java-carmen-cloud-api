@@ -109,6 +109,15 @@ public class AnprRequest extends Request {
     }
 
     /**
+     * Set the value of services
+     *
+     * @param services new value of services
+     */
+    public void setServices(Service... services) {
+        this.services = services != null ? Arrays.asList(services) : null;
+    }
+
+    /**
      * Get the value of imageSource
      *
      * @return the value of imageSource
@@ -226,12 +235,22 @@ public class AnprRequest extends Request {
     }
 
     /**
-     * @param service
+     * @param services
      * @return Returns a reference to this object so that method calls can be
      * chained together.
      */
-    public AnprRequest services(Service... service) {
-        setServices(service != null ? Arrays.asList(service) : null);
+    public AnprRequest services(List<Service> services) {
+        setServices(services);
+        return this;
+    }
+
+    /**
+     * @param services
+     * @return Returns a reference to this object so that method calls can be
+     * chained together.
+     */
+    public AnprRequest services(Service... services) {
+        setServices(services);
         return this;
     }
 
