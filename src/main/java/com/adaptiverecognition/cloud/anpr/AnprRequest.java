@@ -76,7 +76,7 @@ public class AnprRequest extends Request {
 
     private String location;
 
-    private String mimeType;
+    private String imageMimeType;
 
     private String imageName;
 
@@ -123,12 +123,12 @@ public class AnprRequest extends Request {
     }
 
     /**
-     * Get the value of mimeType
+     * Get the value of imageMimeType
      *
-     * @return the value of mimeType
+     * @return the value of imageMimeType
      */
-    public String getMimeType() {
-        return mimeType;
+    public String getImageMimeType() {
+        return imageMimeType;
     }
 
     /**
@@ -141,11 +141,11 @@ public class AnprRequest extends Request {
     }
 
     /**
-     * Set the value of image, imageName, and mimeType
+     * Set the value of image, imageName, and imageMimeType
      *
      * @param image new value of image
      * @param imageName new value of imageName
-     * @param mimeType new value of mimeType
+     * @param mimeType new value of imageMimeType
      * @throws java.io.IOException
      */
     public void setImage(InputStream image, String imageName, String mimeType) throws IOException {
@@ -153,7 +153,7 @@ public class AnprRequest extends Request {
         this.imageSize = imageContent.length;
         this.image = new ByteArrayInputStream(imageContent);
         this.imageName = imageName;
-        this.mimeType = mimeType;
+        this.imageMimeType = mimeType;
     }
 
     /**
@@ -252,8 +252,8 @@ public class AnprRequest extends Request {
         if (getImage() != null) {
             sb.append("Image: ").append(getImageName()).append(" (").append(getImageSize()).append(" bytes),");
         }
-        if (getMimeType() != null) {
-            sb.append("MimeType: ").append(getMimeType());
+        if (getImageMimeType() != null) {
+            sb.append("MimeType: ").append(getImageMimeType());
         }
         sb.append("}");
         return sb.toString();
@@ -287,7 +287,7 @@ public class AnprRequest extends Request {
         if (!Objects.equals(this.location, other.location)) {
             return false;
         }
-        if (!Objects.equals(this.mimeType, other.mimeType)) {
+        if (!Objects.equals(this.imageMimeType, other.imageMimeType)) {
             return false;
         }
         if (!Objects.equals(this.imageName, other.imageName)) {
