@@ -5,15 +5,14 @@
  */
 package com.adaptiverecognition.cloud;
 
-import java.util.Map;
-
 /**
  *
  * @author laszlo.toth
  * @param <R>
+ * @param <A>
  * @param <S>
  */
-public interface Handler<R extends Result, S extends Object> {
+public interface Handler<R extends Request, A extends Result, S extends Statistics> {
 
     /**
      *
@@ -29,10 +28,10 @@ public interface Handler<R extends Result, S extends Object> {
     /**
      *
      * @param region
-     * @param parameters
+     * @param request
      * @param result
      * @param statistics
      * @return
      */
-    public int processRequest(String region, Map<String, byte[]> parameters, R result, S statistics);
+    public int processRequest(String region, R request, A result, S statistics);
 }
