@@ -3,6 +3,7 @@
  */
 package com.adaptiverecognition.cloud.anpr;
 
+import com.adaptiverecognition.cloud.Request;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -14,7 +15,7 @@ import java.util.Objects;
  *
  * @author laszlo.toth
  */
-public class AnprRequest {
+public class AnprRequest extends Request {
 
     /**
      *
