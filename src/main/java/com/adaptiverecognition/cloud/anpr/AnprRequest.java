@@ -84,8 +84,6 @@ public class AnprRequest extends Request {
 
     private String imageName;
 
-    private long imageSize;
-
     private BufferedImage image;
 
     private byte[] imageSource;
@@ -134,7 +132,7 @@ public class AnprRequest extends Request {
      * @return the value of imageSize
      */
     public long getImageSize() {
-        return imageSize;
+        return imageSource != null ? imageSource.length : 0;
     }
 
     /**
@@ -275,7 +273,7 @@ public class AnprRequest extends Request {
             sb.append("Image: ").append(getImageName()).append(" (").append(getImageSize()).append(" bytes),");
         }
         if (getImageMimeType() != null) {
-            sb.append("MimeType: ").append(getImageMimeType());
+            sb.append("Image MimeType: ").append(getImageMimeType());
         }
         sb.append("}");
         return sb.toString();
@@ -284,10 +282,12 @@ public class AnprRequest extends Request {
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 17 * hash + Objects.hashCode(this.location);
-        hash = 17 * hash + Objects.hashCode(this.imageName);
-        hash = 17 * hash + (int) (this.imageSize ^ (this.imageSize >>> 32));
-        hash = 17 * hash + Objects.hashCode(this.services);
+        hash = 79 * hash + Objects.hashCode(this.maxreads);
+        hash = 79 * hash + Objects.hashCode(this.location);
+        hash = 79 * hash + Objects.hashCode(this.imageMimeType);
+        hash = 79 * hash + Objects.hashCode(this.imageName);
+        hash = 79 * hash + Arrays.hashCode(this.imageSource);
+        hash = 79 * hash + Objects.hashCode(this.services);
         return hash;
     }
 
@@ -303,9 +303,6 @@ public class AnprRequest extends Request {
             return false;
         }
         final AnprRequest other = (AnprRequest) obj;
-        if (this.imageSize != other.imageSize) {
-            return false;
-        }
         if (!Objects.equals(this.location, other.location)) {
             return false;
         }
@@ -316,6 +313,9 @@ public class AnprRequest extends Request {
             return false;
         }
         if (!Objects.equals(this.maxreads, other.maxreads)) {
+            return false;
+        }
+        if (!Arrays.equals(this.imageSource, other.imageSource)) {
             return false;
         }
         return Objects.equals(this.services, other.services);
