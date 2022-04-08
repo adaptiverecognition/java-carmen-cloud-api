@@ -7,7 +7,6 @@ import com.adaptiverecognition.cloud.Request;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
@@ -89,6 +88,8 @@ public class AnprRequest extends Request {
 
     private BufferedImage image;
 
+    private byte[] imageSource;
+
     private List<Service> services;
 
     /**
@@ -107,6 +108,15 @@ public class AnprRequest extends Request {
      */
     public void setServices(List<Service> service) {
         this.services = service;
+    }
+
+    /**
+     * Get the value of imageSource
+     *
+     * @return the value of imageSource
+     */
+    public byte[] getImageSource() {
+        return imageSource;
     }
 
     /**
@@ -153,33 +163,20 @@ public class AnprRequest extends Request {
      * @throws java.io.IOException
      */
     public void setImage(byte[] imageSource, String imageName) throws IOException {
+        this.imageSource = imageSource;
         if (imageSource != null) {
-            setImage(new ByteArrayInputStream(imageSource), imageName);
+            ImageInputStream iis = ImageIO.createImageInputStream(new ByteArrayInputStream(this.imageSource));
+            Iterator<ImageReader> imageReaders = ImageIO.getImageReaders(iis);
+            if (!imageReaders.hasNext()) {
+                throw new IOException("Invalid image format");
+            }
+            ImageReader reader = imageReaders.next();
+            reader.setInput(iis);
+            this.image = reader.read(0);
+            this.imageName = imageName;
+            this.imageMimeType = reader.getFormatName();
+            reader.dispose();
         }
-    }
-
-    /**
-     * Set the value of image, imageName, and imageMimeType
-     *
-     * @param imageSource new value of image
-     * @param imageName new value of imageName
-     * @throws java.io.IOException
-     */
-    public void setImage(InputStream imageSource, String imageName) throws IOException {
-        if (imageSource == null) {
-            return;
-        }
-        ImageInputStream iis = ImageIO.createImageInputStream(imageSource);
-        Iterator<ImageReader> imageReaders = ImageIO.getImageReaders(iis);
-        if (!imageReaders.hasNext()) {
-            throw new IOException("Invalid image format");
-        }
-        ImageReader reader = imageReaders.next();
-        reader.setInput(iis);
-        this.image = reader.read(0);
-        this.imageName = imageName;
-        this.imageMimeType = reader.getFormatName();
-        reader.dispose();
     }
 
     /**
@@ -248,18 +245,6 @@ public class AnprRequest extends Request {
      * @throws java.io.IOException
      */
     public AnprRequest image(byte[] image, String imageName) throws IOException {
-        setImage(image, imageName);
-        return this;
-    }
-
-    /**
-     * @param image
-     * @param imageName
-     * @return Returns a reference to this object so that method calls can be
-     * chained together.
-     * @throws java.io.IOException
-     */
-    public AnprRequest image(InputStream image, String imageName) throws IOException {
         setImage(image, imageName);
         return this;
     }
