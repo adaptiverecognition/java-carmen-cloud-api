@@ -298,6 +298,10 @@ public class AnprRequest extends Request {
         return sb.toString();
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public int hashCode() {
         int hash = 5;
@@ -310,6 +314,11 @@ public class AnprRequest extends Request {
         return hash;
     }
 
+    /**
+     *
+     * @param obj
+     * @return
+     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {

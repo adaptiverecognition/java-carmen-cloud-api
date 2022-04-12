@@ -6,6 +6,7 @@
 package com.adaptiverecognition.cloud.anpr;
 
 import com.adaptiverecognition.cloud.Color;
+import java.util.Objects;
 
 /**
  *
@@ -207,6 +208,84 @@ public class Mmr {
         this.makeAndModelConfidence = makeAndModelConfidence;
     }
 
+    /**
+     *
+     * @return
+     */
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 97 * hash + (this.found ? 1 : 0);
+        hash = 97 * hash + (int) (this.proctime ^ (this.proctime >>> 32));
+        hash = 97 * hash + Objects.hashCode(this.category);
+        hash = 97 * hash + Objects.hashCode(this.categoryConfidence);
+        hash = 97 * hash + Objects.hashCode(this.color);
+        hash = 97 * hash + Objects.hashCode(this.colorConfidence);
+        hash = 97 * hash + Objects.hashCode(this.make);
+        hash = 97 * hash + Objects.hashCode(this.model);
+        hash = 97 * hash + Objects.hashCode(this.makeAndModelConfidence);
+        hash = 97 * hash + Objects.hashCode(this.heading);
+        hash = 97 * hash + Objects.hashCode(this.headingConfidence);
+        return hash;
+    }
+
+    /**
+     *
+     * @param obj
+     * @return
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Mmr other = (Mmr) obj;
+        if (this.found != other.found) {
+            return false;
+        }
+        if (this.proctime != other.proctime) {
+            return false;
+        }
+        if (!Objects.equals(this.category, other.category)) {
+            return false;
+        }
+        if (!Objects.equals(this.make, other.make)) {
+            return false;
+        }
+        if (!Objects.equals(this.model, other.model)) {
+            return false;
+        }
+        if (!Objects.equals(this.heading, other.heading)) {
+            return false;
+        }
+        if (!Objects.equals(this.categoryConfidence, other.categoryConfidence)) {
+            return false;
+        }
+        if (!Objects.equals(this.color, other.color)) {
+            return false;
+        }
+        if (!Objects.equals(this.colorConfidence, other.colorConfidence)) {
+            return false;
+        }
+        if (!Objects.equals(this.makeAndModelConfidence, other.makeAndModelConfidence)) {
+            return false;
+        }
+        if (!Objects.equals(this.headingConfidence, other.headingConfidence)) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     *
+     * @return
+     */
     @Override
     public String toString() {
         return "Mmr{" + "found=" + found + ", proctime=" + proctime + ", category=" + category + ", categoryConfidence=" + categoryConfidence + ", color=" + color + ", colorConfidence=" + colorConfidence + ", make=" + make + ", model=" + model + ", makeAndModelConfidence=" + makeAndModelConfidence + ", heading=" + heading + ", headingConfidence=" + headingConfidence + '}';

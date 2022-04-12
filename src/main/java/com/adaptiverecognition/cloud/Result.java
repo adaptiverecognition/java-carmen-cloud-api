@@ -5,6 +5,8 @@
  */
 package com.adaptiverecognition.cloud;
 
+import java.util.Objects;
+
 /**
  *
  * @author laszlo.toth
@@ -80,6 +82,56 @@ public abstract class Result {
         this.error = error;
     }
 
+    /**
+     *
+     * @return
+     */
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 67 * hash + Objects.hashCode(this.error);
+        hash = 67 * hash + Objects.hashCode(this.nodename);
+        hash = 67 * hash + (int) (this.nodetime ^ (this.nodetime >>> 32));
+        hash = 67 * hash + Objects.hashCode(this.version);
+        return hash;
+    }
+
+    /**
+     *
+     * @param obj
+     * @return
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Result other = (Result) obj;
+        if (this.nodetime != other.nodetime) {
+            return false;
+        }
+        if (!Objects.equals(this.error, other.error)) {
+            return false;
+        }
+        if (!Objects.equals(this.nodename, other.nodename)) {
+            return false;
+        }
+        if (!Objects.equals(this.version, other.version)) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     *
+     * @return
+     */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

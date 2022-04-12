@@ -5,6 +5,8 @@
  */
 package com.adaptiverecognition.cloud.anpr;
 
+import java.util.Objects;
+
 /**
  *
  * @author laszlo.toth
@@ -46,6 +48,48 @@ public class Vehicle {
         this.mmr = mmr;
     }
 
+    /**
+     *
+     * @return
+     */
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 53 * hash + Objects.hashCode(this.plate);
+        hash = 53 * hash + Objects.hashCode(this.mmr);
+        return hash;
+    }
+
+    /**
+     *
+     * @param obj
+     * @return
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Vehicle other = (Vehicle) obj;
+        if (!Objects.equals(this.plate, other.plate)) {
+            return false;
+        }
+        if (!Objects.equals(this.mmr, other.mmr)) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     *
+     * @return
+     */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
