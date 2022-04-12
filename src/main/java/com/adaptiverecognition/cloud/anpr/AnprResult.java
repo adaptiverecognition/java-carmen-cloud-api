@@ -8,6 +8,7 @@ package com.adaptiverecognition.cloud.anpr;
 import com.adaptiverecognition.cloud.Result;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  *
@@ -20,6 +21,9 @@ public class AnprResult extends Result {
     private Map<String, String> engines;
     private Data data = new Data();
 
+    /**
+     *
+     */
     public AnprResult() {
         super.setVersion(VERSION);
     }
@@ -68,6 +72,48 @@ public class AnprResult extends Result {
         this.data = data;
     }
 
+    /**
+     *
+     * @return
+     */
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 97 * hash + Objects.hashCode(this.engines);
+        hash = 97 * hash + Objects.hashCode(this.data);
+        return hash;
+    }
+
+    /**
+     *
+     * @param obj
+     * @return
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final AnprResult other = (AnprResult) obj;
+        if (!Objects.equals(this.engines, other.engines)) {
+            return false;
+        }
+        if (!Objects.equals(this.data, other.data)) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     *
+     * @return
+     */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

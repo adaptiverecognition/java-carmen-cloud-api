@@ -8,6 +8,7 @@ package com.adaptiverecognition.cloud.anpr;
 import com.adaptiverecognition.cloud.Rectangle;
 import com.adaptiverecognition.cloud.Color;
 import java.util.List;
+import java.util.Objects;
 
 /**
  *
@@ -262,6 +263,96 @@ public class Plate {
         this.state = state;
     }
 
+    /**
+     *
+     * @return
+     */
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 73 * hash + (this.found ? 1 : 0);
+        hash = 73 * hash + (int) (this.proctime ^ (this.proctime >>> 32));
+        hash = 73 * hash + Objects.hashCode(this.bgColor);
+        hash = 73 * hash + Objects.hashCode(this.color);
+        hash = 73 * hash + Objects.hashCode(this.confidence);
+        hash = 73 * hash + Objects.hashCode(this.country);
+        hash = 73 * hash + Objects.hashCode(this.plateChars);
+        hash = 73 * hash + Objects.hashCode(this.plateROI);
+        hash = 73 * hash + Objects.hashCode(this.plateType);
+        hash = 73 * hash + Objects.hashCode(this.state);
+        hash = 73 * hash + Objects.hashCode(this.unicodeText);
+        hash = 73 * hash + Objects.hashCode(this.plateTypeConfidence);
+        hash = 73 * hash + Objects.hashCode(this.positionConfidence);
+        hash = 73 * hash + Objects.hashCode(this.category);
+        return hash;
+    }
+
+    /**
+     *
+     * @param obj
+     * @return
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Plate other = (Plate) obj;
+        if (this.found != other.found) {
+            return false;
+        }
+        if (this.proctime != other.proctime) {
+            return false;
+        }
+        if (!Objects.equals(this.country, other.country)) {
+            return false;
+        }
+        if (!Objects.equals(this.state, other.state)) {
+            return false;
+        }
+        if (!Objects.equals(this.unicodeText, other.unicodeText)) {
+            return false;
+        }
+        if (!Objects.equals(this.category, other.category)) {
+            return false;
+        }
+        if (!Objects.equals(this.bgColor, other.bgColor)) {
+            return false;
+        }
+        if (!Objects.equals(this.color, other.color)) {
+            return false;
+        }
+        if (!Objects.equals(this.confidence, other.confidence)) {
+            return false;
+        }
+        if (!Objects.equals(this.plateChars, other.plateChars)) {
+            return false;
+        }
+        if (!Objects.equals(this.plateROI, other.plateROI)) {
+            return false;
+        }
+        if (!Objects.equals(this.plateType, other.plateType)) {
+            return false;
+        }
+        if (!Objects.equals(this.plateTypeConfidence, other.plateTypeConfidence)) {
+            return false;
+        }
+        if (!Objects.equals(this.positionConfidence, other.positionConfidence)) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     *
+     * @return
+     */
     @Override
     public String toString() {
         return "Plate{" + "found=" + found + ", proctime=" + proctime + ", bgColor=" + bgColor + ", color=" + color + ", confidence=" + confidence + ", country=" + country + ", plateChars=" + plateChars + ", plateROI=" + plateROI + ", plateType=" + plateType + ", state=" + state + ", unicodeText=" + unicodeText + ", plateTypeConfidence=" + plateTypeConfidence + ", positionConfidence=" + positionConfidence + ", category=" + category + '}';

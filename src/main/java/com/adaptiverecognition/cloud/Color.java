@@ -63,6 +63,52 @@ public class Color {
         this.b = b;
     }
 
+    /**
+     *
+     * @return
+     */
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 37 * hash + this.r;
+        hash = 37 * hash + this.g;
+        hash = 37 * hash + this.b;
+        return hash;
+    }
+
+    /**
+     *
+     * @param obj
+     * @return
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Color other = (Color) obj;
+        if (this.r != other.r) {
+            return false;
+        }
+        if (this.g != other.g) {
+            return false;
+        }
+        if (this.b != other.b) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     *
+     * @return
+     */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
