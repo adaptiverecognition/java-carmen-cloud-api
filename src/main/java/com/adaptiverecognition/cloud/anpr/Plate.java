@@ -20,6 +20,7 @@ public class Plate {
     private long proctime;
     private Color bgColor;
     private Color color;
+    private String daColor;
     private Integer confidence;
     private String country;
     private List<Char> plateChars;
@@ -30,6 +31,24 @@ public class Plate {
     private Integer plateTypeConfidence;
     private Integer positionConfidence;
     private String category;
+
+    /**
+     * Get the value of daColor
+     *
+     * @return the value of daColor
+     */
+    public String getDaColor() {
+        return daColor;
+    }
+
+    /**
+     * Set the value of daColor
+     *
+     * @param daColor new value of daColor
+     */
+    public void setDaColor(String daColor) {
+        this.daColor = daColor;
+    }
 
     /**
      * Get the value of found
@@ -349,13 +368,9 @@ public class Plate {
         return true;
     }
 
-    /**
-     *
-     * @return
-     */
     @Override
     public String toString() {
-        return "Plate{" + "found=" + found + ", proctime=" + proctime + ", bgColor=" + bgColor + ", color=" + color + ", confidence=" + confidence + ", country=" + country + ", plateChars=" + plateChars + ", plateROI=" + plateROI + ", plateType=" + plateType + ", state=" + state + ", unicodeText=" + unicodeText + ", plateTypeConfidence=" + plateTypeConfidence + ", positionConfidence=" + positionConfidence + ", category=" + category + '}';
+        return "Plate{" + "found=" + found + ", proctime=" + proctime + ", bgColor=" + bgColor + ", color=" + color + ", daColor=" + daColor + ", confidence=" + confidence + ", country=" + country + ", plateChars=" + plateChars + ", plateROI=" + plateROI + ", plateType=" + plateType + ", state=" + state + ", unicodeText=" + unicodeText + ", plateTypeConfidence=" + plateTypeConfidence + ", positionConfidence=" + positionConfidence + ", category=" + category + '}';
     }
 
 }
