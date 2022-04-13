@@ -76,19 +76,39 @@ public class AnprRequest extends Request {
         }
     }
 
-    private Integer maxreads;
-
-    private String location;
-
-    private String imageMimeType;
-
-    private String imageName;
+    private List<Service> services;
 
     private BufferedImage image;
 
     private byte[] imageSource;
 
-    private List<Service> services;
+    private String imageName;
+
+    private String imageMimeType;
+
+    private String region;
+
+    private String location;
+
+    private Integer maxreads;
+
+    /**
+     * Get the value of region
+     *
+     * @return the value of region
+     */
+    public String getRegion() {
+        return region;
+    }
+
+    /**
+     * Set the value of region
+     *
+     * @param region new value of region
+     */
+    public void setRegion(String region) {
+        this.region = region;
+    }
 
     /**
      * Get the value of services
@@ -278,21 +298,24 @@ public class AnprRequest extends Request {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("{");
+        sb.append("AnprRequest{");
         if (getServices() != null) {
             sb.append("Services: ").append(getServices()).append(",");
-        }
-        if (getMaxreads() != null) {
-            sb.append("Maxreads: ").append(getMaxreads()).append(",");
-        }
-        if (getLocation() != null) {
-            sb.append("Location: ").append(getLocation()).append(",");
         }
         if (getImage() != null) {
             sb.append("Image: ").append(getImageName()).append(" (").append(getImageSize()).append(" bytes),");
         }
         if (getImageMimeType() != null) {
-            sb.append("Image MimeType: ").append(getImageMimeType());
+            sb.append("Image MimeType: ").append(getImageMimeType()).append(",");
+        }
+        if (getLocation() != null) {
+            sb.append("Region: ").append(getRegion()).append(",");
+        }
+        if (getLocation() != null) {
+            sb.append("Location: ").append(getLocation()).append(",");
+        }
+        if (getMaxreads() != null) {
+            sb.append("Maxreads: ").append(getMaxreads());
         }
         sb.append("}");
         return sb.toString();
@@ -306,6 +329,7 @@ public class AnprRequest extends Request {
     public int hashCode() {
         int hash = 5;
         hash = 79 * hash + Objects.hashCode(this.maxreads);
+        hash = 79 * hash + Objects.hashCode(this.region);
         hash = 79 * hash + Objects.hashCode(this.location);
         hash = 79 * hash + Objects.hashCode(this.imageMimeType);
         hash = 79 * hash + Objects.hashCode(this.imageName);
@@ -331,6 +355,9 @@ public class AnprRequest extends Request {
             return false;
         }
         final AnprRequest other = (AnprRequest) obj;
+        if (!Objects.equals(this.region, other.region)) {
+            return false;
+        }
         if (!Objects.equals(this.location, other.location)) {
             return false;
         }
