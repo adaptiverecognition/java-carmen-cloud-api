@@ -27,11 +27,10 @@ public interface Handler<R extends Request, A extends Result, S extends Statisti
 
     /**
      *
-     * @param region
      * @param request
      * @param result
      * @param statistics
      * @return
      */
-    public int processRequest(String region, R request, A result, S statistics);
+    public int processRequest(R request, A result, S statistics);
 }
