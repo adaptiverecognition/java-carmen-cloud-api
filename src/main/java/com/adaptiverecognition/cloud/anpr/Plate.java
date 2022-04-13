@@ -20,7 +20,7 @@ public class Plate {
     private long proctime;
     private Color bgColor;
     private Color color;
-    private String daColor;
+    private Color daColor;
     private Integer confidence;
     private String country;
     private List<Char> plateChars;
@@ -37,7 +37,7 @@ public class Plate {
      *
      * @return the value of daColor
      */
-    public String getDaColor() {
+    public Color getDaColor() {
         return daColor;
     }
 
@@ -46,7 +46,7 @@ public class Plate {
      *
      * @param daColor new value of daColor
      */
-    public void setDaColor(String daColor) {
+    public void setDaColor(Color daColor) {
         this.daColor = daColor;
     }
 
