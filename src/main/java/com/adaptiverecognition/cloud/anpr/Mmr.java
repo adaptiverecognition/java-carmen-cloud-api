@@ -22,7 +22,8 @@ public class Mmr {
     private Integer colorConfidence;
     private String make;
     private String model;
-    private Integer makeAndModelConfidence;
+    private Integer makeConfidence;
+    private Integer modelConfidence;
     private String heading;
     private Integer headingConfidence;
 
@@ -196,16 +197,32 @@ public class Mmr {
      *
      * @return
      */
-    public Integer getMakeAndModelConfidence() {
-        return makeAndModelConfidence;
+    public Integer getMakeConfidence() {
+        return makeConfidence;
     }
 
     /**
      *
-     * @param makeAndModelConfidence
+     * @param makeConfidence
      */
-    public void setMakeAndModelConfidence(Integer makeAndModelConfidence) {
-        this.makeAndModelConfidence = makeAndModelConfidence;
+    public void setMakeConfidence(Integer makeConfidence) {
+        this.makeConfidence = makeConfidence;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public Integer getModelConfidence() {
+        return modelConfidence;
+    }
+
+    /**
+     *
+     * @param modelConfidence
+     */
+    public void setModelConfidence(Integer modelConfidence) {
+        this.modelConfidence = modelConfidence;
     }
 
     /**
@@ -223,7 +240,8 @@ public class Mmr {
         hash = 97 * hash + Objects.hashCode(this.colorConfidence);
         hash = 97 * hash + Objects.hashCode(this.make);
         hash = 97 * hash + Objects.hashCode(this.model);
-        hash = 97 * hash + Objects.hashCode(this.makeAndModelConfidence);
+        hash = 97 * hash + Objects.hashCode(this.makeConfidence);
+        hash = 97 * hash + Objects.hashCode(this.modelConfidence);
         hash = 97 * hash + Objects.hashCode(this.heading);
         hash = 97 * hash + Objects.hashCode(this.headingConfidence);
         return hash;
@@ -273,7 +291,10 @@ public class Mmr {
         if (!Objects.equals(this.colorConfidence, other.colorConfidence)) {
             return false;
         }
-        if (!Objects.equals(this.makeAndModelConfidence, other.makeAndModelConfidence)) {
+        if (!Objects.equals(this.makeConfidence, other.makeConfidence)) {
+            return false;
+        }
+        if (!Objects.equals(this.modelConfidence, other.modelConfidence)) {
             return false;
         }
         if (!Objects.equals(this.headingConfidence, other.headingConfidence)) {
@@ -288,7 +309,10 @@ public class Mmr {
      */
     @Override
     public String toString() {
-        return "Mmr{" + "found=" + found + ", proctime=" + proctime + ", category=" + category + ", categoryConfidence=" + categoryConfidence + ", color=" + color + ", colorConfidence=" + colorConfidence + ", make=" + make + ", model=" + model + ", makeAndModelConfidence=" + makeAndModelConfidence + ", heading=" + heading + ", headingConfidence=" + headingConfidence + '}';
+        return "Mmr{" + "found=" + found + ", proctime=" + proctime + ", category=" + category + ", categoryConfidence="
+                + categoryConfidence + ", color=" + color + ", colorConfidence=" + colorConfidence + ", make=" + make
+                + ", model=" + model + ", makeConfidence=" + makeConfidence + ", modelConfidence=" + modelConfidence
+                + ", heading=" + heading + ", headingConfidence=" + headingConfidence + '}';
     }
 
 }
