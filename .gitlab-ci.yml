@@ -28,7 +28,7 @@ test:
 deploy:
   stage: deploy
   script:
-  - mvn $MAVEN_CLI_OPTS --activate-profiles default -Dmaven.wagon.http.ssl.insecure=true -Dmaven.wagon.http.ssl.allowall=true deploy
+  - mvn $MAVEN_CLI_OPTS --activate-profiles default -Dmaven.wagon.http.ssl.insecure=true -Dmaven.wagon.http.ssl.allowall=true -s .mvn-settings.xml deploy
   only:
   - develop
 
@@ -36,6 +36,6 @@ release:
   stage: deploy
   script:
   - mvn versions:set -DgenerateBackupPoms=false -DnewVersion=$CI_COMMIT_TAG
-  - mvn $MAVEN_CLI_OPTS --activate-profiles production -s settings.xml deploy
+  - mvn $MAVEN_CLI_OPTS --activate-profiles production -s .mvn-settings.xml deploy
   rules:
     - if: '$CI_COMMIT_TAG != null'
