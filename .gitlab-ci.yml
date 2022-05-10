@@ -28,7 +28,7 @@ test:
 deploy:
   stage: deploy
   script:
-  - mvn $MAVEN_CLI_OPTS --activate-profiles default -s settings.xml deploy
+  - mvn $MAVEN_CLI_OPTS --activate-profiles default -Djavax.net.ssl.trustStore=trust.jks -Djavax.net.ssl.trustStorePassword=secret -s settings.xml deploy
   only:
   - develop
 
