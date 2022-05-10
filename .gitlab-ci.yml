@@ -28,7 +28,7 @@ test:
 deploy:
   stage: deploy
   script:
-  - mvn $MAVEN_CLI_OPTS --activate-profiles default -s settings.xml deploy
+  - mvn $MAVEN_CLI_OPTS --activate-profiles default -Dmaven.wagon.http.ssl.insecure=true -Dmaven.wagon.http.ssl.allowall=true deploy
   only:
   - develop
 
