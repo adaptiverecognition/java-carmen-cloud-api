@@ -11,6 +11,8 @@ cache:
 build:
   stage: build
   script:
+  - export
+  - echo $MAVEN_DEPLOYMENT_URL
   - mvn $MAVEN_CLI_OPTS --activate-profiles default compile
   only:
   - develop
@@ -18,6 +20,8 @@ build:
 test:
   stage: test
   script:
+  - export
+  - echo $MAVEN_DEPLOYMENT_URL
   - mvn $MAVEN_CLI_OPTS --activate-profiles default test
   only:
   - develop
@@ -26,6 +30,7 @@ deploy:
   stage: deploy
   script:
   - export
+  - echo $MAVEN_DEPLOYMENT_URL
   - mvn $MAVEN_CLI_OPTS --activate-profiles default -DaltDeploymentRepository=snapshots::default::$MAVEN_DEPLOYMENT_URL deploy
   before_script:
   - update-ca-certificates
