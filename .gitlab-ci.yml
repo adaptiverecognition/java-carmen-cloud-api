@@ -2,7 +2,7 @@ image: maven:3.8.5-jdk-11
 
 variables:
   MAVEN_CLI_OPTS: "--batch-mode --update-snapshots"
-  MAVEN_DEPLOYMENT_URL: "${env.CI_SERVER_URL}/api/v4/projects/${env.CI_PROJECT_ID}/packages/maven"
+  MAVEN_DEPLOYMENT_URL: "$CI_SERVER_URL/api/v4/projects/$CI_PROJECT_ID/packages/maven"
 
 cache:
   paths:
@@ -11,7 +11,8 @@ cache:
 build:
   stage: build
   script:
-  - export
+  - echo $CI_SERVER_URL
+  - echo $CI_PROJECT_ID
   - echo $MAVEN_DEPLOYMENT_URL
   - mvn $MAVEN_CLI_OPTS --activate-profiles default compile
   only:
@@ -20,8 +21,6 @@ build:
 test:
   stage: test
   script:
-  - export
-  - echo $MAVEN_DEPLOYMENT_URL
   - mvn $MAVEN_CLI_OPTS --activate-profiles default test
   only:
   - develop
@@ -29,8 +28,6 @@ test:
 deploy:
   stage: deploy
   script:
-  - export
-  - echo $MAVEN_DEPLOYMENT_URL
   - mvn $MAVEN_CLI_OPTS --activate-profiles default -DaltDeploymentRepository=snapshots::default::$MAVEN_DEPLOYMENT_URL deploy
   before_script:
   - update-ca-certificates
