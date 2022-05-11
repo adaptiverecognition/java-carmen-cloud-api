@@ -1,8 +1,8 @@
 image: maven:3.8.5-jdk-11
 
 variables:
-  MAVEN_CLI_OPTS: "--batch-mode --update-snapshots -s /root/.m2/settings.xml"
-  MAVEN_DEPLOYMENT_URL: "$CI_SERVER_URL/api/v4/projects/$CI_PROJECT_ID/packages/maven"
+  MAVEN_CLI_OPTS: "--batch-mode --update-snapshots"
+  MAVEN_DEPLOYMENT_URL: "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/maven"
 
 cache:
   paths:
