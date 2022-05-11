@@ -25,6 +25,8 @@ deploy:
   stage: deploy
   script:
   - mvn $MAVEN_CLI_OPTS --activate-profiles default -s .mvn-settings.xml deploy
+  before-script:
+  - update-ca-certificates
   only:
   - develop
 
