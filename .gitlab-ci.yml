@@ -1,11 +1,7 @@
-image: maven:3.6.3-jdk-11
+image: maven:3.8.5-jdk-11
 
 variables:
   MAVEN_CLI_OPTS: "--batch-mode --update-snapshots"
-  MAVEN_OPTS: "-Dmaven.repo.local=.m2/repository"
-  MAVEN_REPO_URL: "http://192.168.254.97:8081/artifactory"
-  MAVEN_CENTRAL_REPO: "http://192.168.254.97:8081/artifactory/libs-release"
-  MAVEN_SNAPSHOTS_REPO: "http://192.168.254.97:8081/artifactory/libs-snapshot"
 
 cache:
   paths:
@@ -28,7 +24,7 @@ test:
 deploy:
   stage: deploy
   script:
-  - mvn $MAVEN_CLI_OPTS --activate-profiles default -Dmaven.wagon.http.ssl.insecure=true -Dmaven.wagon.http.ssl.allowall=true -s .mvn-settings.xml deploy
+  - mvn $MAVEN_CLI_OPTS --activate-profiles default -s .mvn-settings.xml deploy
   only:
   - develop
 
@@ -36,6 +32,6 @@ release:
   stage: deploy
   script:
   - mvn versions:set -DgenerateBackupPoms=false -DnewVersion=$CI_COMMIT_TAG
-  - mvn $MAVEN_CLI_OPTS --activate-profiles production -Dmaven.wagon.http.ssl.insecure=true -Dmaven.wagon.http.ssl.allowall=true -s .mvn-settings.xml deploy
+  - mvn $MAVEN_CLI_OPTS --activate-profiles production -s .mvn-settings.xml deploy
   rules:
     - if: '$CI_COMMIT_TAG != null'
