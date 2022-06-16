@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.adaptiverecognition.cloud.anpr;
+package com.adaptiverecognition.cloud.vehicle;
 
 import com.adaptiverecognition.cloud.Result;
 import java.util.HashMap;
@@ -14,7 +14,7 @@ import java.util.Objects;
  *
  * @author laszlo.toth
  */
-public class AnprResult extends Result {
+public class VehicleResult extends Result {
 
     private static final String VERSION = "1.2";
 
@@ -24,7 +24,7 @@ public class AnprResult extends Result {
     /**
      *
      */
-    public AnprResult() {
+    public VehicleResult() {
         super.setVersion(VERSION);
     }
 
@@ -100,7 +100,7 @@ public class AnprResult extends Result {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final AnprResult other = (AnprResult) obj;
+        final VehicleResult other = (VehicleResult) obj;
         if (!Objects.equals(this.engines, other.engines)) {
             return false;
         }
