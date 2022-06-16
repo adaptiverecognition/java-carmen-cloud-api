@@ -3,49 +3,34 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.adaptiverecognition.cloud.anpr;
+package com.adaptiverecognition.cloud.vehicle;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 /**
  *
  * @author laszlo.toth
  */
-public class Vehicle {
+public class Data {
 
-    private Plate plate;
-    private Mmr mmr;
-
-    /**
-     *
-     * @return
-     */
-    public Plate getPlate() {
-        return plate;
-    }
-
-    /**
-     *
-     * @param plate
-     */
-    public void setPlate(Plate plate) {
-        this.plate = plate;
-    }
+    private List<Vehicle> vehicles = new ArrayList<>();
 
     /**
      *
      * @return
      */
-    public Mmr getMmr() {
-        return mmr;
+    public List<Vehicle> getVehicles() {
+        return vehicles;
     }
 
     /**
      *
-     * @param mmr
+     * @param vehicles
      */
-    public void setMmr(Mmr mmr) {
-        this.mmr = mmr;
+    public void setVehicles(List<Vehicle> vehicles) {
+        this.vehicles = vehicles;
     }
 
     /**
@@ -54,9 +39,8 @@ public class Vehicle {
      */
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 53 * hash + Objects.hashCode(this.plate);
-        hash = 53 * hash + Objects.hashCode(this.mmr);
+        int hash = 3;
+        hash = 97 * hash + Objects.hashCode(this.vehicles);
         return hash;
     }
 
@@ -76,11 +60,8 @@ public class Vehicle {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Vehicle other = (Vehicle) obj;
-        if (!Objects.equals(this.plate, other.plate)) {
-            return false;
-        }
-        if (!Objects.equals(this.mmr, other.mmr)) {
+        final Data other = (Data) obj;
+        if (!Objects.equals(this.vehicles, other.vehicles)) {
             return false;
         }
         return true;
@@ -93,8 +74,7 @@ public class Vehicle {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Vehicle{plate=").append(plate);
-        sb.append(", mmr=").append(mmr);
+        sb.append("Data{vehicles=").append(vehicles);
         sb.append('}');
         return sb.toString();
     }

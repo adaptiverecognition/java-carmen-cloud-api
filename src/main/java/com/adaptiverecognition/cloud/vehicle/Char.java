@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.adaptiverecognition.cloud.anpr;
+package com.adaptiverecognition.cloud.vehicle;
 
 import com.adaptiverecognition.cloud.Color;
 import com.adaptiverecognition.cloud.Rectangle;

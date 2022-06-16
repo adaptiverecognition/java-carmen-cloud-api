@@ -1,7 +1,7 @@
 /**
  *
  */
-package com.adaptiverecognition.cloud.anpr;
+package com.adaptiverecognition.cloud.vehicle;
 
 import com.adaptiverecognition.cloud.Request;
 import java.awt.image.BufferedImage;
@@ -19,7 +19,7 @@ import javax.imageio.stream.ImageInputStream;
  *
  * @author laszlo.toth
  */
-public class AnprRequest extends Request {
+public class VehicleRequest extends Request {
 
     /**
      *
@@ -186,7 +186,7 @@ public class AnprRequest extends Request {
      * Set the value of image, imageName, and imageMimeType
      *
      * @param imageSource new value of image
-     * @param imageName new value of imageName
+     * @param imageName   new value of imageName
      * @throws java.io.IOException
      */
     public void setImage(byte[] imageSource, String imageName) throws IOException {
@@ -223,9 +223,9 @@ public class AnprRequest extends Request {
     /**
      * @param maxreads
      * @return Returns a reference to this object so that method calls can be
-     * chained together.
+     *         chained together.
      */
-    public AnprRequest maxreads(Integer maxreads) {
+    public VehicleRequest maxreads(Integer maxreads) {
         setMaxreads(maxreads);
         return this;
     }
@@ -247,9 +247,9 @@ public class AnprRequest extends Request {
     /**
      * @param location
      * @return Returns a reference to this object so that method calls can be
-     * chained together.
+     *         chained together.
      */
-    public AnprRequest location(String location) {
+    public VehicleRequest location(String location) {
         setLocation(location);
         return this;
     }
@@ -257,9 +257,9 @@ public class AnprRequest extends Request {
     /**
      * @param services
      * @return Returns a reference to this object so that method calls can be
-     * chained together.
+     *         chained together.
      */
-    public AnprRequest services(List<Service> services) {
+    public VehicleRequest services(List<Service> services) {
         setServices(services);
         return this;
     }
@@ -267,9 +267,9 @@ public class AnprRequest extends Request {
     /**
      * @param services
      * @return Returns a reference to this object so that method calls can be
-     * chained together.
+     *         chained together.
      */
-    public AnprRequest services(Service... services) {
+    public VehicleRequest services(Service... services) {
         setServices(services);
         return this;
     }
@@ -278,10 +278,10 @@ public class AnprRequest extends Request {
      * @param image
      * @param imageName
      * @return Returns a reference to this object so that method calls can be
-     * chained together.
+     *         chained together.
      * @throws java.io.IOException
      */
-    public AnprRequest image(byte[] image, String imageName) throws IOException {
+    public VehicleRequest image(byte[] image, String imageName) throws IOException {
         setImage(image, imageName);
         return this;
     }
@@ -354,7 +354,7 @@ public class AnprRequest extends Request {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final AnprRequest other = (AnprRequest) obj;
+        final VehicleRequest other = (VehicleRequest) obj;
         if (!Objects.equals(this.region, other.region)) {
             return false;
         }

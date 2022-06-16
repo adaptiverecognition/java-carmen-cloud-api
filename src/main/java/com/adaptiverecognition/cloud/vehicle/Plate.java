@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.adaptiverecognition.cloud.anpr;
+package com.adaptiverecognition.cloud.vehicle;
 
 import com.adaptiverecognition.cloud.Rectangle;
 import com.adaptiverecognition.cloud.Color;
@@ -370,7 +370,11 @@ public class Plate {
 
     @Override
     public String toString() {
-        return "Plate{" + "found=" + found + ", proctime=" + proctime + ", bgColor=" + bgColor + ", color=" + color + ", daColor=" + daColor + ", confidence=" + confidence + ", country=" + country + ", plateChars=" + plateChars + ", plateROI=" + plateROI + ", plateType=" + plateType + ", state=" + state + ", unicodeText=" + unicodeText + ", plateTypeConfidence=" + plateTypeConfidence + ", positionConfidence=" + positionConfidence + ", category=" + category + '}';
+        return "Plate{" + "found=" + found + ", proctime=" + proctime + ", bgColor=" + bgColor + ", color=" + color
+                + ", daColor=" + daColor + ", confidence=" + confidence + ", country=" + country + ", plateChars="
+                + plateChars + ", plateROI=" + plateROI + ", plateType=" + plateType + ", state=" + state
+                + ", unicodeText=" + unicodeText + ", plateTypeConfidence=" + plateTypeConfidence
+                + ", positionConfidence=" + positionConfidence + ", category=" + category + '}';
     }
 
 }
