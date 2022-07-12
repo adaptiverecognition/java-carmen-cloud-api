@@ -3,23 +3,27 @@
  */
 package com.adaptiverecognition.cloud.vehicle;
 
-import com.adaptiverecognition.cloud.Request;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
+
 import javax.imageio.ImageIO;
 import javax.imageio.ImageReader;
 import javax.imageio.stream.ImageInputStream;
+
+import com.adaptiverecognition.cloud.Request;
 
 /**
  *
  * @author laszlo.toth
  */
-public class VehicleRequest extends Request {
+public class VehicleRequest<S extends Enum> extends Request {
 
     /**
      *
@@ -91,6 +95,47 @@ public class VehicleRequest extends Request {
     private String location;
 
     private Integer maxreads;
+
+    private Map<S, Object> properties;
+
+    /**
+     * Get the value of properties
+     *
+     * @return the value of properties
+     */
+    public Map<S, Object> getProperties() {
+        return properties;
+    }
+
+    /**
+     * Set the value of properties
+     *
+     * @param properties new value of properties
+     */
+    public void setProperties(Map<S, Object> properties) {
+        this.properties = properties;
+    }
+
+    /**
+     *
+     * @param key
+     * @return
+     */
+    public Object getProperty(S key) {
+        return properties != null ? properties.get(key) : null;
+    }
+
+    /**
+     *
+     * @param key
+     * @param value
+     */
+    public void setProperty(S key, Object value) {
+        if (this.properties == null) {
+            this.properties = new HashMap<>();
+        }
+        this.properties.put(key, value);
+    }
 
     /**
      * Get the value of region
