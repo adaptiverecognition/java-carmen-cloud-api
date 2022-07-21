@@ -5,10 +5,11 @@
  */
 package com.adaptiverecognition.cloud.vehicle;
 
-import com.adaptiverecognition.cloud.Rectangle;
-import com.adaptiverecognition.cloud.Color;
-import java.util.List;
 import java.util.Objects;
+
+import com.adaptiverecognition.cloud.Color;
+import com.adaptiverecognition.cloud.Rectangle;
+import com.google.gson.annotations.SerializedName;
 
 /**
  *
@@ -16,38 +17,49 @@ import java.util.Objects;
  */
 public class Plate {
 
+    /**
+     *
+     */
+    public enum TypeCategory {
+        /**
+         *
+         */
+        @SerializedName("LP")
+        LicensePlate,
+        /**
+         *
+         */
+        @SerializedName("ADR")
+        ADR,
+        /**
+         *
+         */
+        @SerializedName("EADR")
+        EmptyADR;
+
+        /**
+         *
+         */
+        TypeCategory() {
+        }
+
+    }
+
     private boolean found;
     private long proctime;
     private Color bgColor;
     private Color color;
-    private Color daColor;
     private Integer confidence;
-    private String country;
-    private List<Char> plateChars;
     private Rectangle plateROI;
     private Integer plateType;
-    private String state;
-    private String unicodeText;
-    private Integer plateTypeConfidence;
-    private Integer positionConfidence;
-    private String category;
+    private TypeCategory type;
 
-    /**
-     * Get the value of daColor
-     *
-     * @return the value of daColor
-     */
-    public Color getDaColor() {
-        return daColor;
+    public Plate() {
+        this(TypeCategory.EmptyADR);
     }
 
-    /**
-     * Set the value of daColor
-     *
-     * @param daColor new value of daColor
-     */
-    public void setDaColor(Color daColor) {
-        this.daColor = daColor;
+    public Plate(TypeCategory plateTypeCategory) {
+        this.type = plateTypeCategory;
     }
 
     /**
@@ -69,92 +81,6 @@ public class Plate {
     }
 
     /**
-     * Get the value of category
-     *
-     * @return the value of category
-     */
-    public String getCategory() {
-        return category;
-    }
-
-    /**
-     * Set the value of category
-     *
-     * @param category new value of category
-     */
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
-    /**
-     * Get the value of positionConfidence
-     *
-     * @return the value of positionConfidence
-     */
-    public Integer getPositionConfidence() {
-        return positionConfidence;
-    }
-
-    /**
-     * Set the value of positionConfidence
-     *
-     * @param positionConfidence new value of positionConfidence
-     */
-    public void setPositionConfidence(Integer positionConfidence) {
-        this.positionConfidence = positionConfidence;
-    }
-
-    /**
-     * Get the value of plateTypeConfidence
-     *
-     * @return the value of plateTypeConfidence
-     */
-    public Integer getPlateTypeConfidence() {
-        return plateTypeConfidence;
-    }
-
-    /**
-     * Set the value of plateTypeConfidence
-     *
-     * @param plateTypeConfidence new value of plateTypeConfidence
-     */
-    public void setPlateTypeConfidence(Integer plateTypeConfidence) {
-        this.plateTypeConfidence = plateTypeConfidence;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public String getUnicodeText() {
-        return unicodeText;
-    }
-
-    /**
-     *
-     * @param unicodeText
-     */
-    public void setUnicodeText(String unicodeText) {
-        this.unicodeText = unicodeText;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public String getCountry() {
-        return country;
-    }
-
-    /**
-     *
-     * @param country
-     */
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    /**
      *
      * @return
      */
@@ -168,6 +94,14 @@ public class Plate {
      */
     public void setPlateType(Integer plateType) {
         this.plateType = plateType;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public TypeCategory getType() {
+        return type;
     }
 
     /**
@@ -238,22 +172,6 @@ public class Plate {
      *
      * @return
      */
-    public List<Char> getPlateChars() {
-        return plateChars;
-    }
-
-    /**
-     *
-     * @param plateChars
-     */
-    public void setPlateChars(List<Char> plateChars) {
-        this.plateChars = plateChars;
-    }
-
-    /**
-     *
-     * @return
-     */
     public Rectangle getPlateROI() {
         return plateROI;
     }
@@ -270,22 +188,6 @@ public class Plate {
      *
      * @return
      */
-    public String getState() {
-        return state;
-    }
-
-    /**
-     *
-     * @param state
-     */
-    public void setState(String state) {
-        this.state = state;
-    }
-
-    /**
-     *
-     * @return
-     */
     @Override
     public int hashCode() {
         int hash = 7;
@@ -294,15 +196,9 @@ public class Plate {
         hash = 73 * hash + Objects.hashCode(this.bgColor);
         hash = 73 * hash + Objects.hashCode(this.color);
         hash = 73 * hash + Objects.hashCode(this.confidence);
-        hash = 73 * hash + Objects.hashCode(this.country);
-        hash = 73 * hash + Objects.hashCode(this.plateChars);
         hash = 73 * hash + Objects.hashCode(this.plateROI);
         hash = 73 * hash + Objects.hashCode(this.plateType);
-        hash = 73 * hash + Objects.hashCode(this.state);
-        hash = 73 * hash + Objects.hashCode(this.unicodeText);
-        hash = 73 * hash + Objects.hashCode(this.plateTypeConfidence);
-        hash = 73 * hash + Objects.hashCode(this.positionConfidence);
-        hash = 73 * hash + Objects.hashCode(this.category);
+        hash = 73 * hash + Objects.hashCode(this.type);
         return hash;
     }
 
@@ -329,18 +225,6 @@ public class Plate {
         if (this.proctime != other.proctime) {
             return false;
         }
-        if (!Objects.equals(this.country, other.country)) {
-            return false;
-        }
-        if (!Objects.equals(this.state, other.state)) {
-            return false;
-        }
-        if (!Objects.equals(this.unicodeText, other.unicodeText)) {
-            return false;
-        }
-        if (!Objects.equals(this.category, other.category)) {
-            return false;
-        }
         if (!Objects.equals(this.bgColor, other.bgColor)) {
             return false;
         }
@@ -350,19 +234,13 @@ public class Plate {
         if (!Objects.equals(this.confidence, other.confidence)) {
             return false;
         }
-        if (!Objects.equals(this.plateChars, other.plateChars)) {
-            return false;
-        }
         if (!Objects.equals(this.plateROI, other.plateROI)) {
             return false;
         }
         if (!Objects.equals(this.plateType, other.plateType)) {
             return false;
         }
-        if (!Objects.equals(this.plateTypeConfidence, other.plateTypeConfidence)) {
-            return false;
-        }
-        if (!Objects.equals(this.positionConfidence, other.positionConfidence)) {
+        if (!Objects.equals(this.type, other.type)) {
             return false;
         }
         return true;
@@ -371,10 +249,8 @@ public class Plate {
     @Override
     public String toString() {
         return "Plate{" + "found=" + found + ", proctime=" + proctime + ", bgColor=" + bgColor + ", color=" + color
-                + ", daColor=" + daColor + ", confidence=" + confidence + ", country=" + country + ", plateChars="
-                + plateChars + ", plateROI=" + plateROI + ", plateType=" + plateType + ", state=" + state
-                + ", unicodeText=" + unicodeText + ", plateTypeConfidence=" + plateTypeConfidence
-                + ", positionConfidence=" + positionConfidence + ", category=" + category + '}';
+                + ", confidence=" + confidence + ", plateROI=" + plateROI + ", plateType=" + plateType
+                + ", plateTypeCategory=" + type + '}';
     }
 
 }

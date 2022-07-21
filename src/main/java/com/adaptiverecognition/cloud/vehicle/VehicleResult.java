@@ -5,10 +5,12 @@
  */
 package com.adaptiverecognition.cloud.vehicle;
 
-import com.adaptiverecognition.cloud.Result;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+
+import com.adaptiverecognition.cloud.ResponseBuilder;
+import com.adaptiverecognition.cloud.Result;
 
 /**
  *
@@ -16,7 +18,7 @@ import java.util.Objects;
  */
 public class VehicleResult extends Result {
 
-    private static final String VERSION = "1.2";
+    private static final String VERSION = "1.3";
 
     private Map<String, String> engines;
     private Data data = new Data();
@@ -25,6 +27,15 @@ public class VehicleResult extends Result {
      *
      */
     public VehicleResult() {
+        super.setVersion(VERSION);
+    }
+
+    /**
+     * 
+     * @param responseBuilder
+     */
+    public VehicleResult(ResponseBuilder responseBuilder) {
+        super(responseBuilder);
         super.setVersion(VERSION);
     }
 

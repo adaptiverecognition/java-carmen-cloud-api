@@ -5,6 +5,7 @@
  */
 package com.adaptiverecognition.cloud.vehicle;
 
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -13,14 +14,15 @@ import java.util.Objects;
  */
 public class Vehicle {
 
-    private Plate plate;
+    private LicensePlate plate;
     private Mmr mmr;
+    private List<Plate> additionalPlates;
 
     /**
      *
      * @return
      */
-    public Plate getPlate() {
+    public LicensePlate getPlate() {
         return plate;
     }
 
@@ -28,7 +30,7 @@ public class Vehicle {
      *
      * @param plate
      */
-    public void setPlate(Plate plate) {
+    public void setPlate(LicensePlate plate) {
         this.plate = plate;
     }
 
@@ -52,11 +54,28 @@ public class Vehicle {
      *
      * @return
      */
+    public List<Plate> getAdditionalPlates() {
+        return additionalPlates;
+    }
+
+    /**
+     *
+     * @param plates
+     */
+    public void setAdditionalPlates(List<Plate> plates) {
+        this.additionalPlates = plates;
+    }
+
+    /**
+     *
+     * @return
+     */
     @Override
     public int hashCode() {
         int hash = 5;
         hash = 53 * hash + Objects.hashCode(this.plate);
         hash = 53 * hash + Objects.hashCode(this.mmr);
+        hash = 53 * hash + Objects.hashCode(this.additionalPlates);
         return hash;
     }
 
@@ -83,6 +102,9 @@ public class Vehicle {
         if (!Objects.equals(this.mmr, other.mmr)) {
             return false;
         }
+        if (!Objects.equals(this.additionalPlates, other.additionalPlates)) {
+            return false;
+        }
         return true;
     }
 
@@ -95,6 +117,7 @@ public class Vehicle {
         StringBuilder sb = new StringBuilder();
         sb.append("Vehicle{plate=").append(plate);
         sb.append(", mmr=").append(mmr);
+        sb.append(", additionalPlates=").append(additionalPlates);
         sb.append('}');
         return sb.toString();
     }

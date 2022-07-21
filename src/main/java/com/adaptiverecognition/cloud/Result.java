@@ -17,6 +17,63 @@ public abstract class Result {
     private String nodename;
     private long nodetime;
     private String version;
+    private transient int statusCode;
+    private transient ResponseBuilder responseBuilder;
+
+    /**
+     * 
+     */
+    public Result() {
+        this(new ResponseBuilder());
+    }
+
+    /**
+     * 
+     * @param responseBuilder
+     */
+    public Result(ResponseBuilder responseBuilder) {
+        setResponseBuilder(responseBuilder);
+    }
+
+    /**
+     * 
+     * @param responseBuilder
+     */
+    public final void setResponseBuilder(ResponseBuilder responseBuilder) {
+        this.responseBuilder = responseBuilder;
+    }
+
+    /**
+     * 
+     * @return
+     */
+    public ResponseBuilder getResponseBuilder() {
+        return this.responseBuilder;
+    }
+
+    /**
+     * 
+     * @return
+     */
+    public String toJson() {
+        return getResponseBuilder().createResponse(this);
+    }
+
+    /**
+     *
+     * @return
+     */
+    public int getStatusCode() {
+        return statusCode;
+    }
+
+    /**
+     *
+     * @param statusCode
+     */
+    public void setStatusCode(int statusCode) {
+        this.statusCode = statusCode;
+    }
 
     /**
      *
@@ -82,10 +139,6 @@ public abstract class Result {
         this.error = error;
     }
 
-    /**
-     *
-     * @return
-     */
     @Override
     public int hashCode() {
         int hash = 7;
@@ -96,11 +149,6 @@ public abstract class Result {
         return hash;
     }
 
-    /**
-     *
-     * @param obj
-     * @return
-     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -128,10 +176,6 @@ public abstract class Result {
         return true;
     }
 
-    /**
-     *
-     * @return
-     */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
