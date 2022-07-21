@@ -25,6 +25,14 @@ import com.adaptiverecognition.cloud.Request;
  */
 public class VehicleRequest<S extends Enum> extends Request {
 
+    static {
+        // ha egy jvm crash után újraindul a lambda/docker image, akkor ennek az
+        // osztálynak az újratöltésekor az ImageIO-val is újraszkenneljük a plugin-eket,
+        // ui. úgy tnűnik, hogy egy ilyen újraindulás után "elvesznek" a korábban
+        // használt image reader-ek
+        ImageIO.scanForPlugins();
+    }
+
     /**
      *
      */
@@ -79,6 +87,12 @@ public class VehicleRequest<S extends Enum> extends Request {
             return null;
         }
     }
+
+    private boolean calculateHash;
+
+    private long hashTimestamp;
+
+    private String hashSalt;
 
     private List<Service> services;
 
@@ -135,6 +149,54 @@ public class VehicleRequest<S extends Enum> extends Request {
             this.properties = new HashMap<>();
         }
         this.properties.put(key, value);
+    }
+
+    /**
+     *
+     * @return
+     */
+    public boolean isCalculateHash() {
+        return calculateHash;
+    }
+
+    /**
+     *
+     * @param calculateHash
+     */
+    public void setCalculateHash(boolean calculateHash) {
+        this.calculateHash = calculateHash;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public long getHashTimestamp() {
+        return hashTimestamp;
+    }
+
+    /**
+     *
+     * @param hashTimestamp
+     */
+    public void setHashTimestamp(long hashTimestamp) {
+        this.hashTimestamp = hashTimestamp;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public String getHashSalt() {
+        return hashSalt;
+    }
+
+    /**
+     *
+     * @param hashSalt
+     */
+    public void setHashSalt(String hashSalt) {
+        this.hashSalt = hashSalt;
     }
 
     /**
