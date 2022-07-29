@@ -18,6 +18,7 @@ public class AdrPlate extends Plate {
     private Integer positionConfidence;
     private List<Char> plateChars;
     private String unicodeText;
+    private String separatedText;
 
     public AdrPlate() {
         this(TypeCategory.ADR);
@@ -83,6 +84,22 @@ public class AdrPlate extends Plate {
      *
      * @return
      */
+    public String getSeparatedText() {
+        return separatedText;
+    }
+
+    /**
+     *
+     * @param separatedText
+     */
+    public void setSeparatedText(String separatedText) {
+        this.separatedText = separatedText;
+    }
+
+    /**
+     *
+     * @return
+     */
     public List<Char> getPlateChars() {
         return plateChars;
     }
@@ -103,6 +120,7 @@ public class AdrPlate extends Plate {
     public int hashCode() {
         int hash = super.hashCode();
         hash = 73 * hash + Objects.hashCode(this.unicodeText);
+        hash = 73 * hash + Objects.hashCode(this.separatedText);
         hash = 73 * hash + Objects.hashCode(this.plateTypeConfidence);
         hash = 73 * hash + Objects.hashCode(this.positionConfidence);
         hash = 73 * hash + Objects.hashCode(this.plateChars);
@@ -132,6 +150,9 @@ public class AdrPlate extends Plate {
         if (!Objects.equals(this.unicodeText, other.unicodeText)) {
             return false;
         }
+        if (!Objects.equals(this.separatedText, other.separatedText)) {
+            return false;
+        }
         if (!Objects.equals(this.plateChars, other.plateChars)) {
             return false;
         }
@@ -149,8 +170,8 @@ public class AdrPlate extends Plate {
         return "AdrPlate{" + "found=" + isFound() + ", proctime=" + getProctime() + ", bgColor=" + getBgColor()
                 + ", color=" + getColor() + ", confidence=" + getConfidence() + ", country=" + ", plateChars="
                 + plateChars + ", plateROI=" + getPlateROI() + ", plateType=" + getPlateType() + ", plateTypeCategory="
-                + getType() + ", unicodeText=" + unicodeText + ", plateTypeConfidence="
-                + plateTypeConfidence + ", positionConfidence=" + positionConfidence + '}';
+                + getType() + ", unicodeText=" + unicodeText + ", separatedText=" + separatedText
+                + ", plateTypeConfidence=" + plateTypeConfidence + ", positionConfidence=" + positionConfidence + '}';
     }
 
 }

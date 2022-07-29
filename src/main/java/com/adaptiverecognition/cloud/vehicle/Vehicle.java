@@ -8,6 +8,8 @@ package com.adaptiverecognition.cloud.vehicle;
 import java.util.List;
 import java.util.Objects;
 
+import com.adaptiverecognition.cloud.Rectangle;
+
 /**
  *
  * @author laszlo.toth
@@ -17,6 +19,7 @@ public class Vehicle {
     private LicensePlate plate;
     private Mmr mmr;
     private List<Plate> additionalPlates;
+    private Rectangle bounds;
 
     /**
      *
@@ -70,12 +73,29 @@ public class Vehicle {
      *
      * @return
      */
+    public Rectangle getBounds() {
+        return bounds;
+    }
+
+    /**
+     *
+     * @param bounds
+     */
+    public void setBounds(Rectangle bounds) {
+        this.bounds = bounds;
+    }
+
+    /**
+     *
+     * @return
+     */
     @Override
     public int hashCode() {
         int hash = 5;
         hash = 53 * hash + Objects.hashCode(this.plate);
         hash = 53 * hash + Objects.hashCode(this.mmr);
         hash = 53 * hash + Objects.hashCode(this.additionalPlates);
+        hash = 53 * hash + Objects.hashCode(this.bounds);
         return hash;
     }
 
@@ -105,6 +125,9 @@ public class Vehicle {
         if (!Objects.equals(this.additionalPlates, other.additionalPlates)) {
             return false;
         }
+        if (!Objects.equals(this.bounds, other.bounds)) {
+            return false;
+        }
         return true;
     }
 
@@ -118,6 +141,7 @@ public class Vehicle {
         sb.append("Vehicle{plate=").append(plate);
         sb.append(", mmr=").append(mmr);
         sb.append(", additionalPlates=").append(additionalPlates);
+        sb.append(", bounds=").append(bounds);
         sb.append('}');
         return sb.toString();
     }
