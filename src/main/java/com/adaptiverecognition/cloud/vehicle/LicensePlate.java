@@ -19,7 +19,6 @@ public class LicensePlate extends AdrPlate {
     private String country;
     private String state;
     private String category;
-    private String separatedText;
 
     public LicensePlate() {
         super(TypeCategory.LicensePlate);
@@ -65,22 +64,6 @@ public class LicensePlate extends AdrPlate {
      *
      * @return
      */
-    public String getSeparatedText() {
-        return separatedText;
-    }
-
-    /**
-     *
-     * @param separatedText
-     */
-    public void setSeparatedText(String separatedText) {
-        this.separatedText = separatedText;
-    }
-
-    /**
-     *
-     * @return
-     */
     public String getCountry() {
         return country;
     }
@@ -118,7 +101,6 @@ public class LicensePlate extends AdrPlate {
         int hash = super.hashCode();
         hash = 73 * hash + Objects.hashCode(this.country);
         hash = 73 * hash + Objects.hashCode(this.state);
-        hash = 73 * hash + Objects.hashCode(this.separatedText);
         hash = 73 * hash + Objects.hashCode(this.category);
         return hash;
     }
@@ -147,9 +129,6 @@ public class LicensePlate extends AdrPlate {
             return false;
         }
         if (!Objects.equals(this.state, other.state)) {
-            return false;
-        }
-        if (!Objects.equals(this.separatedText, other.separatedText)) {
             return false;
         }
         if (!Objects.equals(this.category, other.category)) {
