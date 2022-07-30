@@ -34,7 +34,17 @@ public class Plate {
         /**
          *
          */
-        @SerializedName("EADR")
+        @SerializedName("IMO")
+        IMO,
+        /**
+         *
+         */
+        @SerializedName("AP")
+        APlate,
+        /**
+         *
+         */
+        @SerializedName("E")
         EmptyADR;
 
         /**
@@ -54,10 +64,17 @@ public class Plate {
     private Integer plateType;
     private TypeCategory type;
 
+    /**
+     * 
+     */
     public Plate() {
         this(TypeCategory.EmptyADR);
     }
 
+    /**
+     * 
+     * @param plateTypeCategory
+     */
     public Plate(TypeCategory plateTypeCategory) {
         this.type = plateTypeCategory;
     }
@@ -102,6 +119,14 @@ public class Plate {
      */
     public TypeCategory getType() {
         return type;
+    }
+
+    /**
+     *
+     * @param type
+     */
+    public void setType(TypeCategory type) {
+        this.type = type;
     }
 
     /**
