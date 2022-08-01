@@ -48,7 +48,7 @@ public class VehicleRequest<S extends Enum> extends Request {
         /**
          *
          */
-        MARKINGS("markings");
+        ADR("adr");
 
         private final String value;
 
