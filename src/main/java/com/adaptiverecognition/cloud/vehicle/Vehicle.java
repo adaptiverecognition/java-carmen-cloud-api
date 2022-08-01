@@ -18,7 +18,7 @@ public class Vehicle {
 
     private LicensePlate plate;
     private Mmr mmr;
-    private List<Plate> additionalPlates;
+    private List<Plate> markings;
     private Rectangle bounds;
 
     /**
@@ -57,16 +57,16 @@ public class Vehicle {
      *
      * @return
      */
-    public List<Plate> getAdditionalPlates() {
-        return additionalPlates;
+    public List<Plate> getMarkings() {
+        return markings;
     }
 
     /**
      *
-     * @param plates
+     * @param markings
      */
-    public void setAdditionalPlates(List<Plate> plates) {
-        this.additionalPlates = plates;
+    public void setMarkings(List<Plate> markings) {
+        this.markings = markings;
     }
 
     /**
@@ -94,7 +94,7 @@ public class Vehicle {
         int hash = 5;
         hash = 53 * hash + Objects.hashCode(this.plate);
         hash = 53 * hash + Objects.hashCode(this.mmr);
-        hash = 53 * hash + Objects.hashCode(this.additionalPlates);
+        hash = 53 * hash + Objects.hashCode(this.markings);
         hash = 53 * hash + Objects.hashCode(this.bounds);
         return hash;
     }
@@ -122,7 +122,7 @@ public class Vehicle {
         if (!Objects.equals(this.mmr, other.mmr)) {
             return false;
         }
-        if (!Objects.equals(this.additionalPlates, other.additionalPlates)) {
+        if (!Objects.equals(this.markings, other.markings)) {
             return false;
         }
         if (!Objects.equals(this.bounds, other.bounds)) {
@@ -140,7 +140,7 @@ public class Vehicle {
         StringBuilder sb = new StringBuilder();
         sb.append("Vehicle{plate=").append(plate);
         sb.append(", mmr=").append(mmr);
-        sb.append(", additionalPlates=").append(additionalPlates);
+        sb.append(", markings=").append(markings);
         sb.append(", bounds=").append(bounds);
         sb.append('}');
         return sb.toString();
