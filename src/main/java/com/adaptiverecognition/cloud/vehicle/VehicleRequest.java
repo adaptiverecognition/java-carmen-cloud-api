@@ -5,6 +5,7 @@ package com.adaptiverecognition.cloud.vehicle;
 
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -18,6 +19,7 @@ import javax.imageio.ImageReader;
 import javax.imageio.stream.ImageInputStream;
 
 import com.adaptiverecognition.cloud.Request;
+import com.twelvemonkeys.image.ResampleOp;
 
 /**
  *
@@ -95,6 +97,8 @@ public class VehicleRequest<S extends Enum> extends Request {
     private BufferedImage image;
 
     private byte[] imageSource;
+
+    private double imageUpscaleFactor = 1;
 
     private String imageName;
 
@@ -268,6 +272,15 @@ public class VehicleRequest<S extends Enum> extends Request {
     }
 
     /**
+     * Get the value of imageUpscaleFactor
+     *
+     * @return the value of imageUpscaleFactor
+     */
+    public double getImageUpscaleFactor() {
+        return imageUpscaleFactor;
+    }
+
+    /**
      * Get the value of imageMimeType
      *
      * @return the value of imageMimeType
@@ -293,19 +306,46 @@ public class VehicleRequest<S extends Enum> extends Request {
      * @throws java.io.IOException
      */
     public void setImage(byte[] imageSource, String imageName) throws IOException {
-        this.imageSource = imageSource;
+        this.imageUpscaleFactor = 1;
         if (imageSource != null) {
-            ImageInputStream iis = ImageIO.createImageInputStream(new ByteArrayInputStream(this.imageSource));
+            ImageInputStream iis = ImageIO.createImageInputStream(new ByteArrayInputStream(imageSource));
             Iterator<ImageReader> imageReaders = ImageIO.getImageReaders(iis);
             if (!imageReaders.hasNext()) {
                 throw new IOException("Invalid image format");
             }
             ImageReader reader = imageReaders.next();
             reader.setInput(iis);
-            this.image = reader.read(0);
-            this.imageName = imageName;
+            BufferedImage image = reader.read(0);
             this.imageMimeType = reader.getFormatName();
+            this.imageName = imageName;
             reader.dispose();
+            double q1, q2;
+            if (image.getWidth() > image.getHeight()) {
+                q1 = image.getWidth() / (double) 1920;
+                q2 = image.getHeight() / (double) 1080;
+            } else {
+                q1 = image.getWidth() / (double) 1080;
+                q2 = image.getHeight() / (double) 1920;
+            }
+            if (q1 <= 1 && q2 <= 1) {
+                this.image = image;
+                this.imageSource = imageSource;
+            } else {
+                this.imageUpscaleFactor = Math.max(q1, q2);
+                int scaledWidth = (int) Math.round(image.getWidth() / this.imageUpscaleFactor);
+                int scaledHeight = (int) Math.round(image.getHeight() / this.imageUpscaleFactor);
+                BufferedImage outputImage = new ResampleOp(scaledWidth, scaledHeight, ResampleOp.FILTER_POINT)
+                        .filter(image, null);
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                ImageIO.write(outputImage, reader.getFormatName(), baos);
+                this.image = outputImage;
+                this.imageSource = baos.toByteArray();
+            }
+        } else {
+            this.image = null;
+            this.imageSource = null;
+            this.imageName = null;
+            this.imageMimeType = null;
         }
     }
 
@@ -411,6 +451,7 @@ public class VehicleRequest<S extends Enum> extends Request {
         if (getImageMimeType() != null) {
             sb.append("Image MimeType: ").append(getImageMimeType()).append(",");
         }
+        sb.append("Image AspectRatio: ").append(getImageUpscaleFactor()).append(",");
         if (getLocation() != null) {
             sb.append("Region: ").append(getRegion()).append(",");
         }
@@ -435,6 +476,7 @@ public class VehicleRequest<S extends Enum> extends Request {
         hash = 79 * hash + Objects.hashCode(this.region);
         hash = 79 * hash + Objects.hashCode(this.location);
         hash = 79 * hash + Objects.hashCode(this.imageMimeType);
+        hash = 79 * hash + Objects.hashCode(this.imageUpscaleFactor);
         hash = 79 * hash + Objects.hashCode(this.imageName);
         hash = 79 * hash + Arrays.hashCode(this.imageSource);
         hash = 79 * hash + Objects.hashCode(this.services);
@@ -457,7 +499,10 @@ public class VehicleRequest<S extends Enum> extends Request {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final VehicleRequest other = (VehicleRequest) obj;
+        final VehicleRequest<S> other = (VehicleRequest<S>) obj;
+        if (this.imageUpscaleFactor != other.imageUpscaleFactor) {
+            return false;
+        }
         if (!Objects.equals(this.region, other.region)) {
             return false;
         }
