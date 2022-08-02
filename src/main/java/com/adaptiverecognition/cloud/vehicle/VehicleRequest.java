@@ -98,7 +98,7 @@ public class VehicleRequest<S extends Enum> extends Request {
 
     private byte[] imageSource;
 
-    private double imageAspectRatio;
+    private double imageUpscaleFactor = 1;
 
     private String imageName;
 
@@ -272,6 +272,15 @@ public class VehicleRequest<S extends Enum> extends Request {
     }
 
     /**
+     * Get the value of imageUpscaleFactor
+     *
+     * @return the value of imageUpscaleFactor
+     */
+    public double getImageUpscaleFactor() {
+        return imageUpscaleFactor;
+    }
+
+    /**
      * Get the value of imageMimeType
      *
      * @return the value of imageMimeType
@@ -297,7 +306,7 @@ public class VehicleRequest<S extends Enum> extends Request {
      * @throws java.io.IOException
      */
     public void setImage(byte[] imageSource, String imageName) throws IOException {
-        this.imageAspectRatio = 1;
+        this.imageUpscaleFactor = 1;
         if (imageSource != null) {
             ImageInputStream iis = ImageIO.createImageInputStream(new ByteArrayInputStream(imageSource));
             Iterator<ImageReader> imageReaders = ImageIO.getImageReaders(iis);
@@ -319,9 +328,9 @@ public class VehicleRequest<S extends Enum> extends Request {
                 this.image = image;
                 this.imageSource = imageSource;
             } else {
-                this.imageAspectRatio = Math.max(q1, q2);
-                int scaledWidth = (int) Math.round(image.getWidth() / this.imageAspectRatio);
-                int scaledHeight = (int) Math.round(image.getHeight() / this.imageAspectRatio);
+                this.imageUpscaleFactor = Math.max(q1, q2);
+                int scaledWidth = (int) Math.round(image.getWidth() / this.imageUpscaleFactor);
+                int scaledHeight = (int) Math.round(image.getHeight() / this.imageUpscaleFactor);
                 BufferedImage outputImage = new BufferedImage(scaledWidth, scaledHeight, image.getType());
                 Graphics2D g2d = outputImage.createGraphics();
                 g2d.drawImage(image, 0, 0, scaledWidth, scaledHeight, null);
@@ -444,6 +453,7 @@ public class VehicleRequest<S extends Enum> extends Request {
         if (getImageMimeType() != null) {
             sb.append("Image MimeType: ").append(getImageMimeType()).append(",");
         }
+        sb.append("Image AspectRatio: ").append(getImageUpscaleFactor()).append(",");
         if (getLocation() != null) {
             sb.append("Region: ").append(getRegion()).append(",");
         }
@@ -468,6 +478,7 @@ public class VehicleRequest<S extends Enum> extends Request {
         hash = 79 * hash + Objects.hashCode(this.region);
         hash = 79 * hash + Objects.hashCode(this.location);
         hash = 79 * hash + Objects.hashCode(this.imageMimeType);
+        hash = 79 * hash + Objects.hashCode(this.imageUpscaleFactor);
         hash = 79 * hash + Objects.hashCode(this.imageName);
         hash = 79 * hash + Arrays.hashCode(this.imageSource);
         hash = 79 * hash + Objects.hashCode(this.services);
@@ -490,7 +501,10 @@ public class VehicleRequest<S extends Enum> extends Request {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final VehicleRequest other = (VehicleRequest) obj;
+        final VehicleRequest<S> other = (VehicleRequest<S>) obj;
+        if (this.imageUpscaleFactor != other.imageUpscaleFactor) {
+            return false;
+        }
         if (!Objects.equals(this.region, other.region)) {
             return false;
         }
