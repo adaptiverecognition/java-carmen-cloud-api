@@ -3,7 +3,6 @@
  */
 package com.adaptiverecognition.cloud.vehicle;
 
-import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -20,6 +19,7 @@ import javax.imageio.ImageReader;
 import javax.imageio.stream.ImageInputStream;
 
 import com.adaptiverecognition.cloud.Request;
+import com.twelvemonkeys.image.ResampleOp;
 
 /**
  *
@@ -331,10 +331,17 @@ public class VehicleRequest<S extends Enum> extends Request {
                 this.imageUpscaleFactor = Math.max(q1, q2);
                 int scaledWidth = (int) Math.round(image.getWidth() / this.imageUpscaleFactor);
                 int scaledHeight = (int) Math.round(image.getHeight() / this.imageUpscaleFactor);
-                BufferedImage outputImage = new BufferedImage(scaledWidth, scaledHeight, image.getType());
-                Graphics2D g2d = outputImage.createGraphics();
-                g2d.drawImage(image, 0, 0, scaledWidth, scaledHeight, null);
-                g2d.dispose();
+
+                BufferedImage outputImage = new ResampleOp(scaledWidth, scaledHeight, 13/* FILTER_LANCZOS */).filter(
+                        image, null);
+
+                /*
+                 * BufferedImage outputImage = new BufferedImage(scaledWidth, scaledHeight,
+                 * image.getType());
+                 * Graphics2D g2d = outputImage.createGraphics();
+                 * g2d.drawImage(image, 0, 0, scaledWidth, scaledHeight, null);
+                 * g2d.dispose();
+                 */
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
                 ImageIO.write(outputImage, reader.getFormatName(), baos);
                 this.image = outputImage;
