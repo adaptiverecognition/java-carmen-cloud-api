@@ -316,6 +316,9 @@ public class VehicleRequest<S extends Enum> extends Request {
             ImageReader reader = imageReaders.next();
             reader.setInput(iis);
             BufferedImage image = reader.read(0);
+            this.imageMimeType = reader.getFormatName();
+            this.imageName = imageName;
+            reader.dispose();
             double q1, q2;
             if (image.getWidth() > image.getHeight()) {
                 q1 = image.getWidth() / (double) 1920;
@@ -331,26 +334,13 @@ public class VehicleRequest<S extends Enum> extends Request {
                 this.imageUpscaleFactor = Math.max(q1, q2);
                 int scaledWidth = (int) Math.round(image.getWidth() / this.imageUpscaleFactor);
                 int scaledHeight = (int) Math.round(image.getHeight() / this.imageUpscaleFactor);
-
-                BufferedImage outputImage = new ResampleOp(scaledWidth, scaledHeight,
-                        ResampleOp.FILTER_TRIANGLE).filter(
-                                image, null);
-
-                /*
-                 * BufferedImage outputImage = new BufferedImage(scaledWidth, scaledHeight,
-                 * image.getType());
-                 * Graphics2D g2d = outputImage.createGraphics();
-                 * g2d.drawImage(image, 0, 0, scaledWidth, scaledHeight, null);
-                 * g2d.dispose();
-                 */
+                BufferedImage outputImage = new ResampleOp(scaledWidth, scaledHeight, ResampleOp.FILTER_BOX)
+                        .filter(image, null);
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
                 ImageIO.write(outputImage, reader.getFormatName(), baos);
                 this.image = outputImage;
                 this.imageSource = baos.toByteArray();
             }
-            this.imageName = imageName;
-            this.imageMimeType = reader.getFormatName();
-            reader.dispose();
         } else {
             this.image = null;
             this.imageSource = null;
