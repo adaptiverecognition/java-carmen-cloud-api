@@ -3,8 +3,10 @@
  */
 package com.adaptiverecognition.cloud.vehicle;
 
+import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -95,6 +97,8 @@ public class VehicleRequest<S extends Enum> extends Request {
     private BufferedImage image;
 
     private byte[] imageSource;
+
+    private double imageAspectRatio;
 
     private String imageName;
 
@@ -293,19 +297,48 @@ public class VehicleRequest<S extends Enum> extends Request {
      * @throws java.io.IOException
      */
     public void setImage(byte[] imageSource, String imageName) throws IOException {
-        this.imageSource = imageSource;
+        this.imageAspectRatio = 1;
         if (imageSource != null) {
-            ImageInputStream iis = ImageIO.createImageInputStream(new ByteArrayInputStream(this.imageSource));
+            ImageInputStream iis = ImageIO.createImageInputStream(new ByteArrayInputStream(imageSource));
             Iterator<ImageReader> imageReaders = ImageIO.getImageReaders(iis);
             if (!imageReaders.hasNext()) {
                 throw new IOException("Invalid image format");
             }
             ImageReader reader = imageReaders.next();
             reader.setInput(iis);
-            this.image = reader.read(0);
+            BufferedImage image = reader.read(0);
+            double q1, q2;
+            if (image.getWidth() > image.getHeight()) {
+                q1 = image.getWidth() / (double) 1920;
+                q2 = image.getHeight() / (double) 1080;
+            } else {
+                q1 = image.getWidth() / (double) 1080;
+                q2 = image.getHeight() / (double) 1920;
+            }
+            if (q1 <= 1 && q2 <= 1) {
+                this.image = image;
+                this.imageSource = imageSource;
+            } else {
+                this.imageAspectRatio = Math.max(q1, q2);
+                int scaledWidth = (int) Math.round(image.getWidth() / this.imageAspectRatio);
+                int scaledHeight = (int) Math.round(image.getHeight() / this.imageAspectRatio);
+                BufferedImage outputImage = new BufferedImage(scaledWidth, scaledHeight, image.getType());
+                Graphics2D g2d = outputImage.createGraphics();
+                g2d.drawImage(image, 0, 0, scaledWidth, scaledHeight, null);
+                g2d.dispose();
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                ImageIO.write(outputImage, reader.getFormatName(), baos);
+                this.image = outputImage;
+                this.imageSource = baos.toByteArray();
+            }
             this.imageName = imageName;
             this.imageMimeType = reader.getFormatName();
             reader.dispose();
+        } else {
+            this.image = null;
+            this.imageSource = null;
+            this.imageName = null;
+            this.imageMimeType = null;
         }
     }
 
