@@ -332,8 +332,9 @@ public class VehicleRequest<S extends Enum> extends Request {
                 int scaledWidth = (int) Math.round(image.getWidth() / this.imageUpscaleFactor);
                 int scaledHeight = (int) Math.round(image.getHeight() / this.imageUpscaleFactor);
 
-                BufferedImage outputImage = new ResampleOp(scaledWidth, scaledHeight, 13/* FILTER_LANCZOS */).filter(
-                        image, null);
+                BufferedImage outputImage = new ResampleOp(scaledWidth, scaledHeight,
+                        ResampleOp.FILTER_TRIANGLE).filter(
+                                image, null);
 
                 /*
                  * BufferedImage outputImage = new BufferedImage(scaledWidth, scaledHeight,
