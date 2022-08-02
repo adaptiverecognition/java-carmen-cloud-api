@@ -334,7 +334,7 @@ public class VehicleRequest<S extends Enum> extends Request {
                 this.imageUpscaleFactor = Math.max(q1, q2);
                 int scaledWidth = (int) Math.round(image.getWidth() / this.imageUpscaleFactor);
                 int scaledHeight = (int) Math.round(image.getHeight() / this.imageUpscaleFactor);
-                BufferedImage outputImage = new ResampleOp(scaledWidth, scaledHeight, ResampleOp.FILTER_POINT)
+                BufferedImage outputImage = new ResampleOp(scaledWidth, scaledHeight, ResampleOp.FILTER_BOX)
                         .filter(image, null);
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
                 ImageIO.write(outputImage, reader.getFormatName(), baos);
