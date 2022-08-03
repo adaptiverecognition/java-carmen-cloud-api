@@ -19,6 +19,7 @@ import javax.imageio.ImageReader;
 import javax.imageio.stream.ImageInputStream;
 
 import com.adaptiverecognition.cloud.Request;
+import com.google.gson.annotations.SerializedName;
 import com.twelvemonkeys.image.ResampleOp;
 
 /**
@@ -42,14 +43,17 @@ public class VehicleRequest<S extends Enum> extends Request {
         /**
          *
          */
+        @SerializedName("anpr")
         ANPR("anpr"),
         /**
          *
          */
+        @SerializedName("mmr")
         MMR("mmr"),
         /**
          *
          */
+        @SerializedName("adr")
         ADR("adr");
 
         private final String value;
