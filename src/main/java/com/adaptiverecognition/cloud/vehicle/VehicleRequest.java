@@ -3,6 +3,8 @@
  */
 package com.adaptiverecognition.cloud.vehicle;
 
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -24,7 +26,6 @@ import org.apache.logging.log4j.Logger;
 
 import com.adaptiverecognition.cloud.Request;
 import com.google.gson.annotations.SerializedName;
-import com.twelvemonkeys.image.ResampleOp;
 
 /**
  *
@@ -354,40 +355,17 @@ public class VehicleRequest<S extends Enum> extends Request {
                     LOGGER.log(Level.DEBUG, "Original image size: {}x{}", image.getWidth(), image.getHeight());
                 }
                 this.imageUpscaleFactor = Math.sqrt(q);
-                BufferedImage outputImage = image;
-                // ha a kép minimum 2x akkora, mint egy Full HD kép mérete, akkor megkeressük a
-                // kettő legnagyobb hatványát, amivek osztva a kép méretét, még éppen nagyobb
-                // méretet kapunk, mint a maximális méret
-                // erre a méretre a gyors FILTER_POINT alguritmussal méretezzük át a képet, a
-                // maradékot viszont már a lassabb, de pontosabb FILTER_LANCZOS algoritmussal
-                int floor = (int) Math.floor(q);
-                int ceil = (int) Math.ceil(q);
-                int f = log2(floor) - (floor == ceil ? 1 : 0);
-                double firstScale = Math.pow(2, f / 2);
+                int scaledWidth = (int) Math.round(image.getWidth() / this.imageUpscaleFactor);
+                int scaledHeight = (int) Math.round(image.getHeight() / this.imageUpscaleFactor);
                 if (LOGGER.isDebugEnabled()) {
-                    LOGGER.log(Level.DEBUG, "Resampling image with POINT filter to size: {}x{}",
-                            Math.round(image.getWidth() / firstScale),
-                            Math.round(image.getHeight() / firstScale));
+                    LOGGER.log(Level.DEBUG, "Resampling image to size: {}x{}", scaledWidth, scaledHeight);
                 }
-                outputImage = new ResampleOp((int) Math.round(image.getWidth() / firstScale),
-                        (int) Math.round(image.getHeight() / firstScale), ResampleOp.FILTER_POINT)
-                        .filter(outputImage, null);
-
-                this.imageUpscaleFactor = firstScale;
-                /*
-                 * int scaledWidth = (int) Math.round(image.getWidth() /
-                 * this.imageUpscaleFactor);
-                 * int scaledHeight = (int) Math.round(image.getHeight() /
-                 * this.imageUpscaleFactor);
-                 * if (LOGGER.isDebugEnabled()) {
-                 * LOGGER.log(Level.DEBUG,
-                 * "Resampling image with LANCZOS filter to size: {}x{}",
-                 * scaledWidth, scaledHeight);
-                 * }
-                 * outputImage = new ResampleOp(scaledWidth, scaledHeight,
-                 * ResampleOp.FILTER_LANCZOS).filter(outputImage,
-                 * null);
-                 */
+                BufferedImage outputImage = new BufferedImage(scaledWidth, scaledHeight, image.getType());
+                Graphics2D graphics2D = outputImage.createGraphics();
+                graphics2D.setRenderingHint(RenderingHints.KEY_INTERPOLATION,
+                        RenderingHints.VALUE_INTERPOLATION_BICUBIC);
+                graphics2D.drawImage(image, 0, 0, scaledWidth, scaledHeight, null);
+                graphics2D.dispose();
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
                 ImageIO.write(outputImage, reader.getFormatName(), baos);
                 this.image = outputImage;
