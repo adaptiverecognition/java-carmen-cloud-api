@@ -365,9 +365,8 @@ public class VehicleRequest<S extends Enum> extends Request {
                 int f = log2(floor) - (floor == ceil ? 1 : 0);
                 double firstScale = Math.pow(2, f / 2);
                 if (LOGGER.isDebugEnabled()) {
-                    LOGGER.log(Level.DEBUG, "Resampling image with POINT filter to size: {}x{}",
-                            Math.round(image.getWidth()
-                                    / firstScale),
+                    LOGGER.log(Level.DEBUG, "Resampling image with BOX filter to size: {}x{}",
+                            Math.round(image.getWidth() / firstScale),
                             Math.round(image.getHeight() / firstScale));
                 }
                 outputImage = new ResampleOp((int) Math.round(image.getWidth() / firstScale),
