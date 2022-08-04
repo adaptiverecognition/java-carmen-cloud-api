@@ -342,26 +342,27 @@ public class VehicleRequest<S extends Enum> extends Request {
                 if (LOGGER.isDebugEnabled()) {
                     LOGGER.log(Level.DEBUG, "Original image size: {}x{}", image.getWidth(), image.getHeight());
                 }
-                this.imageUpscaleFactor = q;
+                this.imageUpscaleFactor = Math.sqrt(q);
                 BufferedImage outputImage = image;
-                if (this.imageUpscaleFactor > 2) {
+                if (q > 2) {
                     // ha a kép minimum 2x akkora, mint egy Full HD kép mérete, akkor megkeressük a
                     // kettő legnagyobb hatványát, amivek osztva a kép méretét, még éppen nagyobb
                     // méretet kapunk, mint a maximális méret
                     // erre a méretre a gyors FILTER_POINT alguritmussal méretezzük át a képet, a
                     // maradékot viszont már a lassabb, de pontosabb FILTER_LANCZOS algoritmussal
-                    int floor = (int) Math.floor(this.imageUpscaleFactor);
-                    int ceil = (int) Math.ceil(this.imageUpscaleFactor);
+                    int floor = (int) Math.floor(q);
+                    int ceil = (int) Math.ceil(q);
                     int f = log2(floor) - (floor == ceil ? 1 : 0);
-                    int firstScale = (int) Math.pow(2, f);
+                    double firstScale = Math.pow(2, f / 2);
                     if (LOGGER.isDebugEnabled()) {
-                        LOGGER.log(Level.DEBUG, "Resampling image with POINT filter to size: {}x{}", image.getWidth()
-                                / firstScale,
-                                image.getHeight()
-                                        / firstScale);
+                        LOGGER.log(Level.DEBUG, "Resampling image with POINT filter to size: {}x{}",
+                                Math.round(image.getWidth()
+                                        / firstScale),
+                                Math.round(image.getHeight() / firstScale));
                     }
-                    outputImage = new ResampleOp(image.getWidth() / firstScale, image.getHeight() / firstScale,
-                            ResampleOp.FILTER_POINT).filter(outputImage, null);
+                    outputImage = new ResampleOp((int) Math.round(image.getWidth() / firstScale),
+                            (int) Math.round(image.getHeight() / firstScale), ResampleOp.FILTER_POINT)
+                            .filter(outputImage, null);
                 }
                 int scaledWidth = (int) Math.round(image.getWidth() / this.imageUpscaleFactor);
                 int scaledHeight = (int) Math.round(image.getHeight() / this.imageUpscaleFactor);
