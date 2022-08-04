@@ -331,7 +331,8 @@ public class VehicleRequest<S extends Enum> extends Request {
                 q1 = image.getWidth() / (double) 1080;
                 q2 = image.getHeight() / (double) 1920;
             }
-            if (q1 <= 1 && q2 <= 1) {
+            // átmenetileg nem méretezünk át semmit
+            if (true/* q1 <= 1 && q2 <= 1 */) {
                 this.image = image;
                 this.imageSource = imageSource;
             } else {
