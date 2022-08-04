@@ -18,6 +18,10 @@ import javax.imageio.ImageIO;
 import javax.imageio.ImageReader;
 import javax.imageio.stream.ImageInputStream;
 
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.adaptiverecognition.cloud.Request;
 import com.google.gson.annotations.SerializedName;
 import com.twelvemonkeys.image.ResampleOp;
@@ -88,6 +92,12 @@ public class VehicleRequest<S extends Enum> extends Request {
             }
             return null;
         }
+    }
+
+    private static final Logger LOGGER = LogManager.getLogger(VehicleRequest.class);
+
+    private static int log2(int x) {
+        return (int) (Math.log(x) / Math.log(2) + 1e-10);
     }
 
     private boolean calculateHash;
@@ -323,24 +333,44 @@ public class VehicleRequest<S extends Enum> extends Request {
             this.imageMimeType = reader.getFormatName();
             this.imageName = imageName;
             reader.dispose();
-            double q1, q2;
-            if (image.getWidth() > image.getHeight()) {
-                q1 = image.getWidth() / (double) 1920;
-                q2 = image.getHeight() / (double) 1080;
-            } else {
-                q1 = image.getWidth() / (double) 1080;
-                q2 = image.getHeight() / (double) 1920;
-            }
-            // átmenetileg nem méretezünk át semmit
-            if (true/* q1 <= 1 && q2 <= 1 */) {
+            double q;
+            q = (image.getWidth() * image.getHeight()) / (double) (1920 * 1080);
+            if (q <= 1) {
                 this.image = image;
                 this.imageSource = imageSource;
             } else {
-                this.imageUpscaleFactor = Math.max(q1, q2);
+                if (LOGGER.isDebugEnabled()) {
+                    LOGGER.log(Level.DEBUG, "Original image size: {}x{}", image.getWidth(), image.getHeight());
+                }
+                this.imageUpscaleFactor = q;
+                BufferedImage outputImage = image;
+                if (this.imageUpscaleFactor > 2) {
+                    // ha a kép minimum 2x akkora, mint egy Full HD kép mérete, akkor megkeressük a
+                    // kettő legnagyobb hatványát, amivek osztva a kép méretét, még éppen nagyobb
+                    // méretet kapunk, mint a maximális méret
+                    // erre a méretre a gyors FILTER_POINT alguritmussal méretezzük át a képet, a
+                    // maradékot viszont már a lassabb, de pontosabb FILTER_LANCZOS algoritmussal
+                    int floor = (int) Math.floor(this.imageUpscaleFactor);
+                    int ceil = (int) Math.ceil(this.imageUpscaleFactor);
+                    int f = log2(floor) - (floor == ceil ? 1 : 0);
+                    int firstScale = (int) Math.pow(2, f);
+                    if (LOGGER.isDebugEnabled()) {
+                        LOGGER.log(Level.DEBUG, "Resampling image with POINT filter to size: {}x{}", image.getWidth()
+                                / firstScale,
+                                image.getHeight()
+                                        / firstScale);
+                    }
+                    outputImage = new ResampleOp(image.getWidth() / firstScale, image.getHeight() / firstScale,
+                            ResampleOp.FILTER_POINT).filter(outputImage, null);
+                }
                 int scaledWidth = (int) Math.round(image.getWidth() / this.imageUpscaleFactor);
                 int scaledHeight = (int) Math.round(image.getHeight() / this.imageUpscaleFactor);
-                BufferedImage outputImage = new ResampleOp(scaledWidth, scaledHeight, ResampleOp.FILTER_BOX)
-                        .filter(image, null);
+                if (LOGGER.isDebugEnabled()) {
+                    LOGGER.log(Level.DEBUG, "Resampling image with LANCZOS filter to size: {}x{}",
+                            scaledWidth, scaledHeight);
+                }
+                outputImage = new ResampleOp(scaledWidth, scaledHeight, ResampleOp.FILTER_LANCZOS).filter(outputImage,
+                        null);
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
                 ImageIO.write(outputImage, reader.getFormatName(), baos);
                 this.image = outputImage;
@@ -528,5 +558,4 @@ public class VehicleRequest<S extends Enum> extends Request {
         }
         return Objects.equals(this.services, other.services);
     }
-
 }
