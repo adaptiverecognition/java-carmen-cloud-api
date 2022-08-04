@@ -315,11 +315,23 @@ public class VehicleRequest<S extends Enum> extends Request {
     /**
      * Set the value of image, imageName, and imageMimeType
      *
-     * @param imageSource new value of image
-     * @param imageName   new value of imageName
+     * @param imageSource image source
+     * @param imageName   image name
      * @throws java.io.IOException
      */
     public void setImage(byte[] imageSource, String imageName) throws IOException {
+        setImage(imageSource, imageName, true);
+    }
+
+    /**
+     * Set the value of image, imageName, and imageMimeType
+     *
+     * @param imageSource image source
+     * @param imageName   image name
+     * @param resize      size the image if its size is larger than full hd
+     * @throws java.io.IOException
+     */
+    public void setImage(byte[] imageSource, String imageName, boolean resize) throws IOException {
         this.imageUpscaleFactor = 1;
         if (imageSource != null) {
             ImageInputStream iis = ImageIO.createImageInputStream(new ByteArrayInputStream(imageSource));
@@ -335,7 +347,7 @@ public class VehicleRequest<S extends Enum> extends Request {
             reader.dispose();
             double q;
             q = (image.getWidth() * image.getHeight()) / (double) (1920 * 1080);
-            if (q <= 1) {
+            if (q <= 1 || !resize) {
                 this.image = image;
                 this.imageSource = imageSource;
             } else {
