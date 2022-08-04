@@ -347,7 +347,7 @@ public class VehicleRequest<S extends Enum> extends Request {
             this.imageName = imageName;
             reader.dispose();
             double q = (image.getWidth() * image.getHeight()) / (double) (1920 * 1080);
-            if (q < 2 || !resize) {
+            if (q <= 1 || !resize) {
                 this.image = image;
                 this.imageSource = imageSource;
             } else {
