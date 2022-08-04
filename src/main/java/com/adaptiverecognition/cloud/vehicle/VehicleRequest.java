@@ -365,21 +365,29 @@ public class VehicleRequest<S extends Enum> extends Request {
                 int f = log2(floor) - (floor == ceil ? 1 : 0);
                 double firstScale = Math.pow(2, f / 2);
                 if (LOGGER.isDebugEnabled()) {
-                    LOGGER.log(Level.DEBUG, "Resampling image with BOX filter to size: {}x{}",
+                    LOGGER.log(Level.DEBUG, "Resampling image with POINT filter to size: {}x{}",
                             Math.round(image.getWidth() / firstScale),
                             Math.round(image.getHeight() / firstScale));
                 }
                 outputImage = new ResampleOp((int) Math.round(image.getWidth() / firstScale),
                         (int) Math.round(image.getHeight() / firstScale), ResampleOp.FILTER_POINT)
                         .filter(outputImage, null);
-                int scaledWidth = (int) Math.round(image.getWidth() / this.imageUpscaleFactor);
-                int scaledHeight = (int) Math.round(image.getHeight() / this.imageUpscaleFactor);
-                if (LOGGER.isDebugEnabled()) {
-                    LOGGER.log(Level.DEBUG, "Resampling image with LANCZOS filter to size: {}x{}",
-                            scaledWidth, scaledHeight);
-                }
-                outputImage = new ResampleOp(scaledWidth, scaledHeight, ResampleOp.FILTER_LANCZOS).filter(outputImage,
-                        null);
+
+                this.imageUpscaleFactor = firstScale;
+                /*
+                 * int scaledWidth = (int) Math.round(image.getWidth() /
+                 * this.imageUpscaleFactor);
+                 * int scaledHeight = (int) Math.round(image.getHeight() /
+                 * this.imageUpscaleFactor);
+                 * if (LOGGER.isDebugEnabled()) {
+                 * LOGGER.log(Level.DEBUG,
+                 * "Resampling image with LANCZOS filter to size: {}x{}",
+                 * scaledWidth, scaledHeight);
+                 * }
+                 * outputImage = new ResampleOp(scaledWidth, scaledHeight,
+                 * ResampleOp.FILTER_LANCZOS).filter(outputImage,
+                 * null);
+                 */
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
                 ImageIO.write(outputImage, reader.getFormatName(), baos);
                 this.image = outputImage;
