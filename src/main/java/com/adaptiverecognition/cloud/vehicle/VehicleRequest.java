@@ -345,9 +345,8 @@ public class VehicleRequest<S extends Enum> extends Request {
             this.imageMimeType = reader.getFormatName();
             this.imageName = imageName;
             reader.dispose();
-            double q;
-            q = (image.getWidth() * image.getHeight()) / (double) (1920 * 1080);
-            if (q <= 1 || !resize) {
+            double q = (image.getWidth() * image.getHeight()) / (double) (1920 * 1080);
+            if (q < 2 || !resize) {
                 this.image = image;
                 this.imageSource = imageSource;
             } else {
@@ -356,26 +355,24 @@ public class VehicleRequest<S extends Enum> extends Request {
                 }
                 this.imageUpscaleFactor = Math.sqrt(q);
                 BufferedImage outputImage = image;
-                if (q > 2) {
-                    // ha a kép minimum 2x akkora, mint egy Full HD kép mérete, akkor megkeressük a
-                    // kettő legnagyobb hatványát, amivek osztva a kép méretét, még éppen nagyobb
-                    // méretet kapunk, mint a maximális méret
-                    // erre a méretre a gyors FILTER_POINT alguritmussal méretezzük át a képet, a
-                    // maradékot viszont már a lassabb, de pontosabb FILTER_LANCZOS algoritmussal
-                    int floor = (int) Math.floor(q);
-                    int ceil = (int) Math.ceil(q);
-                    int f = log2(floor) - (floor == ceil ? 1 : 0);
-                    double firstScale = Math.pow(2, f / 2);
-                    if (LOGGER.isDebugEnabled()) {
-                        LOGGER.log(Level.DEBUG, "Resampling image with POINT filter to size: {}x{}",
-                                Math.round(image.getWidth()
-                                        / firstScale),
-                                Math.round(image.getHeight() / firstScale));
-                    }
-                    outputImage = new ResampleOp((int) Math.round(image.getWidth() / firstScale),
-                            (int) Math.round(image.getHeight() / firstScale), ResampleOp.FILTER_POINT)
-                            .filter(outputImage, null);
+                // ha a kép minimum 2x akkora, mint egy Full HD kép mérete, akkor megkeressük a
+                // kettő legnagyobb hatványát, amivek osztva a kép méretét, még éppen nagyobb
+                // méretet kapunk, mint a maximális méret
+                // erre a méretre a gyors FILTER_POINT alguritmussal méretezzük át a képet, a
+                // maradékot viszont már a lassabb, de pontosabb FILTER_LANCZOS algoritmussal
+                int floor = (int) Math.floor(q);
+                int ceil = (int) Math.ceil(q);
+                int f = log2(floor) - (floor == ceil ? 1 : 0);
+                double firstScale = Math.pow(2, f / 2);
+                if (LOGGER.isDebugEnabled()) {
+                    LOGGER.log(Level.DEBUG, "Resampling image with POINT filter to size: {}x{}",
+                            Math.round(image.getWidth()
+                                    / firstScale),
+                            Math.round(image.getHeight() / firstScale));
                 }
+                outputImage = new ResampleOp((int) Math.round(image.getWidth() / firstScale),
+                        (int) Math.round(image.getHeight() / firstScale), ResampleOp.FILTER_POINT)
+                        .filter(outputImage, null);
                 int scaledWidth = (int) Math.round(image.getWidth() / this.imageUpscaleFactor);
                 int scaledHeight = (int) Math.round(image.getHeight() / this.imageUpscaleFactor);
                 if (LOGGER.isDebugEnabled()) {
