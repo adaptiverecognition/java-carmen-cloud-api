@@ -3,6 +3,8 @@
  */
 package com.adaptiverecognition.cloud.vehicle;
 
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -18,9 +20,12 @@ import javax.imageio.ImageIO;
 import javax.imageio.ImageReader;
 import javax.imageio.stream.ImageInputStream;
 
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.adaptiverecognition.cloud.Request;
 import com.google.gson.annotations.SerializedName;
-import com.twelvemonkeys.image.ResampleOp;
 
 /**
  *
@@ -88,6 +93,12 @@ public class VehicleRequest<S extends Enum> extends Request {
             }
             return null;
         }
+    }
+
+    private static final Logger LOGGER = LogManager.getLogger(VehicleRequest.class);
+
+    private static int log2(int x) {
+        return (int) (Math.log(x) / Math.log(2) + 1e-10);
     }
 
     private boolean calculateHash;
@@ -305,11 +316,23 @@ public class VehicleRequest<S extends Enum> extends Request {
     /**
      * Set the value of image, imageName, and imageMimeType
      *
-     * @param imageSource new value of image
-     * @param imageName   new value of imageName
+     * @param imageSource image source
+     * @param imageName   image name
      * @throws java.io.IOException
      */
     public void setImage(byte[] imageSource, String imageName) throws IOException {
+        setImage(imageSource, imageName, true);
+    }
+
+    /**
+     * Set the value of image, imageName, and imageMimeType
+     *
+     * @param imageSource image source
+     * @param imageName   image name
+     * @param resize      size the image if its size is larger than full hd
+     * @throws java.io.IOException
+     */
+    public void setImage(byte[] imageSource, String imageName, boolean resize) throws IOException {
         this.imageUpscaleFactor = 1;
         if (imageSource != null) {
             ImageInputStream iis = ImageIO.createImageInputStream(new ByteArrayInputStream(imageSource));
@@ -323,23 +346,26 @@ public class VehicleRequest<S extends Enum> extends Request {
             this.imageMimeType = reader.getFormatName();
             this.imageName = imageName;
             reader.dispose();
-            double q1, q2;
-            if (image.getWidth() > image.getHeight()) {
-                q1 = image.getWidth() / (double) 1920;
-                q2 = image.getHeight() / (double) 1080;
-            } else {
-                q1 = image.getWidth() / (double) 1080;
-                q2 = image.getHeight() / (double) 1920;
-            }
-            if (q1 <= 1 && q2 <= 1) {
+            double q = (image.getWidth() * image.getHeight()) / (double) (1920 * 1080);
+            if (q <= 1 || !resize) {
                 this.image = image;
                 this.imageSource = imageSource;
             } else {
-                this.imageUpscaleFactor = Math.max(q1, q2);
+                if (LOGGER.isDebugEnabled()) {
+                    LOGGER.log(Level.DEBUG, "Original image size: {}x{}", image.getWidth(), image.getHeight());
+                }
+                this.imageUpscaleFactor = Math.sqrt(q);
                 int scaledWidth = (int) Math.round(image.getWidth() / this.imageUpscaleFactor);
                 int scaledHeight = (int) Math.round(image.getHeight() / this.imageUpscaleFactor);
-                BufferedImage outputImage = new ResampleOp(scaledWidth, scaledHeight, ResampleOp.FILTER_BOX)
-                        .filter(image, null);
+                if (LOGGER.isDebugEnabled()) {
+                    LOGGER.log(Level.DEBUG, "Resampling image to size: {}x{}", scaledWidth, scaledHeight);
+                }
+                BufferedImage outputImage = new BufferedImage(scaledWidth, scaledHeight, image.getType());
+                Graphics2D graphics2D = outputImage.createGraphics();
+                graphics2D.setRenderingHint(RenderingHints.KEY_INTERPOLATION,
+                        RenderingHints.VALUE_INTERPOLATION_BICUBIC);
+                graphics2D.drawImage(image, 0, 0, scaledWidth, scaledHeight, null);
+                graphics2D.dispose();
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
                 ImageIO.write(outputImage, reader.getFormatName(), baos);
                 this.image = outputImage;
@@ -527,5 +553,4 @@ public class VehicleRequest<S extends Enum> extends Request {
         }
         return Objects.equals(this.services, other.services);
     }
-
 }
