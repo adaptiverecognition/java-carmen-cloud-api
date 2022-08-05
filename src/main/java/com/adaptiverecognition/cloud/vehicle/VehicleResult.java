@@ -18,6 +18,14 @@ import com.adaptiverecognition.cloud.Result;
  */
 public class VehicleResult extends Result {
 
+    private static class VehicleResponseBuilder extends ResponseBuilder<VehicleResult> {
+        @Override
+        public String createResponse(VehicleResult result) {
+            result.setEngines(null);
+            return super.createResponse(result);
+        }
+    }
+
     private static final String VERSION = "1.3";
 
     private Map<String, String> engines;
@@ -28,13 +36,14 @@ public class VehicleResult extends Result {
      */
     public VehicleResult() {
         super.setVersion(VERSION);
+        setResponseBuilder(new VehicleResponseBuilder());
     }
 
     /**
      * 
      * @param responseBuilder
      */
-    public VehicleResult(ResponseBuilder responseBuilder) {
+    public VehicleResult(ResponseBuilder<? extends VehicleResult> responseBuilder) {
         super(responseBuilder);
         super.setVersion(VERSION);
     }

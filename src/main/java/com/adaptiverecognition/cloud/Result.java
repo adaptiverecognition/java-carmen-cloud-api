@@ -18,20 +18,20 @@ public abstract class Result {
     private long nodetime;
     private String version;
     private transient int statusCode;
-    private transient ResponseBuilder responseBuilder;
+    private transient ResponseBuilder<? extends Result> responseBuilder;
 
     /**
      * 
      */
     public Result() {
-        this(new ResponseBuilder());
+        this(new ResponseBuilder<>());
     }
 
     /**
      * 
      * @param responseBuilder
      */
-    public Result(ResponseBuilder responseBuilder) {
+    public Result(ResponseBuilder<? extends Result> responseBuilder) {
         setResponseBuilder(responseBuilder);
     }
 

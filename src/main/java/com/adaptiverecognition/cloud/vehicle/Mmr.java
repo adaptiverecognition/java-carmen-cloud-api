@@ -13,7 +13,7 @@ import java.util.Objects;
  * @author laszlo.toth
  */
 public class Mmr {
-
+    private String engine;
     private boolean found;
     private long proctime;
     private String category;
@@ -43,6 +43,24 @@ public class Mmr {
      */
     public void setFound(boolean found) {
         this.found = found;
+    }
+
+    /**
+     * Get the value of engine
+     *
+     * @return the value of engine
+     */
+    public String getEngine() {
+        return engine;
+    }
+
+    /**
+     * Set the value of engine
+     *
+     * @param engine new value of engine
+     */
+    public void setEngine(String engine) {
+        this.engine = engine;
     }
 
     /**
@@ -233,6 +251,7 @@ public class Mmr {
     public int hashCode() {
         int hash = 5;
         hash = 97 * hash + (this.found ? 1 : 0);
+        hash = 97 * hash + Objects.hashCode(this.engine);
         hash = 97 * hash + (int) (this.proctime ^ (this.proctime >>> 32));
         hash = 97 * hash + Objects.hashCode(this.category);
         hash = 97 * hash + Objects.hashCode(this.categoryConfidence);
@@ -265,6 +284,9 @@ public class Mmr {
         }
         final Mmr other = (Mmr) obj;
         if (this.found != other.found) {
+            return false;
+        }
+        if (!Objects.equals(this.engine, other.engine)) {
             return false;
         }
         if (this.proctime != other.proctime) {
@@ -309,10 +331,11 @@ public class Mmr {
      */
     @Override
     public String toString() {
-        return "Mmr{" + "found=" + found + ", proctime=" + proctime + ", category=" + category + ", categoryConfidence="
-                + categoryConfidence + ", color=" + color + ", colorConfidence=" + colorConfidence + ", make=" + make
-                + ", model=" + model + ", makeConfidence=" + makeConfidence + ", modelConfidence=" + modelConfidence
-                + ", heading=" + heading + ", headingConfidence=" + headingConfidence + '}';
+        return "Mmr{" + "found=" + found + ", engine=" + engine + ", proctime=" + proctime + ", category=" + category
+                + ", categoryConfidence=" + categoryConfidence + ", color=" + color + ", colorConfidence="
+                + colorConfidence + ", make=" + make + ", model=" + model + ", makeConfidence=" + makeConfidence
+                + ", modelConfidence=" + modelConfidence + ", heading=" + heading + ", headingConfidence="
+                + headingConfidence + '}';
     }
 
 }
