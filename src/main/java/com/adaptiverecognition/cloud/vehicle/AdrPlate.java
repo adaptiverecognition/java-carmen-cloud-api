@@ -163,11 +163,11 @@ public class AdrPlate extends Plate {
 
     @Override
     public String toString() {
-        return "AdrPlate{" + "found=" + isFound() + ", proctime=" + getProctime() + ", bgColor=" + getBgColor()
-                + ", color=" + getColor() + ", confidence=" + getConfidence() + ", country=" + ", plateChars="
-                + plateChars + ", plateROI=" + getPlateROI() + ", plateType=" + getPlateType() + ", plateTypeCategory="
-                + getType() + ", unicodeText=" + unicodeText + ", plateTypeConfidence="
-                + plateTypeConfidence + ", positionConfidence=" + positionConfidence + '}';
+        return "AdrPlate{" + ", proctime=" + getProctime() + ", bgColor=" + getBgColor() + ", color=" + getColor()
+                + ", confidence=" + getConfidence() + ", country=" + ", plateChars=" + plateChars + ", plateROI="
+                + getPlateROI() + ", plateType=" + getPlateType() + ", plateTypeCategory=" + getType()
+                + ", unicodeText=" + unicodeText + ", plateTypeConfidence=" + plateTypeConfidence
+                + ", positionConfidence=" + positionConfidence + '}';
     }
 
 }

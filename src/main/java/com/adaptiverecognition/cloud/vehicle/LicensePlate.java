@@ -15,6 +15,7 @@ import com.adaptiverecognition.cloud.Color;
  */
 public class LicensePlate extends AdrPlate {
 
+    private boolean found;
     private Color daColor;
     private String country;
     private String state;
@@ -22,6 +23,24 @@ public class LicensePlate extends AdrPlate {
 
     public LicensePlate() {
         super(TypeCategory.LicensePlate);
+    }
+
+    /**
+     * Get the value of found
+     *
+     * @return the value of found
+     */
+    public boolean isFound() {
+        return found;
+    }
+
+    /**
+     * Set the value of found
+     *
+     * @param found new value of found
+     */
+    public void setFound(boolean found) {
+        this.found = found;
     }
 
     /**
@@ -99,6 +118,8 @@ public class LicensePlate extends AdrPlate {
     @Override
     public int hashCode() {
         int hash = super.hashCode();
+        hash = 73 * hash + (this.found ? 1 : 0);
+        hash = 73 * hash + Objects.hashCode(this.daColor);
         hash = 73 * hash + Objects.hashCode(this.country);
         hash = 73 * hash + Objects.hashCode(this.state);
         hash = 73 * hash + Objects.hashCode(this.category);
@@ -125,6 +146,12 @@ public class LicensePlate extends AdrPlate {
         if (!equals(other)) {
             return false;
         }
+        if (this.found != other.found) {
+            return false;
+        }
+        if (!Objects.equals(this.daColor, other.daColor)) {
+            return false;
+        }
         if (!Objects.equals(this.country, other.country)) {
             return false;
         }
@@ -139,7 +166,7 @@ public class LicensePlate extends AdrPlate {
 
     @Override
     public String toString() {
-        return "LicensePlate{" + "found=" + isFound() + ", proctime=" + getProctime() + ", bgColor=" + getBgColor()
+        return "LicensePlate{" + "found=" + this.found + ", proctime=" + getProctime() + ", bgColor=" + getBgColor()
                 + ", color=" + getColor() + ", daColor=" + daColor + ", confidence=" + getConfidence() + ", country="
                 + country + ", state=" + state + ", plateChars=" + getPlateChars() + ", plateROI=" + getPlateROI()
                 + ", plateType=" + getPlateType() + ", plateTypeCategory=" + getType() + ", unicodeText="
