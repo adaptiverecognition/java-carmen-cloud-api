@@ -8,8 +8,6 @@ package com.adaptiverecognition.cloud.vehicle;
 import java.util.List;
 import java.util.Objects;
 
-import com.adaptiverecognition.cloud.Rectangle;
-
 /**
  *
  * @author laszlo.toth
@@ -19,7 +17,7 @@ public class Vehicle {
     private LicensePlate plate;
     private Mmr mmr;
     private List<Plate> markings;
-    private Rectangle bounds;
+    private VehicleBounds bounds;
 
     /**
      *
@@ -73,7 +71,7 @@ public class Vehicle {
      *
      * @return
      */
-    public Rectangle getBounds() {
+    public VehicleBounds getBounds() {
         return bounds;
     }
 
@@ -81,7 +79,7 @@ public class Vehicle {
      *
      * @param bounds
      */
-    public void setBounds(Rectangle bounds) {
+    public void setBounds(VehicleBounds bounds) {
         this.bounds = bounds;
     }
 

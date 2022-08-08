@@ -55,7 +55,6 @@ public class Plate {
 
     }
 
-    private boolean found;
     private String engine;
     private long proctime;
     private Color bgColor;
@@ -78,24 +77,6 @@ public class Plate {
      */
     public Plate(TypeCategory plateTypeCategory) {
         this.type = plateTypeCategory;
-    }
-
-    /**
-     * Get the value of found
-     *
-     * @return the value of found
-     */
-    public boolean isFound() {
-        return found;
-    }
-
-    /**
-     * Set the value of found
-     *
-     * @param found new value of found
-     */
-    public void setFound(boolean found) {
-        this.found = found;
     }
 
     /**
@@ -235,7 +216,6 @@ public class Plate {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 73 * hash + (this.found ? 1 : 0);
         hash = 97 * hash + Objects.hashCode(this.engine);
         hash = 73 * hash + (int) (this.proctime ^ (this.proctime >>> 32));
         hash = 73 * hash + Objects.hashCode(this.bgColor);
@@ -264,9 +244,6 @@ public class Plate {
             return false;
         }
         final Plate other = (Plate) obj;
-        if (this.found != other.found) {
-            return false;
-        }
         if (!Objects.equals(this.engine, other.engine)) {
             return false;
         }
@@ -296,9 +273,9 @@ public class Plate {
 
     @Override
     public String toString() {
-        return "Plate{" + "found=" + found + ", engine=" + engine + ", proctime=" + proctime + ", bgColor=" + bgColor
-                + ", color=" + color + ", confidence=" + confidence + ", plateROI=" + plateROI + ", plateType="
-                + plateType + ", plateTypeCategory=" + type + '}';
+        return "Plate{" + " engine=" + engine + ", proctime=" + proctime + ", bgColor=" + bgColor + ", color=" + color
+                + ", confidence=" + confidence + ", plateROI=" + plateROI + ", plateType=" + plateType
+                + ", plateTypeCategory=" + type + '}';
     }
 
 }
