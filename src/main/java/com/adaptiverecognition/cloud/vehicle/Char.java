@@ -5,9 +5,10 @@
  */
 package com.adaptiverecognition.cloud.vehicle;
 
+import java.util.Objects;
+
 import com.adaptiverecognition.cloud.Color;
 import com.adaptiverecognition.cloud.Rectangle;
-import java.util.Objects;
 
 /**
  *
@@ -101,54 +102,21 @@ public class Char {
         this.confidence = confidence;
     }
 
-    /**
-     *
-     * @return
-     */
     @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 29 * hash + Objects.hashCode(this.bgColor);
-        hash = 29 * hash + Objects.hashCode(this.charROI);
-        hash = 29 * hash + this.code;
-        hash = 29 * hash + Objects.hashCode(this.color);
-        hash = 29 * hash + this.confidence;
-        return hash;
+    public boolean equals(Object o) {
+        if (o == this)
+            return true;
+        if (!(o instanceof Char)) {
+            return false;
+        }
+        Char ch = (Char) o;
+        return Objects.equals(bgColor, ch.bgColor) && Objects.equals(charROI, ch.charROI) && code == ch.code
+                && Objects.equals(color, ch.color) && confidence == ch.confidence;
     }
 
-    /**
-     *
-     * @param obj
-     * @return
-     */
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Char other = (Char) obj;
-        if (this.code != other.code) {
-            return false;
-        }
-        if (this.confidence != other.confidence) {
-            return false;
-        }
-        if (!Objects.equals(this.bgColor, other.bgColor)) {
-            return false;
-        }
-        if (!Objects.equals(this.charROI, other.charROI)) {
-            return false;
-        }
-        if (!Objects.equals(this.color, other.color)) {
-            return false;
-        }
-        return true;
+    public int hashCode() {
+        return Objects.hash(bgColor, charROI, code, color, confidence);
     }
 
     /**

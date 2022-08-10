@@ -83,50 +83,21 @@ public class Vehicle {
         this.bounds = bounds;
     }
 
-    /**
-     *
-     * @return
-     */
     @Override
-    public int hashCode() {
-        int hash = 5;
-        hash = 53 * hash + Objects.hashCode(this.plate);
-        hash = 53 * hash + Objects.hashCode(this.mmr);
-        hash = 53 * hash + Objects.hashCode(this.markings);
-        hash = 53 * hash + Objects.hashCode(this.bounds);
-        return hash;
+    public boolean equals(Object o) {
+        if (o == this)
+            return true;
+        if (!(o instanceof Vehicle)) {
+            return false;
+        }
+        Vehicle vehicle = (Vehicle) o;
+        return Objects.equals(plate, vehicle.plate) && Objects.equals(mmr, vehicle.mmr)
+                && Objects.equals(markings, vehicle.markings) && Objects.equals(bounds, vehicle.bounds);
     }
 
-    /**
-     *
-     * @param obj
-     * @return
-     */
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Vehicle other = (Vehicle) obj;
-        if (!Objects.equals(this.plate, other.plate)) {
-            return false;
-        }
-        if (!Objects.equals(this.mmr, other.mmr)) {
-            return false;
-        }
-        if (!Objects.equals(this.markings, other.markings)) {
-            return false;
-        }
-        if (!Objects.equals(this.bounds, other.bounds)) {
-            return false;
-        }
-        return true;
+    public int hashCode() {
+        return Objects.hash(plate, mmr, markings, bounds);
     }
 
     /**

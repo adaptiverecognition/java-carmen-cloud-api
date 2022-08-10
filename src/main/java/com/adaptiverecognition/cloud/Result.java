@@ -141,40 +141,20 @@ public abstract class Result implements Serializable {
     }
 
     @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 67 * hash + Objects.hashCode(this.error);
-        hash = 67 * hash + Objects.hashCode(this.nodename);
-        hash = 67 * hash + (int) (this.nodetime ^ (this.nodetime >>> 32));
-        hash = 67 * hash + Objects.hashCode(this.version);
-        return hash;
+    public boolean equals(Object o) {
+        if (o == this)
+            return true;
+        if (!(o instanceof Result)) {
+            return false;
+        }
+        Result result = (Result) o;
+        return Objects.equals(error, result.error) && Objects.equals(nodename, result.nodename)
+                && nodetime == result.nodetime && Objects.equals(version, result.version);
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Result other = (Result) obj;
-        if (this.nodetime != other.nodetime) {
-            return false;
-        }
-        if (!Objects.equals(this.error, other.error)) {
-            return false;
-        }
-        if (!Objects.equals(this.nodename, other.nodename)) {
-            return false;
-        }
-        if (!Objects.equals(this.version, other.version)) {
-            return false;
-        }
-        return true;
+    public int hashCode() {
+        return Objects.hash(error, nodename, nodetime, version);
     }
 
     @Override
