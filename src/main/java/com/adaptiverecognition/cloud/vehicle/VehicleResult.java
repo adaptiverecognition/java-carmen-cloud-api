@@ -18,10 +18,13 @@ import com.adaptiverecognition.cloud.Result;
  */
 public class VehicleResult extends Result {
 
-    private static class VehicleResponseBuilder extends ResponseBuilder<VehicleResult> {
+    private static class VehicleResponseBuilder extends ResponseBuilder {
         @Override
-        public String createResponse(VehicleResult result) {
-            result.setEngines(null);
+        public String createResponse(Result result) {
+            if (result instanceof VehicleResult) {
+                ((VehicleResult) result).setEngines(null);
+
+            }
             return super.createResponse(result);
         }
     }
@@ -43,7 +46,7 @@ public class VehicleResult extends Result {
      * 
      * @param responseBuilder
      */
-    public VehicleResult(ResponseBuilder<? extends VehicleResult> responseBuilder) {
+    public VehicleResult(ResponseBuilder responseBuilder) {
         super(responseBuilder);
         super.setVersion(VERSION);
     }
@@ -92,42 +95,20 @@ public class VehicleResult extends Result {
         this.data = data;
     }
 
-    /**
-     *
-     * @return
-     */
     @Override
-    public int hashCode() {
-        int hash = 5;
-        hash = 97 * hash + Objects.hashCode(this.engines);
-        hash = 97 * hash + Objects.hashCode(this.data);
-        return hash;
+    public boolean equals(Object o) {
+        if (o == this)
+            return true;
+        if (!(o instanceof VehicleResult)) {
+            return false;
+        }
+        VehicleResult vehicleResult = (VehicleResult) o;
+        return Objects.equals(engines, vehicleResult.engines) && Objects.equals(data, vehicleResult.data);
     }
 
-    /**
-     *
-     * @param obj
-     * @return
-     */
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final VehicleResult other = (VehicleResult) obj;
-        if (!Objects.equals(this.engines, other.engines)) {
-            return false;
-        }
-        if (!Objects.equals(this.data, other.data)) {
-            return false;
-        }
-        return true;
+    public int hashCode() {
+        return Objects.hash(engines, data);
     }
 
     /**

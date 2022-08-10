@@ -19,20 +19,20 @@ public abstract class Result implements Serializable {
     private long nodetime;
     private String version;
     private transient int statusCode;
-    private transient ResponseBuilder<? extends Result> responseBuilder;
+    private transient ResponseBuilder responseBuilder;
 
     /**
      * 
      */
-    public Result() {
-        this(new ResponseBuilder<>());
+    protected Result() {
+        this(new ResponseBuilder());
     }
 
     /**
      * 
      * @param responseBuilder
      */
-    public Result(ResponseBuilder<? extends Result> responseBuilder) {
+    protected Result(ResponseBuilder responseBuilder) {
         setResponseBuilder(responseBuilder);
     }
 

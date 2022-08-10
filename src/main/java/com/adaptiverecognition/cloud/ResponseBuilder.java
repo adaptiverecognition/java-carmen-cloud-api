@@ -8,7 +8,7 @@ package com.adaptiverecognition.cloud;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-public class ResponseBuilder<R extends Result> {
+public class ResponseBuilder {
 
     /**
      * 
@@ -43,7 +43,7 @@ public class ResponseBuilder<R extends Result> {
      * @param result
      * @return
      */
-    public String createResponse(R result) {
+    public String createResponse(Result result) {
         return getJsonConverter().toJson(result, result.getClass());
     }
 }
