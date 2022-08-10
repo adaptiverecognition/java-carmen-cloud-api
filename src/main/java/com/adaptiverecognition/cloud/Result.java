@@ -5,13 +5,14 @@
  */
 package com.adaptiverecognition.cloud;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  *
  * @author laszlo.toth
  */
-public abstract class Result {
+public abstract class Result implements Serializable {
 
     private String error;
     private String nodename;

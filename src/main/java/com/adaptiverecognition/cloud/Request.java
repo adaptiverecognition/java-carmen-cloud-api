@@ -8,6 +8,6 @@ package com.adaptiverecognition.cloud;
  *
  * @author laszlo.toth
  */
-public abstract class Request {
-    
+public interface Request {
+
 }

@@ -83,54 +83,26 @@ public class Rectangle {
         this.topRight = topRight;
     }
 
-    /**
-     *
-     * @return
-     */
+    @Override
+    public boolean equals(Object o) {
+        if (o == this)
+            return true;
+        if (!(o instanceof Rectangle)) {
+            return false;
+        }
+        Rectangle rectangle = (Rectangle) o;
+        return Objects.equals(bottomLeft, rectangle.bottomLeft) && Objects.equals(bottomRight, rectangle.bottomRight)
+                && Objects.equals(topLeft, rectangle.topLeft) && Objects.equals(topRight, rectangle.topRight);
+    }
+
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 79 * hash + Objects.hashCode(this.bottomLeft);
-        hash = 79 * hash + Objects.hashCode(this.bottomRight);
-        hash = 79 * hash + Objects.hashCode(this.topLeft);
-        hash = 79 * hash + Objects.hashCode(this.topRight);
-        return hash;
+        return Objects.hash(bottomLeft, bottomRight, topLeft, topRight);
     }
 
     /**
      *
-     * @param obj
-     * @return
-     */
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Rectangle other = (Rectangle) obj;
-        if (!Objects.equals(this.bottomLeft, other.bottomLeft)) {
-            return false;
-        }
-        if (!Objects.equals(this.bottomRight, other.bottomRight)) {
-            return false;
-        }
-        if (!Objects.equals(this.topLeft, other.topLeft)) {
-            return false;
-        }
-        if (!Objects.equals(this.topRight, other.topRight)) {
-            return false;
-        }
-        return true;
-    }
-
-    /**
-     *
+     * 
      * @return
      */
     @Override

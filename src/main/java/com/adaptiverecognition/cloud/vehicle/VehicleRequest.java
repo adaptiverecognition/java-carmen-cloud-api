@@ -31,7 +31,7 @@ import com.google.gson.annotations.SerializedName;
  *
  * @author laszlo.toth
  */
-public class VehicleRequest<S extends Enum> extends Request {
+public class VehicleRequest<S extends Enum> implements Request {
 
     static {
         // ha egy jvm crash után újraindul a lambda/docker image, akkor ennek az
