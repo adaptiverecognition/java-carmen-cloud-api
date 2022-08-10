@@ -5,6 +5,7 @@
  */
 package com.adaptiverecognition.cloud.vehicle;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 
@@ -12,7 +13,7 @@ import java.util.Objects;
  *
  * @author laszlo.toth
  */
-public class Vehicle {
+public class Vehicle implements Serializable {
 
     private LicensePlate plate;
     private Mmr mmr;

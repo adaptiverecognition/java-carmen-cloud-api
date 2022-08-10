@@ -498,7 +498,7 @@ public class VehicleRequest<S extends Enum> implements Request {
         if (!(o instanceof VehicleRequest)) {
             return false;
         }
-        VehicleRequest vehicleRequest = (VehicleRequest) o;
+        VehicleRequest<S> vehicleRequest = (VehicleRequest<S>) o;
         return calculateHash == vehicleRequest.calculateHash && hashTimestamp == vehicleRequest.hashTimestamp
                 && Objects.equals(hashSalt, vehicleRequest.hashSalt)
                 && Objects.equals(services, vehicleRequest.services) && Objects.equals(image, vehicleRequest.image)

@@ -5,6 +5,7 @@
  */
 package com.adaptiverecognition.cloud.vehicle;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 import com.adaptiverecognition.cloud.Color;
@@ -15,7 +16,7 @@ import com.google.gson.annotations.SerializedName;
  *
  * @author laszlo.toth
  */
-public class Plate {
+public class Plate implements Serializable {
 
     /**
      *

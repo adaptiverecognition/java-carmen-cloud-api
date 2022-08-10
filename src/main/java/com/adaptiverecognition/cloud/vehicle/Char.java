@@ -5,6 +5,7 @@
  */
 package com.adaptiverecognition.cloud.vehicle;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 import com.adaptiverecognition.cloud.Color;
@@ -14,7 +15,7 @@ import com.adaptiverecognition.cloud.Rectangle;
  *
  * @author laszlo.toth
  */
-public class Char {
+public class Char implements Serializable {
 
     private Color bgColor;
     private Rectangle charROI;

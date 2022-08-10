@@ -5,6 +5,7 @@
  */
 package com.adaptiverecognition.cloud.vehicle;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 import com.adaptiverecognition.cloud.Rectangle;
@@ -13,7 +14,7 @@ import com.adaptiverecognition.cloud.Rectangle;
  *
  * @author laszlo.toth
  */
-public class VehicleBounds {
+public class VehicleBounds implements Serializable {
 
     private Rectangle vehicleFrame;
     private Rectangle extendedPlateFrame;

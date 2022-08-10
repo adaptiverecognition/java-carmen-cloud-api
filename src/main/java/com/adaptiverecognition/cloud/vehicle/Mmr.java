@@ -5,14 +5,16 @@
  */
 package com.adaptiverecognition.cloud.vehicle;
 
-import com.adaptiverecognition.cloud.Color;
+import java.io.Serializable;
 import java.util.Objects;
+
+import com.adaptiverecognition.cloud.Color;
 
 /**
  *
  * @author laszlo.toth
  */
-public class Mmr {
+public class Mmr implements Serializable {
     private String engine;
     private boolean found;
     private long proctime;
