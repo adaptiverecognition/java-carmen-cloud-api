@@ -5,13 +5,14 @@
  */
 package com.adaptiverecognition.cloud;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  *
  * @author laszlo.toth
  */
-public class Color {
+public class Color implements Serializable {
 
     private int r;
     private int g;

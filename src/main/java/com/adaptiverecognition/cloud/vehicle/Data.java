@@ -5,6 +5,7 @@
  */
 package com.adaptiverecognition.cloud.vehicle;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -13,7 +14,7 @@ import java.util.Objects;
  *
  * @author laszlo.toth
  */
-public class Data {
+public class Data implements Serializable {
 
     private List<Vehicle> vehicles = new ArrayList<>();
 
