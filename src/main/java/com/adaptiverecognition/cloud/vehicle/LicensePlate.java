@@ -22,7 +22,7 @@ public class LicensePlate extends AdrPlate {
     private String category;
 
     public LicensePlate() {
-        super(TypeCategory.LicensePlate);
+        super(TypeCategory.LICENSE_PLATE);
     }
 
     /**

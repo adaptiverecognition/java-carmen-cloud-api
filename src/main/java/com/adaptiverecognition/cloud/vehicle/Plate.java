@@ -26,27 +26,27 @@ public class Plate implements Serializable {
          *
          */
         @SerializedName("LP")
-        LicensePlate,
+        LICENSE_PLATE,
         /**
          *
          */
         @SerializedName("ADR")
-        ADR,
+        ADR_PLATE,
         /**
          *
          */
         @SerializedName("IMO")
-        IMO,
+        IMO_ADR_PLATE,
         /**
          *
          */
         @SerializedName("AP")
-        APlate,
+        A_PLATE,
         /**
          *
          */
         @SerializedName("E")
-        EmptyADR;
+        EMPTY_ADR_PLATE;
 
         /**
          *

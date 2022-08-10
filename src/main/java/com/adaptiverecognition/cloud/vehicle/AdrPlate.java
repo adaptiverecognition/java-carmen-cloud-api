@@ -21,7 +21,7 @@ public class AdrPlate extends Plate {
     private String separatedText;
 
     public AdrPlate() {
-        this(TypeCategory.ADR);
+        this(TypeCategory.ADR_PLATE);
     }
 
     public AdrPlate(TypeCategory plateTypeCategory) {
