@@ -4,7 +4,7 @@ package com.adaptiverecognition.cloud;
  * 
  */
 public class HandlerException extends Exception {
-    private int statusCode;
+    private final int statusCode;
 
     /**
      * 
