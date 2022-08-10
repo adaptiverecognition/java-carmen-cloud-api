@@ -69,7 +69,7 @@ public class Plate implements Serializable {
      * 
      */
     public Plate() {
-        this(TypeCategory.EmptyADR);
+        this(TypeCategory.EMPTY_ADR_PLATE);
     }
 
     /**
