@@ -5,14 +5,16 @@
  */
 package com.adaptiverecognition.cloud.vehicle;
 
-import com.adaptiverecognition.cloud.Color;
+import java.io.Serializable;
 import java.util.Objects;
+
+import com.adaptiverecognition.cloud.Color;
 
 /**
  *
  * @author laszlo.toth
  */
-public class Mmr {
+public class Mmr implements Serializable {
     private String engine;
     private boolean found;
     private long proctime;
@@ -243,86 +245,27 @@ public class Mmr {
         this.modelConfidence = modelConfidence;
     }
 
-    /**
-     *
-     * @return
-     */
     @Override
-    public int hashCode() {
-        int hash = 5;
-        hash = 97 * hash + (this.found ? 1 : 0);
-        hash = 97 * hash + Objects.hashCode(this.engine);
-        hash = 97 * hash + (int) (this.proctime ^ (this.proctime >>> 32));
-        hash = 97 * hash + Objects.hashCode(this.category);
-        hash = 97 * hash + Objects.hashCode(this.categoryConfidence);
-        hash = 97 * hash + Objects.hashCode(this.color);
-        hash = 97 * hash + Objects.hashCode(this.colorConfidence);
-        hash = 97 * hash + Objects.hashCode(this.make);
-        hash = 97 * hash + Objects.hashCode(this.model);
-        hash = 97 * hash + Objects.hashCode(this.makeConfidence);
-        hash = 97 * hash + Objects.hashCode(this.modelConfidence);
-        hash = 97 * hash + Objects.hashCode(this.heading);
-        hash = 97 * hash + Objects.hashCode(this.headingConfidence);
-        return hash;
+    public boolean equals(Object o) {
+        if (o == this)
+            return true;
+        if (!(o instanceof Mmr)) {
+            return false;
+        }
+        Mmr mmr = (Mmr) o;
+        return Objects.equals(engine, mmr.engine) && found == mmr.found && proctime == mmr.proctime
+                && Objects.equals(category, mmr.category) && Objects.equals(categoryConfidence, mmr.categoryConfidence)
+                && Objects.equals(color, mmr.color) && Objects.equals(colorConfidence, mmr.colorConfidence)
+                && Objects.equals(make, mmr.make) && Objects.equals(model, mmr.model)
+                && Objects.equals(makeConfidence, mmr.makeConfidence)
+                && Objects.equals(modelConfidence, mmr.modelConfidence) && Objects.equals(heading, mmr.heading)
+                && Objects.equals(headingConfidence, mmr.headingConfidence);
     }
 
-    /**
-     *
-     * @param obj
-     * @return
-     */
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Mmr other = (Mmr) obj;
-        if (this.found != other.found) {
-            return false;
-        }
-        if (!Objects.equals(this.engine, other.engine)) {
-            return false;
-        }
-        if (this.proctime != other.proctime) {
-            return false;
-        }
-        if (!Objects.equals(this.category, other.category)) {
-            return false;
-        }
-        if (!Objects.equals(this.make, other.make)) {
-            return false;
-        }
-        if (!Objects.equals(this.model, other.model)) {
-            return false;
-        }
-        if (!Objects.equals(this.heading, other.heading)) {
-            return false;
-        }
-        if (!Objects.equals(this.categoryConfidence, other.categoryConfidence)) {
-            return false;
-        }
-        if (!Objects.equals(this.color, other.color)) {
-            return false;
-        }
-        if (!Objects.equals(this.colorConfidence, other.colorConfidence)) {
-            return false;
-        }
-        if (!Objects.equals(this.makeConfidence, other.makeConfidence)) {
-            return false;
-        }
-        if (!Objects.equals(this.modelConfidence, other.modelConfidence)) {
-            return false;
-        }
-        if (!Objects.equals(this.headingConfidence, other.headingConfidence)) {
-            return false;
-        }
-        return true;
+    public int hashCode() {
+        return Objects.hash(engine, found, proctime, category, categoryConfidence, color, colorConfidence, make, model,
+                makeConfidence, modelConfidence, heading, headingConfidence);
     }
 
     /**

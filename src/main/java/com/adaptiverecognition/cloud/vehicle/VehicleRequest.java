@@ -31,7 +31,7 @@ import com.google.gson.annotations.SerializedName;
  *
  * @author laszlo.toth
  */
-public class VehicleRequest<S extends Enum> extends Request {
+public class VehicleRequest<S extends Enum> implements Request {
 
     static {
         // ha egy jvm crash után újraindul a lambda/docker image, akkor ennek az
@@ -96,10 +96,6 @@ public class VehicleRequest<S extends Enum> extends Request {
     }
 
     private static final Logger LOGGER = LogManager.getLogger(VehicleRequest.class);
-
-    private static int log2(int x) {
-        return (int) (Math.log(x) / Math.log(2) + 1e-10);
-    }
 
     private boolean calculateHash;
 
@@ -342,29 +338,29 @@ public class VehicleRequest<S extends Enum> extends Request {
             }
             ImageReader reader = imageReaders.next();
             reader.setInput(iis);
-            BufferedImage image = reader.read(0);
+            BufferedImage img = reader.read(0);
             this.imageMimeType = reader.getFormatName();
             this.imageName = imageName;
             reader.dispose();
-            double q = (image.getWidth() * image.getHeight()) / (double) (1920 * 1080);
+            double q = (img.getWidth() * img.getHeight()) / (double) (1920 * 1080);
             if (q <= 1 || !resize) {
-                this.image = image;
+                this.image = img;
                 this.imageSource = imageSource;
             } else {
                 if (LOGGER.isDebugEnabled()) {
-                    LOGGER.log(Level.DEBUG, "Original image size: {}x{}", image.getWidth(), image.getHeight());
+                    LOGGER.log(Level.DEBUG, "Original image size: {}x{}", img.getWidth(), img.getHeight());
                 }
                 this.imageUpscaleFactor = Math.sqrt(q);
-                int scaledWidth = (int) Math.round(image.getWidth() / this.imageUpscaleFactor);
-                int scaledHeight = (int) Math.round(image.getHeight() / this.imageUpscaleFactor);
+                int scaledWidth = (int) Math.round(img.getWidth() / this.imageUpscaleFactor);
+                int scaledHeight = (int) Math.round(img.getHeight() / this.imageUpscaleFactor);
                 if (LOGGER.isDebugEnabled()) {
                     LOGGER.log(Level.DEBUG, "Resampling image to size: {}x{}", scaledWidth, scaledHeight);
                 }
-                BufferedImage outputImage = new BufferedImage(scaledWidth, scaledHeight, image.getType());
+                BufferedImage outputImage = new BufferedImage(scaledWidth, scaledHeight, img.getType());
                 Graphics2D graphics2D = outputImage.createGraphics();
                 graphics2D.setRenderingHint(RenderingHints.KEY_INTERPOLATION,
                         RenderingHints.VALUE_INTERPOLATION_BICUBIC);
-                graphics2D.drawImage(image, 0, 0, scaledWidth, scaledHeight, null);
+                graphics2D.drawImage(img, 0, 0, scaledWidth, scaledHeight, null);
                 graphics2D.dispose();
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
                 ImageIO.write(outputImage, reader.getFormatName(), baos);
@@ -398,7 +394,7 @@ public class VehicleRequest<S extends Enum> extends Request {
      * @return Returns a reference to this object so that method calls can be
      *         chained together.
      */
-    public VehicleRequest maxreads(Integer maxreads) {
+    public VehicleRequest<S> maxreads(Integer maxreads) {
         setMaxreads(maxreads);
         return this;
     }
@@ -422,7 +418,7 @@ public class VehicleRequest<S extends Enum> extends Request {
      * @return Returns a reference to this object so that method calls can be
      *         chained together.
      */
-    public VehicleRequest location(String location) {
+    public VehicleRequest<S> location(String location) {
         setLocation(location);
         return this;
     }
@@ -432,7 +428,7 @@ public class VehicleRequest<S extends Enum> extends Request {
      * @return Returns a reference to this object so that method calls can be
      *         chained together.
      */
-    public VehicleRequest services(List<Service> services) {
+    public VehicleRequest<S> services(List<Service> services) {
         setServices(services);
         return this;
     }
@@ -442,7 +438,7 @@ public class VehicleRequest<S extends Enum> extends Request {
      * @return Returns a reference to this object so that method calls can be
      *         chained together.
      */
-    public VehicleRequest services(Service... services) {
+    public VehicleRequest<S> services(Service... services) {
         setServices(services);
         return this;
     }
@@ -454,7 +450,7 @@ public class VehicleRequest<S extends Enum> extends Request {
      *         chained together.
      * @throws java.io.IOException
      */
-    public VehicleRequest image(byte[] image, String imageName) throws IOException {
+    public VehicleRequest<S> image(byte[] image, String imageName) throws IOException {
         setImage(image, imageName);
         return this;
     }
@@ -495,62 +491,30 @@ public class VehicleRequest<S extends Enum> extends Request {
         return sb.toString();
     }
 
-    /**
-     *
-     * @return
-     */
     @Override
-    public int hashCode() {
-        int hash = 5;
-        hash = 79 * hash + Objects.hashCode(this.maxreads);
-        hash = 79 * hash + Objects.hashCode(this.region);
-        hash = 79 * hash + Objects.hashCode(this.location);
-        hash = 79 * hash + Objects.hashCode(this.imageMimeType);
-        hash = 79 * hash + Objects.hashCode(this.imageUpscaleFactor);
-        hash = 79 * hash + Objects.hashCode(this.imageName);
-        hash = 79 * hash + Arrays.hashCode(this.imageSource);
-        hash = 79 * hash + Objects.hashCode(this.services);
-        return hash;
+    public boolean equals(Object o) {
+        if (o == this)
+            return true;
+        if (!(o instanceof VehicleRequest)) {
+            return false;
+        }
+        VehicleRequest<S> vehicleRequest = (VehicleRequest<S>) o;
+        return calculateHash == vehicleRequest.calculateHash && hashTimestamp == vehicleRequest.hashTimestamp
+                && Objects.equals(hashSalt, vehicleRequest.hashSalt)
+                && Objects.equals(services, vehicleRequest.services) && Objects.equals(image, vehicleRequest.image)
+                && Objects.equals(imageSource, vehicleRequest.imageSource)
+                && imageUpscaleFactor == vehicleRequest.imageUpscaleFactor
+                && Objects.equals(imageName, vehicleRequest.imageName)
+                && Objects.equals(imageMimeType, vehicleRequest.imageMimeType)
+                && Objects.equals(region, vehicleRequest.region) && Objects.equals(location, vehicleRequest.location)
+                && Objects.equals(maxreads, vehicleRequest.maxreads)
+                && Objects.equals(properties, vehicleRequest.properties);
     }
 
-    /**
-     *
-     * @param obj
-     * @return
-     */
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final VehicleRequest<S> other = (VehicleRequest<S>) obj;
-        if (this.imageUpscaleFactor != other.imageUpscaleFactor) {
-            return false;
-        }
-        if (!Objects.equals(this.region, other.region)) {
-            return false;
-        }
-        if (!Objects.equals(this.location, other.location)) {
-            return false;
-        }
-        if (!Objects.equals(this.imageMimeType, other.imageMimeType)) {
-            return false;
-        }
-        if (!Objects.equals(this.imageName, other.imageName)) {
-            return false;
-        }
-        if (!Objects.equals(this.maxreads, other.maxreads)) {
-            return false;
-        }
-        if (!Arrays.equals(this.imageSource, other.imageSource)) {
-            return false;
-        }
-        return Objects.equals(this.services, other.services);
+    public int hashCode() {
+        return Objects.hash(calculateHash, hashTimestamp, hashSalt, services, image, imageSource, imageUpscaleFactor,
+                imageName, imageMimeType, region, location, maxreads, properties);
     }
+
 }

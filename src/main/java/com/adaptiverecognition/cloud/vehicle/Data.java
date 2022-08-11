@@ -5,6 +5,7 @@
  */
 package com.adaptiverecognition.cloud.vehicle;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -13,7 +14,7 @@ import java.util.Objects;
  *
  * @author laszlo.toth
  */
-public class Data {
+public class Data implements Serializable {
 
     private List<Vehicle> vehicles = new ArrayList<>();
 
@@ -33,38 +34,20 @@ public class Data {
         this.vehicles = vehicles;
     }
 
-    /**
-     *
-     * @return
-     */
     @Override
-    public int hashCode() {
-        int hash = 3;
-        hash = 97 * hash + Objects.hashCode(this.vehicles);
-        return hash;
+    public boolean equals(Object o) {
+        if (o == this)
+            return true;
+        if (!(o instanceof Data)) {
+            return false;
+        }
+        Data data = (Data) o;
+        return Objects.equals(vehicles, data.vehicles);
     }
 
-    /**
-     *
-     * @param obj
-     * @return
-     */
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Data other = (Data) obj;
-        if (!Objects.equals(this.vehicles, other.vehicles)) {
-            return false;
-        }
-        return true;
+    public int hashCode() {
+        return Objects.hashCode(vehicles);
     }
 
     /**

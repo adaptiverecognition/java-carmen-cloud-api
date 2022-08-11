@@ -21,7 +21,7 @@ public class AdrPlate extends Plate {
     private String separatedText;
 
     public AdrPlate() {
-        this(TypeCategory.ADR);
+        this(TypeCategory.ADR_PLATE);
     }
 
     public AdrPlate(TypeCategory plateTypeCategory) {
@@ -112,53 +112,23 @@ public class AdrPlate extends Plate {
         this.plateChars = plateChars;
     }
 
-    /**
-     *
-     * @return
-     */
     @Override
-    public int hashCode() {
-        int hash = super.hashCode();
-        hash = 73 * hash + Objects.hashCode(this.unicodeText);
-        hash = 73 * hash + Objects.hashCode(this.plateTypeConfidence);
-        hash = 73 * hash + Objects.hashCode(this.positionConfidence);
-        hash = 73 * hash + Objects.hashCode(this.plateChars);
-        return hash;
+    public boolean equals(Object o) {
+        if (o == this)
+            return true;
+        if (!(o instanceof AdrPlate)) {
+            return false;
+        }
+        AdrPlate adrPlate = (AdrPlate) o;
+        return Objects.equals(plateTypeConfidence, adrPlate.plateTypeConfidence)
+                && Objects.equals(positionConfidence, adrPlate.positionConfidence)
+                && Objects.equals(plateChars, adrPlate.plateChars) && Objects.equals(unicodeText, adrPlate.unicodeText)
+                && Objects.equals(separatedText, adrPlate.separatedText);
     }
 
-    /**
-     *
-     * @param obj
-     * @return
-     */
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final AdrPlate other = (AdrPlate) obj;
-        if (!equals(other)) {
-            return false;
-        }
-        if (!Objects.equals(this.unicodeText, other.unicodeText)) {
-            return false;
-        }
-        if (!Objects.equals(this.plateChars, other.plateChars)) {
-            return false;
-        }
-        if (!Objects.equals(this.plateTypeConfidence, other.plateTypeConfidence)) {
-            return false;
-        }
-        if (!Objects.equals(this.positionConfidence, other.positionConfidence)) {
-            return false;
-        }
-        return true;
+    public int hashCode() {
+        return Objects.hash(plateTypeConfidence, positionConfidence, plateChars, unicodeText, separatedText);
     }
 
     @Override

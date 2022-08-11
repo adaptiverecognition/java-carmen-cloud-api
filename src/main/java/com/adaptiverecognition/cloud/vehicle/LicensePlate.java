@@ -22,7 +22,7 @@ public class LicensePlate extends AdrPlate {
     private String category;
 
     public LicensePlate() {
-        super(TypeCategory.LicensePlate);
+        super(TypeCategory.LICENSE_PLATE);
     }
 
     /**
@@ -111,57 +111,22 @@ public class LicensePlate extends AdrPlate {
         this.state = state;
     }
 
-    /**
-     *
-     * @return
-     */
     @Override
-    public int hashCode() {
-        int hash = super.hashCode();
-        hash = 73 * hash + (this.found ? 1 : 0);
-        hash = 73 * hash + Objects.hashCode(this.daColor);
-        hash = 73 * hash + Objects.hashCode(this.country);
-        hash = 73 * hash + Objects.hashCode(this.state);
-        hash = 73 * hash + Objects.hashCode(this.category);
-        return hash;
+    public boolean equals(Object o) {
+        if (o == this)
+            return true;
+        if (!(o instanceof LicensePlate)) {
+            return false;
+        }
+        LicensePlate licensePlate = (LicensePlate) o;
+        return found == licensePlate.found && Objects.equals(daColor, licensePlate.daColor)
+                && Objects.equals(country, licensePlate.country) && Objects.equals(state, licensePlate.state)
+                && Objects.equals(category, licensePlate.category);
     }
 
-    /**
-     *
-     * @param obj
-     * @return
-     */
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final LicensePlate other = (LicensePlate) obj;
-        if (!equals(other)) {
-            return false;
-        }
-        if (this.found != other.found) {
-            return false;
-        }
-        if (!Objects.equals(this.daColor, other.daColor)) {
-            return false;
-        }
-        if (!Objects.equals(this.country, other.country)) {
-            return false;
-        }
-        if (!Objects.equals(this.state, other.state)) {
-            return false;
-        }
-        if (!Objects.equals(this.category, other.category)) {
-            return false;
-        }
-        return true;
+    public int hashCode() {
+        return Objects.hash(found, daColor, country, state, category);
     }
 
     @Override

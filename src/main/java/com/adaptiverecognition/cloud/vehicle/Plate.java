@@ -5,6 +5,7 @@
  */
 package com.adaptiverecognition.cloud.vehicle;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 import com.adaptiverecognition.cloud.Color;
@@ -15,7 +16,7 @@ import com.google.gson.annotations.SerializedName;
  *
  * @author laszlo.toth
  */
-public class Plate {
+public class Plate implements Serializable {
 
     /**
      *
@@ -25,27 +26,27 @@ public class Plate {
          *
          */
         @SerializedName("LP")
-        LicensePlate,
+        LICENSE_PLATE,
         /**
          *
          */
         @SerializedName("ADR")
-        ADR,
+        ADR_PLATE,
         /**
          *
          */
         @SerializedName("IMO")
-        IMO,
+        IMO_ADR_PLATE,
         /**
          *
          */
         @SerializedName("AP")
-        APlate,
+        A_PLATE,
         /**
          *
          */
         @SerializedName("E")
-        EmptyADR;
+        EMPTY_ADR_PLATE;
 
         /**
          *
@@ -68,7 +69,7 @@ public class Plate {
      * 
      */
     public Plate() {
-        this(TypeCategory.EmptyADR);
+        this(TypeCategory.EMPTY_ADR_PLATE);
     }
 
     /**
@@ -209,66 +210,23 @@ public class Plate {
         this.plateROI = plateROI;
     }
 
-    /**
-     *
-     * @return
-     */
     @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 97 * hash + Objects.hashCode(this.engine);
-        hash = 73 * hash + (int) (this.proctime ^ (this.proctime >>> 32));
-        hash = 73 * hash + Objects.hashCode(this.bgColor);
-        hash = 73 * hash + Objects.hashCode(this.color);
-        hash = 73 * hash + Objects.hashCode(this.confidence);
-        hash = 73 * hash + Objects.hashCode(this.plateROI);
-        hash = 73 * hash + Objects.hashCode(this.plateType);
-        hash = 73 * hash + Objects.hashCode(this.type);
-        return hash;
+    public boolean equals(Object o) {
+        if (o == this)
+            return true;
+        if (!(o instanceof Plate)) {
+            return false;
+        }
+        Plate plate = (Plate) o;
+        return Objects.equals(engine, plate.engine) && proctime == plate.proctime
+                && Objects.equals(bgColor, plate.bgColor) && Objects.equals(color, plate.color)
+                && Objects.equals(confidence, plate.confidence) && Objects.equals(plateROI, plate.plateROI)
+                && Objects.equals(plateType, plate.plateType) && Objects.equals(type, plate.type);
     }
 
-    /**
-     *
-     * @param obj
-     * @return
-     */
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Plate other = (Plate) obj;
-        if (!Objects.equals(this.engine, other.engine)) {
-            return false;
-        }
-        if (this.proctime != other.proctime) {
-            return false;
-        }
-        if (!Objects.equals(this.bgColor, other.bgColor)) {
-            return false;
-        }
-        if (!Objects.equals(this.color, other.color)) {
-            return false;
-        }
-        if (!Objects.equals(this.confidence, other.confidence)) {
-            return false;
-        }
-        if (!Objects.equals(this.plateROI, other.plateROI)) {
-            return false;
-        }
-        if (!Objects.equals(this.plateType, other.plateType)) {
-            return false;
-        }
-        if (!Objects.equals(this.type, other.type)) {
-            return false;
-        }
-        return true;
+    public int hashCode() {
+        return Objects.hash(engine, proctime, bgColor, color, confidence, plateROI, plateType, type);
     }
 
     @Override

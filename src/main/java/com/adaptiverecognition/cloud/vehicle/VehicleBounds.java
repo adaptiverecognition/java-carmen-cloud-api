@@ -5,6 +5,7 @@
  */
 package com.adaptiverecognition.cloud.vehicle;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 import com.adaptiverecognition.cloud.Rectangle;
@@ -13,7 +14,7 @@ import com.adaptiverecognition.cloud.Rectangle;
  *
  * @author laszlo.toth
  */
-public class VehicleBounds {
+public class VehicleBounds implements Serializable {
 
     private Rectangle vehicleFrame;
     private Rectangle extendedPlateFrame;
@@ -50,42 +51,21 @@ public class VehicleBounds {
         this.vehicleFrame = vehicleFrame;
     }
 
-    /**
-     *
-     * @return
-     */
     @Override
-    public int hashCode() {
-        int hash = 5;
-        hash = 53 * hash + Objects.hashCode(this.vehicleFrame);
-        hash = 53 * hash + Objects.hashCode(this.extendedPlateFrame);
-        return hash;
+    public boolean equals(Object o) {
+        if (o == this)
+            return true;
+        if (!(o instanceof VehicleBounds)) {
+            return false;
+        }
+        VehicleBounds vehicleBounds = (VehicleBounds) o;
+        return Objects.equals(vehicleFrame, vehicleBounds.vehicleFrame)
+                && Objects.equals(extendedPlateFrame, vehicleBounds.extendedPlateFrame);
     }
 
-    /**
-     *
-     * @param obj
-     * @return
-     */
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final VehicleBounds other = (VehicleBounds) obj;
-        if (!Objects.equals(this.vehicleFrame, other.vehicleFrame)) {
-            return false;
-        }
-        if (!Objects.equals(this.extendedPlateFrame, other.extendedPlateFrame)) {
-            return false;
-        }
-        return true;
+    public int hashCode() {
+        return Objects.hash(vehicleFrame, extendedPlateFrame);
     }
 
     /**
