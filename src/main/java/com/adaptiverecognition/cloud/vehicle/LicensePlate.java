@@ -21,6 +21,9 @@ public class LicensePlate extends AdrPlate {
     private String state;
     private String category;
 
+    /**
+     * 
+     */
     public LicensePlate() {
         // LicensePlate esetén nem töltjük ki a type property-t, mert felesleges lenne
         // visszaadni a json-ben. A vehicle.plate csak licensePlate lehet, nem kell
