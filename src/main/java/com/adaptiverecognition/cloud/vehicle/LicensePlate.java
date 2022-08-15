@@ -22,7 +22,20 @@ public class LicensePlate extends AdrPlate {
     private String category;
 
     public LicensePlate() {
-        super(TypeCategory.LICENSE_PLATE);
+        // LicensePlate esetén nem töltjük ki a type property-t, mert felesleges lenne
+        // visszaadni a json-ben. A vehicle.plate csak licensePlate lehet, nem kell
+        // megkülönböztetni
+        super(null);
+    }
+
+    @Override
+    public TypeCategory getType() {
+        return TypeCategory.LICENSE_PLATE;
+    }
+
+    @Override
+    public void setType(TypeCategory type) {
+        // do nothing
     }
 
     /**

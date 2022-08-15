@@ -22,8 +22,8 @@ public class VehicleResult extends Result {
         @Override
         public String createResponse(Result result) {
             if (result instanceof VehicleResult) {
-                ((VehicleResult) result).setEngines(null);
-
+                VehicleResult vehicleResult = (VehicleResult) result;
+                vehicleResult.setEngines(null);
             }
             return super.createResponse(result);
         }
