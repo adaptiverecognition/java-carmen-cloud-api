@@ -26,32 +26,56 @@ public class Plate implements Serializable {
          *
          */
         @SerializedName("LP")
-        LICENSE_PLATE,
+        LICENSE_PLATE("LP"),
         /**
          *
          */
         @SerializedName("ADR")
-        ADR_PLATE,
+        ADR_PLATE("ADR"),
         /**
          *
          */
         @SerializedName("IMO")
-        IMO_ADR_PLATE,
+        IMO_ADR_PLATE("IMO"),
         /**
          *
          */
         @SerializedName("AP")
-        A_PLATE,
+        A_PLATE("AP"),
         /**
          *
          */
         @SerializedName("E")
-        EMPTY_ADR_PLATE;
+        EMPTY_ADR_PLATE("E");
+
+        private String value;
 
         /**
          *
          */
-        TypeCategory() {
+        TypeCategory(String value) {
+            this.value = value;
+        }
+
+        /**
+         * 
+         */
+        public String getValue() {
+            return this.value;
+        }
+
+        /**
+         * 
+         * @param value
+         * @return
+         */
+        public static TypeCategory fromValue(String value) {
+            for (TypeCategory tc : values()) {
+                if (tc.value.equals(value)) {
+                    return tc;
+                }
+            }
+            return null;
         }
 
     }
@@ -69,14 +93,29 @@ public class Plate implements Serializable {
      * 
      */
     public Plate() {
-        this(TypeCategory.EMPTY_ADR_PLATE);
     }
 
     /**
-     * 
+     *
+     * @return
+     */
+    public TypeCategory getType() {
+        return type;
+    }
+
+    /**
+     *
+     * @param type
+     */
+    public void setType(TypeCategory type) {
+        setPlateTypeCategory(type);
+    }
+
+    /**
+     *
      * @param plateTypeCategory
      */
-    public Plate(TypeCategory plateTypeCategory) {
+    protected final void setPlateTypeCategory(TypeCategory plateTypeCategory) {
         this.type = plateTypeCategory;
     }
 
@@ -112,22 +151,6 @@ public class Plate implements Serializable {
      */
     public void setPlateType(Integer plateType) {
         this.plateType = plateType;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public TypeCategory getType() {
-        return type;
-    }
-
-    /**
-     *
-     * @param type
-     */
-    public void setType(TypeCategory type) {
-        this.type = type;
     }
 
     /**
