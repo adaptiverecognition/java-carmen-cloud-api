@@ -8,7 +8,8 @@ package com.adaptiverecognition.cloud;
 import com.adaptiverecognition.cloud.vehicle.AdrPlate;
 import com.adaptiverecognition.cloud.vehicle.LicensePlate;
 import com.adaptiverecognition.cloud.vehicle.Plate;
-import com.adaptiverecognition.cloud.vehicle.Plate.TypeCategory;
+import com.google.gson.ExclusionStrategy;
+import com.google.gson.FieldAttributes;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.typeadapters.RuntimeTypeAdapterFactory;
@@ -20,8 +21,7 @@ public class ResponseBuilder {
     protected static final RuntimeTypeAdapterFactory<Plate> adapter = RuntimeTypeAdapterFactory
             .of(Plate.class, "typeClass")
             .registerSubtype(Plate.class, "EmptyAdrPlate")
-            .registerSubtype(AdrPlate.class, "AdrPlate")
-            .registerSubtype(LicensePlate.class, "LicensePlate");
+            .registerSubtype(AdrPlate.class, "AdrPlate");
     /**
      * 
      */
@@ -31,8 +31,18 @@ public class ResponseBuilder {
      * 
      */
     public ResponseBuilder() {
-        this(new GsonBuilder().setPrettyPrinting().disableHtmlEscaping()
-                .registerTypeAdapterFactory(adapter).create());
+        this(new GsonBuilder().setExclusionStrategies(new ExclusionStrategy() {
+            @Override
+            public boolean shouldSkipField(FieldAttributes f) {
+                return (f.getDeclaringClass() == LicensePlate.class && f.getName().equals("type"));
+            }
+
+            @Override
+            public boolean shouldSkipClass(Class<?> clazz) {
+                return false;
+            }
+
+        }).setPrettyPrinting().disableHtmlEscaping().registerTypeAdapterFactory(adapter).create());
     }
 
     /**
