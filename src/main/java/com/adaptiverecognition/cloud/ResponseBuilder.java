@@ -5,11 +5,23 @@
  */
 package com.adaptiverecognition.cloud;
 
+import com.adaptiverecognition.cloud.vehicle.AdrPlate;
+import com.adaptiverecognition.cloud.vehicle.LicensePlate;
+import com.adaptiverecognition.cloud.vehicle.Plate;
+import com.adaptiverecognition.cloud.vehicle.Plate.TypeCategory;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.typeadapters.RuntimeTypeAdapterFactory;
 
 public class ResponseBuilder {
-
+    /**
+     * 
+     */
+    protected static final RuntimeTypeAdapterFactory<Plate> adapter = RuntimeTypeAdapterFactory
+            .of(Plate.class, "typeClass")
+            .registerSubtype(Plate.class, "EmptyAdrPlate")
+            .registerSubtype(AdrPlate.class, "AdrPlate")
+            .registerSubtype(LicensePlate.class, "LicensePlate");
     /**
      * 
      */
@@ -19,7 +31,8 @@ public class ResponseBuilder {
      * 
      */
     public ResponseBuilder() {
-        this(new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create());
+        this(new GsonBuilder().setPrettyPrinting().disableHtmlEscaping()
+                .registerTypeAdapterFactory(adapter).create());
     }
 
     /**
