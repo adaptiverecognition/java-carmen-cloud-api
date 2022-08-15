@@ -31,7 +31,7 @@ public class ResponseBuilder {
      */
     public ResponseBuilder() {
         this(new GsonBuilder().setPrettyPrinting().disableHtmlEscaping()
-                /* .registerTypeAdapterFactory(adapter) */.create());
+                .registerTypeAdapterFactory(adapter).create());
     }
 
     /**

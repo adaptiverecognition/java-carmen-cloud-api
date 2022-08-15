@@ -63,7 +63,7 @@ public class Plate implements Serializable {
     private Integer confidence;
     private Rectangle plateROI;
     private Integer plateType;
-    private TypeCategory type;
+    private transient TypeCategory type;
 
     /**
      * 
