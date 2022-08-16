@@ -69,11 +69,12 @@ public class ResponseBuilderTest extends TestCase {
         r.setData(new Data());
         r.getData().setVehicles(new ArrayList<>());
         r.getData().getVehicles().add(v);
+        r.setNodename("NODE#1");
 
         String result = r.toJson();
         System.out.println("Result1: " + r);
         System.out.println("Result1 as json: " + result);
-        VehicleResult r2 = r.getResponseBuilder().getJsonConverter().fromJson(result, VehicleResult.class);
+        VehicleResult r2 = r.getResponseBuilder().getJsonConverter().fromJson(result, r.getClass());
         System.out.println("Result2: " + r2);
         assertEquals(r, r2);
     }
