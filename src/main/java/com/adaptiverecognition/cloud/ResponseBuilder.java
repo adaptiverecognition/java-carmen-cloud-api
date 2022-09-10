@@ -57,6 +57,7 @@ public class ResponseBuilder {
                 public void write(JsonWriter out, P value) throws IOException {
                     Plate plate = (Plate) value;
                     if (plate == null || plate.getType() == null) {
+                        plateDelegate.write(out, plate);
                         return;
                     }
                     switch (plate.getType()) {
