@@ -147,13 +147,13 @@ public class LicensePlate extends AdrPlate {
 
     @Override
     public String toString() {
-        return "LicensePlate{" + "found=" + this.found + ", proctime=" + getProctime() + ", bgColor=" + getBgColor()
-                + ", color=" + getColor() + ", daColor=" + daColor + ", confidence=" + getConfidence() + ", country="
-                + country + ", state=" + state + ", plateChars=" + getPlateChars() + ", plateROI=" + getPlateROI()
-                + ", plateType=" + getPlateType() + ", plateTypeCategory=" + getType() + ", unicodeText="
-                + getUnicodeText() + ", separatedText=" + getSeparatedText() + ", plateTypeConfidence="
-                + getPlateTypeConfidence() + ", positionConfidence=" + getPositionConfidence() + ", category="
-                + category + '}';
+        return "LicensePlate{" + "found=" + this.found + ", engine=" + getEngine() + ", proctime=" + getProctime()
+                + ", bgColor=" + getBgColor() + ", color=" + getColor() + ", daColor=" + daColor + ", confidence="
+                + getConfidence() + ", country=" + country + ", state=" + state + ", plateChars=" + getPlateChars()
+                + ", plateROI=" + getPlateROI() + ", plateType=" + getPlateType() + ", plateTypeCategory=" + getType()
+                + ", unicodeText=" + getUnicodeText() + ", separatedText=" + getSeparatedText()
+                + ", plateTypeConfidence=" + getPlateTypeConfidence() + ", positionConfidence="
+                + getPositionConfidence() + ", category=" + category + '}';
     }
 
 }

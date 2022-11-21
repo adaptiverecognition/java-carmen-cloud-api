@@ -3,27 +3,14 @@
  */
 package com.adaptiverecognition.cloud.vehicle;
 
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 
 import javax.imageio.ImageIO;
-import javax.imageio.ImageReader;
-import javax.imageio.stream.ImageInputStream;
 
-import org.apache.logging.log4j.Level;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
+import com.adaptiverecognition.cloud.InputImage;
 import com.adaptiverecognition.cloud.Request;
 import com.google.gson.annotations.SerializedName;
 
@@ -31,7 +18,7 @@ import com.google.gson.annotations.SerializedName;
  *
  * @author laszlo.toth
  */
-public class VehicleRequest<S extends Enum> implements Request {
+public class VehicleRequest<S extends Enum> extends Request<S> {
 
     static {
         // ha egy jvm crash után újraindul a lambda/docker image, akkor ennek az
@@ -95,8 +82,6 @@ public class VehicleRequest<S extends Enum> implements Request {
         }
     }
 
-    private static final Logger LOGGER = LogManager.getLogger(VehicleRequest.class);
-
     private boolean calculateHash;
 
     private long hashTimestamp;
@@ -105,62 +90,13 @@ public class VehicleRequest<S extends Enum> implements Request {
 
     private List<Service> services;
 
-    private BufferedImage image;
-
-    private byte[] imageSource;
-
-    private double imageUpscaleFactor = 1;
-
-    private String imageName;
-
-    private String imageMimeType;
+    private InputImage inputImage;
 
     private String region;
 
     private String location;
 
     private Integer maxreads;
-
-    private Map<S, Object> properties;
-
-    /**
-     * Get the value of properties
-     *
-     * @return the value of properties
-     */
-    public Map<S, Object> getProperties() {
-        return properties;
-    }
-
-    /**
-     * Set the value of properties
-     *
-     * @param properties new value of properties
-     */
-    public void setProperties(Map<S, Object> properties) {
-        this.properties = properties;
-    }
-
-    /**
-     *
-     * @param key
-     * @return
-     */
-    public Object getProperty(S key) {
-        return properties != null ? properties.get(key) : null;
-    }
-
-    /**
-     *
-     * @param key
-     * @param value
-     */
-    public void setProperty(S key, Object value) {
-        if (this.properties == null) {
-            this.properties = new HashMap<>();
-        }
-        this.properties.put(key, value);
-    }
 
     /**
      *
@@ -256,57 +192,12 @@ public class VehicleRequest<S extends Enum> implements Request {
     }
 
     /**
-     * Get the value of imageSource
+     * Get the value of inputImage
      *
-     * @return the value of imageSource
+     * @return the value of inputImage
      */
-    public byte[] getImageSource() {
-        return imageSource;
-    }
-
-    /**
-     * Get the value of image
-     *
-     * @return the value of image
-     */
-    public BufferedImage getImage() {
-        return image;
-    }
-
-    /**
-     * Get the value of imageSize
-     *
-     * @return the value of imageSize
-     */
-    public long getImageSize() {
-        return imageSource != null ? imageSource.length : 0;
-    }
-
-    /**
-     * Get the value of imageUpscaleFactor
-     *
-     * @return the value of imageUpscaleFactor
-     */
-    public double getImageUpscaleFactor() {
-        return imageUpscaleFactor;
-    }
-
-    /**
-     * Get the value of imageMimeType
-     *
-     * @return the value of imageMimeType
-     */
-    public String getImageMimeType() {
-        return imageMimeType;
-    }
-
-    /**
-     * Get the value of imageName
-     *
-     * @return the value of imageName
-     */
-    public String getImageName() {
-        return imageName;
+    public InputImage getInputImage() {
+        return inputImage;
     }
 
     /**
@@ -329,49 +220,10 @@ public class VehicleRequest<S extends Enum> implements Request {
      * @throws java.io.IOException
      */
     public void setImage(byte[] imageSource, String imageName, boolean resize) throws IOException {
-        this.imageUpscaleFactor = 1;
         if (imageSource != null) {
-            ImageInputStream iis = ImageIO.createImageInputStream(new ByteArrayInputStream(imageSource));
-            Iterator<ImageReader> imageReaders = ImageIO.getImageReaders(iis);
-            if (!imageReaders.hasNext()) {
-                throw new IOException("Invalid image format");
-            }
-            ImageReader reader = imageReaders.next();
-            reader.setInput(iis);
-            BufferedImage img = reader.read(0);
-            this.imageMimeType = reader.getFormatName();
-            this.imageName = imageName;
-            reader.dispose();
-            double q = (img.getWidth() * img.getHeight()) / (double) (1920 * 1080);
-            if (q <= 1 || !resize) {
-                this.image = img;
-                this.imageSource = imageSource;
-            } else {
-                if (LOGGER.isDebugEnabled()) {
-                    LOGGER.log(Level.DEBUG, "Original image size: {}x{}", img.getWidth(), img.getHeight());
-                }
-                this.imageUpscaleFactor = Math.sqrt(q);
-                int scaledWidth = (int) Math.round(img.getWidth() / this.imageUpscaleFactor);
-                int scaledHeight = (int) Math.round(img.getHeight() / this.imageUpscaleFactor);
-                if (LOGGER.isDebugEnabled()) {
-                    LOGGER.log(Level.DEBUG, "Resampling image to size: {}x{}", scaledWidth, scaledHeight);
-                }
-                BufferedImage outputImage = new BufferedImage(scaledWidth, scaledHeight, img.getType());
-                Graphics2D graphics2D = outputImage.createGraphics();
-                graphics2D.setRenderingHint(RenderingHints.KEY_INTERPOLATION,
-                        RenderingHints.VALUE_INTERPOLATION_BICUBIC);
-                graphics2D.drawImage(img, 0, 0, scaledWidth, scaledHeight, null);
-                graphics2D.dispose();
-                ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                ImageIO.write(outputImage, reader.getFormatName(), baos);
-                this.image = outputImage;
-                this.imageSource = baos.toByteArray();
-            }
+            this.inputImage = new InputImage(imageSource, imageName, resize);
         } else {
-            this.image = null;
-            this.imageSource = null;
-            this.imageName = null;
-            this.imageMimeType = null;
+            this.inputImage = null;
         }
     }
 
@@ -451,7 +303,18 @@ public class VehicleRequest<S extends Enum> implements Request {
      * @throws java.io.IOException
      */
     public VehicleRequest<S> image(byte[] image, String imageName) throws IOException {
-        setImage(image, imageName);
+        return image(image, imageName, true);
+    }
+
+    /**
+     * @param image
+     * @param imageName
+     * @return Returns a reference to this object so that method calls can be
+     *         chained together.
+     * @throws java.io.IOException
+     */
+    public VehicleRequest<S> image(byte[] image, String imageName, boolean resize) throws IOException {
+        setImage(image, imageName, resize);
         return this;
     }
 
@@ -467,18 +330,14 @@ public class VehicleRequest<S extends Enum> implements Request {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("AnprRequest{");
+        sb.append("VehicleRequest{");
         if (getServices() != null) {
             sb.append("Services: ").append(getServices()).append(",");
         }
-        if (getImage() != null) {
-            sb.append("Image: ").append(getImageName()).append(" (").append(getImageSize()).append(" bytes),");
+        if (getInputImage() != null) {
+            sb.append("InputImage: ").append(getInputImage()).append(",");
         }
-        if (getImageMimeType() != null) {
-            sb.append("Image MimeType: ").append(getImageMimeType()).append(",");
-        }
-        sb.append("Image AspectRatio: ").append(getImageUpscaleFactor()).append(",");
-        if (getLocation() != null) {
+        if (getRegion() != null) {
             sb.append("Region: ").append(getRegion()).append(",");
         }
         if (getLocation() != null) {
@@ -501,20 +360,17 @@ public class VehicleRequest<S extends Enum> implements Request {
         VehicleRequest<S> vehicleRequest = (VehicleRequest<S>) o;
         return calculateHash == vehicleRequest.calculateHash && hashTimestamp == vehicleRequest.hashTimestamp
                 && Objects.equals(hashSalt, vehicleRequest.hashSalt)
-                && Objects.equals(services, vehicleRequest.services) && Objects.equals(image, vehicleRequest.image)
-                && Objects.equals(imageSource, vehicleRequest.imageSource)
-                && imageUpscaleFactor == vehicleRequest.imageUpscaleFactor
-                && Objects.equals(imageName, vehicleRequest.imageName)
-                && Objects.equals(imageMimeType, vehicleRequest.imageMimeType)
+                && Objects.equals(services, vehicleRequest.services)
+                && Objects.equals(inputImage, vehicleRequest.inputImage)
                 && Objects.equals(region, vehicleRequest.region) && Objects.equals(location, vehicleRequest.location)
                 && Objects.equals(maxreads, vehicleRequest.maxreads)
-                && Objects.equals(properties, vehicleRequest.properties);
+                && Objects.equals(getProperties(), vehicleRequest.getProperties());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(calculateHash, hashTimestamp, hashSalt, services, image, imageSource, imageUpscaleFactor,
-                imageName, imageMimeType, region, location, maxreads, properties);
+        return Objects.hash(calculateHash, hashTimestamp, hashSalt, services, inputImage, region, location, maxreads,
+                getProperties());
     }
 
 }
