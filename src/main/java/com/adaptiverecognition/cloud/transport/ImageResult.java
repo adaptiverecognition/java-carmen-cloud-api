@@ -1,0 +1,99 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.adaptiverecognition.cloud.transport;
+
+import java.util.List;
+import java.util.Objects;
+
+import com.adaptiverecognition.cloud.Char;
+
+/**
+ *
+ * @author laszlo.toth
+ */
+public class ImageResult {
+
+    private String text;
+    private int confidence;
+    private List<Char> characters;
+
+    /**
+     * 
+     */
+    public ImageResult() {
+    }
+
+    /**
+     *
+     * @return
+     */
+    public String getText() {
+        return text;
+    }
+
+    /**
+     *
+     * @param text
+     */
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public int getConfidence() {
+        return confidence;
+    }
+
+    /**
+     *
+     * @param confidence
+     */
+    public void setConfidence(int confidence) {
+        this.confidence = confidence;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public List<Char> getCharacters() {
+        return characters;
+    }
+
+    /**
+     *
+     * @param characters
+     */
+    public void setCharacters(List<Char> characters) {
+        this.characters = characters;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this)
+            return true;
+        if (!(o instanceof ImageResult)) {
+            return false;
+        }
+        ImageResult imageResult = (ImageResult) o;
+        return Objects.equals(text, imageResult.text) && Objects.equals(confidence, imageResult.confidence)
+                && Objects.equals(characters, imageResult.characters);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(text, confidence, characters);
+    }
+
+    @Override
+    public String toString() {
+        return "ImageResult{" + " text=" + text + ", confidence=" + confidence + ", characters=" + characters + '}';
+    }
+
+}
