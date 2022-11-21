@@ -9,7 +9,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-import com.adaptiverecognition.cloud.ResponseBuilder;
 import com.adaptiverecognition.cloud.Result;
 
 /**
@@ -17,17 +16,6 @@ import com.adaptiverecognition.cloud.Result;
  * @author laszlo.toth
  */
 public class VehicleResult extends Result {
-
-    private static class VehicleResponseBuilder extends ResponseBuilder {
-        @Override
-        public String createResponse(Result result) {
-            if (result instanceof VehicleResult) {
-                VehicleResult vehicleResult = (VehicleResult) result;
-                vehicleResult.setEngines(null);
-            }
-            return super.createResponse(result);
-        }
-    }
 
     private static final String VERSION = "1.3";
 
@@ -38,16 +26,6 @@ public class VehicleResult extends Result {
      *
      */
     public VehicleResult() {
-        super.setVersion(VERSION);
-        setResponseBuilder(new VehicleResponseBuilder());
-    }
-
-    /**
-     * 
-     * @param responseBuilder
-     */
-    public VehicleResult(ResponseBuilder responseBuilder) {
-        super(responseBuilder);
         super.setVersion(VERSION);
     }
 

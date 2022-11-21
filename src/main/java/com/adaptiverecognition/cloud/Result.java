@@ -19,46 +19,6 @@ public abstract class Result implements Serializable {
     private long nodetime;
     private String version;
     private transient int statusCode;
-    private transient ResponseBuilder responseBuilder;
-
-    /**
-     * 
-     */
-    protected Result() {
-        this(new ResponseBuilder());
-    }
-
-    /**
-     * 
-     * @param responseBuilder
-     */
-    protected Result(ResponseBuilder responseBuilder) {
-        setResponseBuilder(responseBuilder);
-    }
-
-    /**
-     * 
-     * @param responseBuilder
-     */
-    public final void setResponseBuilder(ResponseBuilder responseBuilder) {
-        this.responseBuilder = responseBuilder;
-    }
-
-    /**
-     * 
-     * @return
-     */
-    public ResponseBuilder getResponseBuilder() {
-        return this.responseBuilder;
-    }
-
-    /**
-     * 
-     * @return
-     */
-    public String toJson() {
-        return getResponseBuilder().createResponse(this);
-    }
 
     /**
      *

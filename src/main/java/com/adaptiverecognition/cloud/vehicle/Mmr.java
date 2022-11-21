@@ -6,6 +6,7 @@
 package com.adaptiverecognition.cloud.vehicle;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 
 import com.adaptiverecognition.cloud.Color;
@@ -28,6 +29,10 @@ public class Mmr implements Serializable {
     private Integer modelConfidence;
     private String heading;
     private Integer headingConfidence;
+    private String viewpoint;
+    private Integer viewpointConfidence;
+    private List<String> imageTooltips;
+    private List<String> frameTooltips;
 
     /**
      * Get the value of found
@@ -99,6 +104,42 @@ public class Mmr implements Serializable {
      */
     public void setHeading(String heading) {
         this.heading = heading;
+    }
+
+    /**
+     * Get the value of viewpointConfidence
+     *
+     * @return the value of viewpointConfidence
+     */
+    public Integer getViewpointConfidence() {
+        return viewpointConfidence;
+    }
+
+    /**
+     * Set the value of viewpointConfidence
+     *
+     * @param viewpointConfidence new value of viewpointConfidence
+     */
+    public void setViewpointConfidence(Integer viewpointConfidence) {
+        this.viewpointConfidence = viewpointConfidence;
+    }
+
+    /**
+     * Get the value of viewpoint
+     *
+     * @return the value of viewpoint
+     */
+    public String getViewpoint() {
+        return viewpoint;
+    }
+
+    /**
+     * Set the value of viewpoint
+     *
+     * @param viewpoint new value of viewpoint
+     */
+    public void setViewpoint(String viewpoint) {
+        this.viewpoint = viewpoint;
     }
 
     /**
@@ -245,6 +286,38 @@ public class Mmr implements Serializable {
         this.modelConfidence = modelConfidence;
     }
 
+    /**
+     *
+     * @return
+     */
+    public List<String> getImageTooltips() {
+        return imageTooltips;
+    }
+
+    /**
+     *
+     * @param imageTooltips
+     */
+    public void setImageTooltips(List<String> imageTooltips) {
+        this.imageTooltips = imageTooltips;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public List<String> getFrameTooltips() {
+        return frameTooltips;
+    }
+
+    /**
+     *
+     * @param frameTooltips
+     */
+    public void setFrameTooltips(List<String> frameTooltips) {
+        this.frameTooltips = frameTooltips;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == this)
@@ -259,13 +332,16 @@ public class Mmr implements Serializable {
                 && Objects.equals(make, mmr.make) && Objects.equals(model, mmr.model)
                 && Objects.equals(makeConfidence, mmr.makeConfidence)
                 && Objects.equals(modelConfidence, mmr.modelConfidence) && Objects.equals(heading, mmr.heading)
-                && Objects.equals(headingConfidence, mmr.headingConfidence);
+                && Objects.equals(headingConfidence, mmr.headingConfidence) && Objects.equals(viewpoint, mmr.viewpoint)
+                && Objects.equals(viewpointConfidence, mmr.viewpointConfidence)
+                && Objects.equals(imageTooltips, mmr.imageTooltips) && Objects.equals(frameTooltips, mmr.frameTooltips);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(engine, found, proctime, category, categoryConfidence, color, colorConfidence, make, model,
-                makeConfidence, modelConfidence, heading, headingConfidence);
+                makeConfidence, modelConfidence, heading, headingConfidence, viewpoint, viewpointConfidence,
+                imageTooltips, frameTooltips);
     }
 
     /**
@@ -278,7 +354,8 @@ public class Mmr implements Serializable {
                 + ", categoryConfidence=" + categoryConfidence + ", color=" + color + ", colorConfidence="
                 + colorConfidence + ", make=" + make + ", model=" + model + ", makeConfidence=" + makeConfidence
                 + ", modelConfidence=" + modelConfidence + ", heading=" + heading + ", headingConfidence="
-                + headingConfidence + '}';
+                + headingConfidence + ", viewpoint=" + viewpoint + ", viewpointConfidence=" + viewpointConfidence
+                + ", imageTooltips=" + imageTooltips + ", frameTooltips=" + frameTooltips + '}';
     }
 
 }

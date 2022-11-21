@@ -8,6 +8,8 @@ package com.adaptiverecognition.cloud.vehicle;
 import java.util.List;
 import java.util.Objects;
 
+import com.adaptiverecognition.cloud.Char;
+
 /**
  *
  * @author laszlo.toth

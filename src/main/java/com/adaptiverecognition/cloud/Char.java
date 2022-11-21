@@ -3,13 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.adaptiverecognition.cloud.vehicle;
+package com.adaptiverecognition.cloud;
 
 import java.io.Serializable;
 import java.util.Objects;
-
-import com.adaptiverecognition.cloud.Color;
-import com.adaptiverecognition.cloud.Rectangle;
 
 /**
  *
