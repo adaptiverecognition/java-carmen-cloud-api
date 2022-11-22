@@ -15,6 +15,7 @@ import java.util.Objects;
 public class Char implements Serializable {
 
     private Color bgColor;
+    private Boolean bgDark;
     private Rectangle charROI;
     private int code;
     private Color color;
@@ -72,6 +73,22 @@ public class Char implements Serializable {
      *
      * @return
      */
+    public Boolean getBgDark() {
+        return bgDark;
+    }
+
+    /**
+     *
+     * @param bgDark
+     */
+    public void setBgDark(Boolean bgDark) {
+        this.bgDark = bgDark;
+    }
+
+    /**
+     *
+     * @return
+     */
     public Color getColor() {
         return color;
     }
@@ -108,13 +125,14 @@ public class Char implements Serializable {
             return false;
         }
         Char ch = (Char) o;
-        return Objects.equals(bgColor, ch.bgColor) && Objects.equals(charROI, ch.charROI) && code == ch.code
-                && Objects.equals(color, ch.color) && confidence == ch.confidence;
+        return Objects.equals(bgDark, ch.bgDark) && Objects.equals(bgColor, ch.bgColor)
+                && Objects.equals(charROI, ch.charROI) && code == ch.code && Objects.equals(color, ch.color)
+                && confidence == ch.confidence;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(bgColor, charROI, code, color, confidence);
+        return Objects.hash(bgDark, bgColor, charROI, code, color, confidence);
     }
 
     /**
@@ -124,7 +142,8 @@ public class Char implements Serializable {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Char{bgColor=").append(bgColor);
+        sb.append("Char{bgDark=").append(bgDark);
+        sb.append(", bgColor=").append(bgColor);
         sb.append(", charROI=").append(charROI);
         sb.append(", code=").append(code);
         sb.append(", color=").append(color);
