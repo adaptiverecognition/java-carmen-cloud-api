@@ -16,6 +16,7 @@ import com.adaptiverecognition.cloud.Char;
  */
 public class ImageResult {
 
+    private boolean found;
     private String text;
     private int confidence;
     private List<Char> characters;
@@ -24,6 +25,22 @@ public class ImageResult {
      * 
      */
     public ImageResult() {
+    }
+
+    /**
+     *
+     * @return
+     */
+    public boolean isFound() {
+        return found;
+    }
+
+    /**
+     *
+     * @param text
+     */
+    public void setFound(boolean found) {
+        this.found = found;
     }
 
     /**
@@ -82,18 +99,20 @@ public class ImageResult {
             return false;
         }
         ImageResult imageResult = (ImageResult) o;
-        return Objects.equals(text, imageResult.text) && Objects.equals(confidence, imageResult.confidence)
+        return found == imageResult.found && Objects.equals(text, imageResult.text)
+                && Objects.equals(confidence, imageResult.confidence)
                 && Objects.equals(characters, imageResult.characters);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(text, confidence, characters);
+        return Objects.hash(found, text, confidence, characters);
     }
 
     @Override
     public String toString() {
-        return "ImageResult{" + " text=" + text + ", confidence=" + confidence + ", characters=" + characters + '}';
+        return "ImageResult{" + " found=" + found + "" + ", text=" + text
+                + ", confidence=" + confidence + ", characters=" + characters + '}';
     }
 
 }
