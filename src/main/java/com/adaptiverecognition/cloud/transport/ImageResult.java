@@ -18,7 +18,7 @@ public class ImageResult {
 
     private boolean found;
     private String text;
-    private int confidence;
+    private Integer confidence;
     private List<Char> characters;
 
     /**
@@ -63,7 +63,7 @@ public class ImageResult {
      *
      * @return
      */
-    public int getConfidence() {
+    public Integer getConfidence() {
         return confidence;
     }
 
@@ -71,7 +71,7 @@ public class ImageResult {
      *
      * @param confidence
      */
-    public void setConfidence(int confidence) {
+    public void setConfidence(Integer confidence) {
         this.confidence = confidence;
     }
 
