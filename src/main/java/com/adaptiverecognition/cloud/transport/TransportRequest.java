@@ -31,6 +31,8 @@ public class TransportRequest<S extends Enum> extends Request<S> {
 
     private final List<InputImage> inputImages = new ArrayList<>();
 
+    private Integer maxreads;
+
     /**
      * Get the value of type
      *
@@ -47,6 +49,40 @@ public class TransportRequest<S extends Enum> extends Request<S> {
      */
     public void setType(String type) {
         this.type = type;
+    }
+
+    /**
+     * @param type
+     * @return Returns a reference to this object so that method calls can be
+     *         chained together.
+     */
+    public TransportRequest<S> type(String type) {
+        setType(type);
+        return this;
+    }
+
+    /**
+     * @param maxreads
+     */
+    public void setMaxreads(Integer maxreads) {
+        this.maxreads = maxreads;
+    }
+
+    /**
+     * @return
+     */
+    public Integer getMaxreads() {
+        return this.maxreads;
+    }
+
+    /**
+     * @param maxreads
+     * @return Returns a reference to this object so that method calls can be
+     *         chained together.
+     */
+    public TransportRequest<S> maxreads(Integer maxreads) {
+        setMaxreads(maxreads);
+        return this;
     }
 
     /**
@@ -138,6 +174,9 @@ public class TransportRequest<S extends Enum> extends Request<S> {
         if (getType() != null) {
             sb.append("Type: ").append(getType()).append(",");
         }
+        if (getMaxreads() != null) {
+            sb.append("Maxreads: ").append(getMaxreads());
+        }
         sb.append("InputImages: ").append(getInputImages());
         sb.append("}");
         return sb.toString();
@@ -151,13 +190,14 @@ public class TransportRequest<S extends Enum> extends Request<S> {
             return false;
         }
         TransportRequest<S> transportRequest = (TransportRequest<S>) o;
-        return Objects.equals(type, transportRequest.type) && Objects.equals(inputImages, transportRequest.inputImages)
+        return Objects.equals(type, transportRequest.type) && Objects.equals(maxreads, transportRequest.maxreads)
+                && Objects.equals(inputImages, transportRequest.inputImages)
                 && Objects.equals(getProperties(), transportRequest.getProperties());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(type, inputImages, getProperties());
+        return Objects.hash(type, maxreads, inputImages, getProperties());
     }
 
 }

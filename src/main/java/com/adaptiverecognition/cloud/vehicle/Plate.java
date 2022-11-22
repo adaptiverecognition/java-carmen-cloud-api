@@ -82,6 +82,7 @@ public class Plate implements Serializable {
 
     private String engine;
     private long proctime;
+    private Boolean bgDark;
     private Color bgColor;
     private Color color;
     private Integer confidence;
@@ -173,6 +174,22 @@ public class Plate implements Serializable {
      *
      * @return
      */
+    public Boolean getBgDark() {
+        return bgDark;
+    }
+
+    /**
+     *
+     * @param bgDark
+     */
+    public void setBgDark(Boolean bgDark) {
+        this.bgDark = bgDark;
+    }
+
+    /**
+     *
+     * @return
+     */
     public Color getBgColor() {
         return bgColor;
     }
@@ -242,21 +259,22 @@ public class Plate implements Serializable {
         }
         Plate plate = (Plate) o;
         return Objects.equals(engine, plate.engine) && proctime == plate.proctime
-                && Objects.equals(bgColor, plate.bgColor) && Objects.equals(color, plate.color)
-                && Objects.equals(confidence, plate.confidence) && Objects.equals(plateROI, plate.plateROI)
-                && Objects.equals(plateType, plate.plateType) && Objects.equals(type, plate.type);
+                && Objects.equals(bgDark, plate.bgDark) && Objects.equals(bgColor, plate.bgColor)
+                && Objects.equals(color, plate.color) && Objects.equals(confidence, plate.confidence)
+                && Objects.equals(plateROI, plate.plateROI) && Objects.equals(plateType, plate.plateType)
+                && Objects.equals(type, plate.type);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(engine, proctime, bgColor, color, confidence, plateROI, plateType, type);
+        return Objects.hash(engine, proctime, bgDark, bgColor, color, confidence, plateROI, plateType, type);
     }
 
     @Override
     public String toString() {
-        return "Plate{" + " engine=" + engine + ", proctime=" + proctime + ", bgColor=" + bgColor + ", color=" + color
-                + ", confidence=" + confidence + ", plateROI=" + plateROI + ", plateType=" + plateType
-                + ", plateTypeCategory=" + type + '}';
+        return "Plate{" + " engine=" + engine + ", proctime=" + proctime + ", bgDark=" + bgDark + ", bgColor="
+                + bgColor + ", color=" + color + ", confidence=" + confidence + ", plateROI=" + plateROI
+                + ", plateType=" + plateType + ", plateTypeCategory=" + type + '}';
     }
 
 }
