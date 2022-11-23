@@ -64,7 +64,7 @@ public class InputImage {
      * @throws java.io.IOException
      */
     public InputImage(byte[] imageSource, String imageName, boolean resize) throws IOException {
-        setImage(imageSource, imageName, true);
+        setImage(imageSource, imageName, resize);
     }
 
     /**
