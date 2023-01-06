@@ -17,7 +17,7 @@ import com.adaptiverecognition.cloud.Result;
  */
 public class VehicleResult extends Result {
 
-    private static final String VERSION = "1.3";
+    private static final String VERSION = "1.4";
 
     private Map<String, String> engines;
     private Data data = new Data();

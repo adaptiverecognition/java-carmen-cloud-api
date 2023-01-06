@@ -25,12 +25,18 @@ public class Mmr implements Serializable {
     private Integer colorConfidence;
     private String make;
     private String model;
+    private String bodyType;
+    private String generation;
+    private String variation;
     private Integer makeConfidence;
     private Integer modelConfidence;
+    private Integer bodyTypeConfidence;
+    private Integer generationConfidence;
+    private Integer variationConfidence;
     private String heading;
     private Integer headingConfidence;
-    private String viewpoint;
-    private Integer viewpointConfidence;
+    private String viewPoint;
+    private Integer viewPointConfidence;
     private List<String> imageTooltips;
     private List<String> frameTooltips;
 
@@ -107,39 +113,39 @@ public class Mmr implements Serializable {
     }
 
     /**
-     * Get the value of viewpointConfidence
+     * Get the value of viewPointConfidence
      *
-     * @return the value of viewpointConfidence
+     * @return the value of viewPointConfidence
      */
-    public Integer getViewpointConfidence() {
-        return viewpointConfidence;
+    public Integer getViewPointConfidence() {
+        return viewPointConfidence;
     }
 
     /**
-     * Set the value of viewpointConfidence
+     * Set the value of viewPointConfidence
      *
-     * @param viewpointConfidence new value of viewpointConfidence
+     * @param viewPointConfidence new value of viewPointConfidence
      */
-    public void setViewpointConfidence(Integer viewpointConfidence) {
-        this.viewpointConfidence = viewpointConfidence;
+    public void setViewPointConfidence(Integer viewPointConfidence) {
+        this.viewPointConfidence = viewPointConfidence;
     }
 
     /**
-     * Get the value of viewpoint
+     * Get the value of viewPoint
      *
-     * @return the value of viewpoint
+     * @return the value of viewPoint
      */
-    public String getViewpoint() {
-        return viewpoint;
+    public String getViewPoint() {
+        return viewPoint;
     }
 
     /**
-     * Set the value of viewpoint
+     * Set the value of viewPoint
      *
-     * @param viewpoint new value of viewpoint
+     * @param viewPoint new value of viewPoint
      */
-    public void setViewpoint(String viewpoint) {
-        this.viewpoint = viewpoint;
+    public void setViewPoint(String viewPoint) {
+        this.viewPoint = viewPoint;
     }
 
     /**
@@ -188,6 +194,54 @@ public class Mmr implements Serializable {
      */
     public void setModel(String model) {
         this.model = model;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public String getBodyType() {
+        return bodyType;
+    }
+
+    /**
+     *
+     * @param bodyType
+     */
+    public void setBodyType(String bodyType) {
+        this.bodyType = bodyType;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public String getGeneration() {
+        return generation;
+    }
+
+    /**
+     *
+     * @param generation
+     */
+    public void setGeneration(String generation) {
+        this.generation = generation;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public String getVariation() {
+        return variation;
+    }
+
+    /**
+     *
+     * @param variation
+     */
+    public void setVariation(String variation) {
+        this.variation = variation;
     }
 
     /**
@@ -290,6 +344,54 @@ public class Mmr implements Serializable {
      *
      * @return
      */
+    public Integer getBodyTypeConfidence() {
+        return bodyTypeConfidence;
+    }
+
+    /**
+     *
+     * @param bodyTypeConfidence
+     */
+    public void setBodyTypeConfidence(Integer bodyTypeConfidence) {
+        this.bodyTypeConfidence = bodyTypeConfidence;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public Integer getGenerationConfidence() {
+        return generationConfidence;
+    }
+
+    /**
+     *
+     * @param generationConfidence
+     */
+    public void setGenerationConfidence(Integer generationConfidence) {
+        this.generationConfidence = generationConfidence;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public Integer getVariationConfidence() {
+        return variationConfidence;
+    }
+
+    /**
+     *
+     * @param variationConfidence
+     */
+    public void setVariationConfidence(Integer variationConfidence) {
+        this.variationConfidence = variationConfidence;
+    }
+
+    /**
+     *
+     * @return
+     */
     public List<String> getImageTooltips() {
         return imageTooltips;
     }
@@ -330,17 +432,23 @@ public class Mmr implements Serializable {
                 && Objects.equals(category, mmr.category) && Objects.equals(categoryConfidence, mmr.categoryConfidence)
                 && Objects.equals(color, mmr.color) && Objects.equals(colorConfidence, mmr.colorConfidence)
                 && Objects.equals(make, mmr.make) && Objects.equals(model, mmr.model)
-                && Objects.equals(makeConfidence, mmr.makeConfidence)
-                && Objects.equals(modelConfidence, mmr.modelConfidence) && Objects.equals(heading, mmr.heading)
-                && Objects.equals(headingConfidence, mmr.headingConfidence) && Objects.equals(viewpoint, mmr.viewpoint)
-                && Objects.equals(viewpointConfidence, mmr.viewpointConfidence)
+                && Objects.equals(bodyType, mmr.bodyType) && Objects.equals(generation, mmr.generation)
+                && Objects.equals(variation, mmr.variation) && Objects.equals(makeConfidence, mmr.makeConfidence)
+                && Objects.equals(modelConfidence, mmr.modelConfidence)
+                && Objects.equals(bodyTypeConfidence, mmr.bodyTypeConfidence)
+                && Objects.equals(generationConfidence, mmr.generationConfidence)
+                && Objects.equals(variationConfidence, mmr.variationConfidence)
+                && Objects.equals(heading, mmr.heading)
+                && Objects.equals(headingConfidence, mmr.headingConfidence) && Objects.equals(viewPoint, mmr.viewPoint)
+                && Objects.equals(viewPointConfidence, mmr.viewPointConfidence)
                 && Objects.equals(imageTooltips, mmr.imageTooltips) && Objects.equals(frameTooltips, mmr.frameTooltips);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(engine, found, proctime, category, categoryConfidence, color, colorConfidence, make, model,
-                makeConfidence, modelConfidence, heading, headingConfidence, viewpoint, viewpointConfidence,
+        return Objects.hash(engine, found, proctime, category, categoryConfidence, color, colorConfidence, make,
+                model, bodyType, generation, variation, makeConfidence, modelConfidence, bodyTypeConfidence,
+                generationConfidence, variationConfidence, heading, headingConfidence, viewPoint, viewPointConfidence,
                 imageTooltips, frameTooltips);
     }
 
@@ -352,10 +460,12 @@ public class Mmr implements Serializable {
     public String toString() {
         return "Mmr{" + "found=" + found + ", engine=" + engine + ", proctime=" + proctime + ", category=" + category
                 + ", categoryConfidence=" + categoryConfidence + ", color=" + color + ", colorConfidence="
-                + colorConfidence + ", make=" + make + ", model=" + model + ", makeConfidence=" + makeConfidence
-                + ", modelConfidence=" + modelConfidence + ", heading=" + heading + ", headingConfidence="
-                + headingConfidence + ", viewpoint=" + viewpoint + ", viewpointConfidence=" + viewpointConfidence
-                + ", imageTooltips=" + imageTooltips + ", frameTooltips=" + frameTooltips + '}';
+                + colorConfidence + ", make=" + make + ", model=" + model + ", bodyType=" + bodyType + ", generation="
+                + generation + ", variation=" + variation + ", makeConfidence=" + makeConfidence + ", modelConfidence="
+                + modelConfidence + ", bodyTypeConfidence=" + bodyTypeConfidence + ", generationConfidence="
+                + generationConfidence + ", variationConfidence=" + variationConfidence + ", heading=" + heading
+                + ", headingConfidence=" + headingConfidence + ", viewPoint=" + viewPoint + ", viewPointConfidence="
+                + viewPointConfidence + ", imageTooltips=" + imageTooltips + ", frameTooltips=" + frameTooltips + '}';
     }
 
 }
