@@ -196,6 +196,10 @@ public class InputImage {
                 Graphics2D graphics2D = outputImage.createGraphics();
                 graphics2D.setRenderingHint(RenderingHints.KEY_INTERPOLATION,
                         RenderingHints.VALUE_INTERPOLATION_BICUBIC);
+                graphics2D.setRenderingHint(RenderingHints.KEY_RENDERING,
+                        RenderingHints.VALUE_RENDER_QUALITY);
+                graphics2D.setRenderingHint(RenderingHints.KEY_ALPHA_INTERPOLATION,
+                        RenderingHints.VALUE_ALPHA_INTERPOLATION_QUALITY);
                 graphics2D.drawImage(img, 0, 0, scaledWidth, scaledHeight, null);
                 graphics2D.dispose();
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();

@@ -89,6 +89,8 @@ public class Plate implements Serializable {
     private Rectangle plateROI;
     private Integer plateType;
     private TypeCategory type;
+    private Float plateWidth;
+    private Float plateHeight;
 
     /**
      * 
@@ -152,6 +154,38 @@ public class Plate implements Serializable {
      */
     public void setPlateType(Integer plateType) {
         this.plateType = plateType;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public Float getPlateWidth() {
+        return plateWidth;
+    }
+
+    /**
+     *
+     * @param plateWidth
+     */
+    public void setPlateWidth(Float plateWidth) {
+        this.plateWidth = plateWidth;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public Float getPlateHeight() {
+        return plateHeight;
+    }
+
+    /**
+     *
+     * @param plateHeight
+     */
+    public void setPlateHeight(Float plateHeight) {
+        this.plateHeight = plateHeight;
     }
 
     /**
@@ -262,19 +296,22 @@ public class Plate implements Serializable {
                 && Objects.equals(bgDark, plate.bgDark) && Objects.equals(bgColor, plate.bgColor)
                 && Objects.equals(color, plate.color) && Objects.equals(confidence, plate.confidence)
                 && Objects.equals(plateROI, plate.plateROI) && Objects.equals(plateType, plate.plateType)
+                && Objects.equals(plateWidth, plate.plateWidth) && Objects.equals(plateHeight, plate.plateHeight)
                 && Objects.equals(type, plate.type);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(engine, proctime, bgDark, bgColor, color, confidence, plateROI, plateType, type);
+        return Objects.hash(engine, proctime, bgDark, bgColor, color, confidence, plateROI, plateType, type, plateWidth,
+                plateHeight);
     }
 
     @Override
     public String toString() {
         return "Plate{" + " engine=" + engine + ", proctime=" + proctime + ", bgDark=" + bgDark + ", bgColor="
                 + bgColor + ", color=" + color + ", confidence=" + confidence + ", plateROI=" + plateROI
-                + ", plateType=" + plateType + ", plateTypeCategory=" + type + '}';
+                + ", plateType=" + plateType + ", plateTypeCategory=" + type + ", plateWidth=" + plateWidth
+                + ", plateHeight=" + plateHeight + '}';
     }
 
 }
