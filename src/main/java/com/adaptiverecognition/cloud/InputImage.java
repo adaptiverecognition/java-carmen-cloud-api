@@ -40,6 +40,8 @@ public class InputImage {
 
     private byte[] imageSource;
 
+    private byte[] originalImageSource;
+
     private double imageUpscaleFactor = 1;
 
     private String imageName;
@@ -77,6 +79,15 @@ public class InputImage {
     }
 
     /**
+     * Get the value of originalImageSource
+     *
+     * @return the value of originalImageSource
+     */
+    public byte[] getOriginalImageSource() {
+        return originalImageSource;
+    }
+
+    /**
      * Get the value of image
      *
      * @return the value of image
@@ -92,6 +103,15 @@ public class InputImage {
      */
     public long getImageSize() {
         return imageSource != null ? imageSource.length : 0;
+    }
+
+    /**
+     * Get the value of originalImageSize
+     *
+     * @return the value of originalImageSize
+     */
+    public long getOriginalImageSize() {
+        return originalImageSource != null ? originalImageSource.length : 0;
     }
 
     /**
@@ -153,7 +173,8 @@ public class InputImage {
             return false;
         }
         InputImage inputImage = (InputImage) o;
-        return Objects.equals(imageSource, inputImage.imageSource)
+        return Objects.equals(originalImageSource, inputImage.originalImageSource)
+                && Objects.equals(imageSource, inputImage.imageSource)
                 && imageUpscaleFactor == inputImage.imageUpscaleFactor
                 && Objects.equals(imageName, inputImage.imageName)
                 && Objects.equals(imageMimeType, inputImage.imageMimeType);
@@ -161,11 +182,12 @@ public class InputImage {
 
     @Override
     public int hashCode() {
-        return Objects.hash(image, imageSource, imageUpscaleFactor, imageName, imageMimeType);
+        return Objects.hash(image, originalImageSource, imageSource, imageUpscaleFactor, imageName, imageMimeType);
     }
 
     private void setImage(byte[] imageSource, String imageName, boolean resize) throws IOException {
         this.imageUpscaleFactor = 1;
+        this.originalImageSource = imageSource;
         if (imageSource != null) {
             ImageInputStream iis = ImageIO.createImageInputStream(new ByteArrayInputStream(imageSource));
             Iterator<ImageReader> imageReaders = ImageIO.getImageReaders(iis);
