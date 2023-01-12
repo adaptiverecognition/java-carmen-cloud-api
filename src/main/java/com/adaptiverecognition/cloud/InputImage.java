@@ -16,6 +16,12 @@ import javax.imageio.ImageIO;
 import javax.imageio.ImageReader;
 import javax.imageio.stream.ImageInputStream;
 
+import org.apache.commons.imaging.ImageReadException;
+import org.apache.commons.imaging.Imaging;
+import org.apache.commons.imaging.common.ImageMetadata;
+import org.apache.commons.imaging.formats.jpeg.JpegImageMetadata;
+import org.apache.commons.imaging.formats.tiff.TiffField;
+import org.apache.commons.imaging.formats.tiff.constants.TiffTagConstants;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -43,6 +49,8 @@ public class InputImage {
     private byte[] originalImageSource;
 
     private double imageUpscaleFactor = 1;
+
+    private short imageOrientation = 1;
 
     private String imageName;
 
@@ -124,6 +132,15 @@ public class InputImage {
     }
 
     /**
+     * Get the value of imageOrientation
+     *
+     * @return the value of imageOrientation
+     */
+    public short getImageOrientation() {
+        return imageOrientation;
+    }
+
+    /**
      * Get the value of imageMimeType
      *
      * @return the value of imageMimeType
@@ -161,6 +178,7 @@ public class InputImage {
             sb.append("Image MimeType: ").append(getImageMimeType()).append(",");
         }
         sb.append("Image AspectRatio: ").append(getImageUpscaleFactor()).append(",");
+        sb.append("Image Orientation: ").append(getImageOrientation()).append(",");
         sb.append("}");
         return sb.toString();
     }
@@ -176,17 +194,20 @@ public class InputImage {
         return Objects.equals(originalImageSource, inputImage.originalImageSource)
                 && Objects.equals(imageSource, inputImage.imageSource)
                 && imageUpscaleFactor == inputImage.imageUpscaleFactor
+                && imageOrientation == inputImage.imageOrientation
                 && Objects.equals(imageName, inputImage.imageName)
                 && Objects.equals(imageMimeType, inputImage.imageMimeType);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(image, originalImageSource, imageSource, imageUpscaleFactor, imageName, imageMimeType);
+        return Objects.hash(image, originalImageSource, imageSource, imageUpscaleFactor, imageOrientation, imageName,
+                imageMimeType);
     }
 
     private void setImage(byte[] imageSource, String imageName, boolean resize) throws IOException {
         this.imageUpscaleFactor = 1;
+        this.imageOrientation = 1;
         this.originalImageSource = imageSource;
         if (imageSource != null) {
             ImageInputStream iis = ImageIO.createImageInputStream(new ByteArrayInputStream(imageSource));
@@ -196,7 +217,7 @@ public class InputImage {
             }
             ImageReader reader = imageReaders.next();
             reader.setInput(iis);
-            BufferedImage img = reader.read(0);
+            BufferedImage img = reader.read(0, reader.getDefaultReadParam());
             this.imageMimeType = reader.getFormatName();
             this.imageName = imageName;
             reader.dispose();
@@ -228,6 +249,18 @@ public class InputImage {
                 ImageIO.write(outputImage, reader.getFormatName(), baos);
                 this.image = outputImage;
                 this.imageSource = baos.toByteArray();
+            }
+            try {
+                ImageMetadata metadata = Imaging.getMetadata(imageSource);
+                JpegImageMetadata jpegMetadata = (JpegImageMetadata) metadata;
+                if (metadata != null) {
+                    TiffField field = jpegMetadata.findEXIFValueWithExactMatch(TiffTagConstants.TIFF_TAG_ORIENTATION);
+                    if (field.getValue() instanceof Number) {
+                        this.imageOrientation = ((Number) field.getValue()).shortValue();
+                    }
+                }
+            } catch (ImageReadException e) {
+                LOGGER.log(Level.ERROR, "", e);
             }
         } else {
             this.image = null;
