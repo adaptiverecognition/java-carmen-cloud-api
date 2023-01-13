@@ -255,11 +255,11 @@ public class InputImage {
                 JpegImageMetadata jpegMetadata = (JpegImageMetadata) metadata;
                 if (metadata != null) {
                     TiffField field = jpegMetadata.findEXIFValueWithExactMatch(TiffTagConstants.TIFF_TAG_ORIENTATION);
-                    if (field.getValue() instanceof Number) {
+                    if (field != null && field.getValue() instanceof Number) {
                         this.imageOrientation = ((Number) field.getValue()).shortValue();
                     }
                 }
-            } catch (ImageReadException e) {
+            } catch (Exception e) {
                 LOGGER.log(Level.ERROR, "", e);
             }
         } else {
