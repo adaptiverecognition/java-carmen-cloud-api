@@ -12,7 +12,7 @@ import java.util.Objects;
  *
  * @author laszlo.toth
  */
-public class Request<S extends Enum> {
+public class Request<S extends Enum<?>> {
     private Map<S, Object> properties;
 
     /**
@@ -61,7 +61,7 @@ public class Request<S extends Enum> {
         if (!(o instanceof Request)) {
             return false;
         }
-        Request<S> request = (Request<S>) o;
+        Request<?> request = (Request<?>) o;
         return Objects.equals(properties, request.properties);
     }
 

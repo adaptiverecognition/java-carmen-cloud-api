@@ -16,7 +16,6 @@ import javax.imageio.ImageIO;
 import javax.imageio.ImageReader;
 import javax.imageio.stream.ImageInputStream;
 
-import org.apache.commons.imaging.ImageReadException;
 import org.apache.commons.imaging.Imaging;
 import org.apache.commons.imaging.common.ImageMetadata;
 import org.apache.commons.imaging.formats.jpeg.JpegImageMetadata;
@@ -159,9 +158,9 @@ public class InputImage {
     }
 
     /**
-     * Returns a string representation of this object. This is useful for
-     * testing and debugging. Sensitive data will be redacted from this string
-     * using a placeholder value.
+     * Returns a string representation of this object. This is useful for testing
+     * and debugging. Sensitive data will be redacted from this string using a
+     * placeholder value.
      *
      * @return A string representation of this object.
      *
@@ -194,8 +193,7 @@ public class InputImage {
         return Objects.equals(originalImageSource, inputImage.originalImageSource)
                 && Objects.equals(imageSource, inputImage.imageSource)
                 && imageUpscaleFactor == inputImage.imageUpscaleFactor
-                && imageOrientation == inputImage.imageOrientation
-                && Objects.equals(imageName, inputImage.imageName)
+                && imageOrientation == inputImage.imageOrientation && Objects.equals(imageName, inputImage.imageName)
                 && Objects.equals(imageMimeType, inputImage.imageMimeType);
     }
 
@@ -239,8 +237,7 @@ public class InputImage {
                 Graphics2D graphics2D = outputImage.createGraphics();
                 graphics2D.setRenderingHint(RenderingHints.KEY_INTERPOLATION,
                         RenderingHints.VALUE_INTERPOLATION_BICUBIC);
-                graphics2D.setRenderingHint(RenderingHints.KEY_RENDERING,
-                        RenderingHints.VALUE_RENDER_QUALITY);
+                graphics2D.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
                 graphics2D.setRenderingHint(RenderingHints.KEY_ALPHA_INTERPOLATION,
                         RenderingHints.VALUE_ALPHA_INTERPOLATION_QUALITY);
                 graphics2D.drawImage(img, 0, 0, scaledWidth, scaledHeight, null);

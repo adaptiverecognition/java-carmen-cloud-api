@@ -5,8 +5,6 @@
  */
 package com.adaptiverecognition.cloud.transport;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
 
 import com.adaptiverecognition.cloud.Result;
