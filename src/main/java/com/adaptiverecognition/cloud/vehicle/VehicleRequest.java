@@ -18,7 +18,7 @@ import com.google.gson.annotations.SerializedName;
  *
  * @author laszlo.toth
  */
-public class VehicleRequest<S extends Enum> extends Request<S> {
+public class VehicleRequest<S extends Enum<?>> extends Request<S> {
 
     static {
         // ha egy jvm crash után újraindul a lambda/docker image, akkor ennek az
@@ -319,9 +319,9 @@ public class VehicleRequest<S extends Enum> extends Request<S> {
     }
 
     /**
-     * Returns a string representation of this object. This is useful for
-     * testing and debugging. Sensitive data will be redacted from this string
-     * using a placeholder value.
+     * Returns a string representation of this object. This is useful for testing
+     * and debugging. Sensitive data will be redacted from this string using a
+     * placeholder value.
      *
      * @return A string representation of this object.
      *
@@ -357,7 +357,7 @@ public class VehicleRequest<S extends Enum> extends Request<S> {
         if (!(o instanceof VehicleRequest)) {
             return false;
         }
-        VehicleRequest<S> vehicleRequest = (VehicleRequest<S>) o;
+        VehicleRequest<?> vehicleRequest = (VehicleRequest<?>) o;
         return calculateHash == vehicleRequest.calculateHash && hashTimestamp == vehicleRequest.hashTimestamp
                 && Objects.equals(hashSalt, vehicleRequest.hashSalt)
                 && Objects.equals(services, vehicleRequest.services)

@@ -17,7 +17,7 @@ import com.adaptiverecognition.cloud.Request;
  *
  * @author laszlo.toth
  */
-public class TransportRequest<S extends Enum> extends Request<S> {
+public class TransportRequest<S extends Enum<?>> extends Request<S> {
 
     static {
         // ha egy jvm crash után újraindul a lambda/docker image, akkor ennek az
@@ -159,9 +159,9 @@ public class TransportRequest<S extends Enum> extends Request<S> {
     }
 
     /**
-     * Returns a string representation of this object. This is useful for
-     * testing and debugging. Sensitive data will be redacted from this string
-     * using a placeholder value.
+     * Returns a string representation of this object. This is useful for testing
+     * and debugging. Sensitive data will be redacted from this string using a
+     * placeholder value.
      *
      * @return A string representation of this object.
      *
@@ -189,7 +189,7 @@ public class TransportRequest<S extends Enum> extends Request<S> {
         if (!(o instanceof TransportRequest)) {
             return false;
         }
-        TransportRequest<S> transportRequest = (TransportRequest<S>) o;
+        TransportRequest<?> transportRequest = (TransportRequest<?>) o;
         return Objects.equals(type, transportRequest.type) && Objects.equals(maxreads, transportRequest.maxreads)
                 && Objects.equals(inputImages, transportRequest.inputImages)
                 && Objects.equals(getProperties(), transportRequest.getProperties());
