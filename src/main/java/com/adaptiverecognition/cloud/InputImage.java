@@ -215,11 +215,17 @@ public class InputImage {
             }
             ImageReader reader = imageReaders.next();
             reader.setInput(iis);
-            BufferedImage img = reader.read(0, reader.getDefaultReadParam());
-            this.imageMimeType = reader.getFormatName();
-            this.imageName = imageName;
-            reader.dispose();
-            double q = (img.getWidth() * img.getHeight()) / (double) (1920 * 1080);
+            BufferedImage img;
+            double q;
+            try {
+                img = reader.read(0, reader.getDefaultReadParam());
+                this.imageMimeType = reader.getFormatName();
+                this.imageName = imageName;
+                reader.dispose();
+                q = (img.getWidth() * img.getHeight()) / (double) (1920 * 1080);
+            } catch (RuntimeException re) {
+                throw new IOException(re);
+            }
             if (q <= 1 || !resize) {
                 this.image = img;
                 this.imageSource = imageSource;
