@@ -224,7 +224,7 @@ public class InputImage {
                 reader.dispose();
                 q = (img.getWidth() * img.getHeight()) / (double) (1920 * 1080);
             } catch (RuntimeException re) {
-                throw new IOException(re);
+                throw new IOException(re.getMessage(), re);
             }
             if (q <= 1 || !resize) {
                 this.image = img;
