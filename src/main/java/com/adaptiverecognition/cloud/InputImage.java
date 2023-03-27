@@ -20,6 +20,7 @@ import org.apache.commons.imaging.Imaging;
 import org.apache.commons.imaging.common.ImageMetadata;
 import org.apache.commons.imaging.formats.jpeg.JpegImageMetadata;
 import org.apache.commons.imaging.formats.tiff.TiffField;
+import org.apache.commons.imaging.formats.tiff.TiffImageMetadata;
 import org.apache.commons.imaging.formats.tiff.constants.TiffTagConstants;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
@@ -255,12 +256,18 @@ public class InputImage {
             }
             try {
                 ImageMetadata metadata = Imaging.getMetadata(imageSource);
-                JpegImageMetadata jpegMetadata = (JpegImageMetadata) metadata;
-                if (metadata != null) {
-                    TiffField field = jpegMetadata.findEXIFValueWithExactMatch(TiffTagConstants.TIFF_TAG_ORIENTATION);
-                    if (field != null && field.getValue() instanceof Number) {
-                        this.imageOrientation = ((Number) field.getValue()).shortValue();
-                    }
+                JpegImageMetadata jpegMetadata = metadata instanceof JpegImageMetadata ? (JpegImageMetadata) metadata
+                        : null;
+                TiffImageMetadata tiffMetadata = metadata instanceof TiffImageMetadata ? (TiffImageMetadata) metadata
+                        : null;
+                TiffField field = null;
+                if (jpegMetadata != null) {
+                    field = jpegMetadata.findEXIFValueWithExactMatch(TiffTagConstants.TIFF_TAG_ORIENTATION);
+                } else if (tiffMetadata != null) {
+                    field = tiffMetadata.findField(TiffTagConstants.TIFF_TAG_ORIENTATION, true);
+                }
+                if (field != null && field.getValue() instanceof Number) {
+                    this.imageOrientation = ((Number) field.getValue()).shortValue();
                 }
             } catch (Exception e) {
                 LOGGER.log(Level.ERROR, "", e);

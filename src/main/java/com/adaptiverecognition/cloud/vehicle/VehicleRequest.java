@@ -96,6 +96,8 @@ public class VehicleRequest<S extends Enum<?>> extends Request<S> {
 
     private String location;
 
+    private String roi;
+
     private Integer maxreads;
 
     /**
@@ -276,6 +278,30 @@ public class VehicleRequest<S extends Enum<?>> extends Request<S> {
     }
 
     /**
+     * @param roi
+     */
+    public void setRoi(String roi) {
+        this.roi = roi;
+    }
+
+    /**
+     * @return
+     */
+    public String getRoi() {
+        return this.roi;
+    }
+
+    /**
+     * @param roi
+     * @return Returns a reference to this object so that method calls can be
+     *         chained together.
+     */
+    public VehicleRequest<S> roi(String roi) {
+        setRoi(roi);
+        return this;
+    }
+
+    /**
      * @param services
      * @return Returns a reference to this object so that method calls can be
      *         chained together.
@@ -343,6 +369,9 @@ public class VehicleRequest<S extends Enum<?>> extends Request<S> {
         if (getLocation() != null) {
             sb.append("Location: ").append(getLocation()).append(",");
         }
+        if (getRoi() != null) {
+            sb.append("ROI: ").append(getRoi()).append(",");
+        }
         if (getMaxreads() != null) {
             sb.append("Maxreads: ").append(getMaxreads());
         }
@@ -363,14 +392,14 @@ public class VehicleRequest<S extends Enum<?>> extends Request<S> {
                 && Objects.equals(services, vehicleRequest.services)
                 && Objects.equals(inputImage, vehicleRequest.inputImage)
                 && Objects.equals(region, vehicleRequest.region) && Objects.equals(location, vehicleRequest.location)
-                && Objects.equals(maxreads, vehicleRequest.maxreads)
+                && Objects.equals(roi, vehicleRequest.roi) && Objects.equals(maxreads, vehicleRequest.maxreads)
                 && Objects.equals(getProperties(), vehicleRequest.getProperties());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(calculateHash, hashTimestamp, hashSalt, services, inputImage, region, location, maxreads,
-                getProperties());
+        return Objects.hash(calculateHash, hashTimestamp, hashSalt, services, inputImage, region, location, roi,
+                maxreads, getProperties());
     }
 
 }
