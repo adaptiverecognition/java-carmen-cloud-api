@@ -5,8 +5,6 @@
  */
 package com.adaptiverecognition.cloud.vehicle;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
 
 import com.adaptiverecognition.cloud.Result;
@@ -19,7 +17,6 @@ public class VehicleResult extends Result {
 
     private static final String VERSION = "1.4";
 
-    private Map<String, String> engines;
     private Data data = new Data();
 
     /**
@@ -27,34 +24,6 @@ public class VehicleResult extends Result {
      */
     public VehicleResult() {
         super.setVersion(VERSION);
-    }
-
-    /**
-     *
-     * @param type
-     * @param engine
-     */
-    public void addEngine(String type, String engine) {
-        if (engines == null) {
-            engines = new HashMap<>();
-        }
-        engines.put(type, engine);
-    }
-
-    /**
-     *
-     * @return
-     */
-    public Map<String, String> getEngines() {
-        return engines;
-    }
-
-    /**
-     *
-     * @param engines
-     */
-    public void setEngines(Map<String, String> engines) {
-        this.engines = engines;
     }
 
     /**
@@ -81,12 +50,12 @@ public class VehicleResult extends Result {
             return false;
         }
         VehicleResult vehicleResult = (VehicleResult) o;
-        return Objects.equals(engines, vehicleResult.engines) && Objects.equals(data, vehicleResult.data);
+        return Objects.equals(data, vehicleResult.data);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(engines, data);
+        return Objects.hash(data);
     }
 
     /**
@@ -101,7 +70,6 @@ public class VehicleResult extends Result {
         sb.append(", error=").append(getError());
         sb.append(", version=").append(getVersion());
         sb.append(", data=").append(data);
-        sb.append(", engines=").append(engines);
         sb.append('}');
         return sb.toString();
     }
