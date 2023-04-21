@@ -14,27 +14,10 @@ import java.util.Objects;
  */
 public abstract class Result implements Serializable {
 
-    private String error;
     private String nodename;
     private long nodetime;
     private String version;
-    private transient int statusCode;
-
-    /**
-     *
-     * @return
-     */
-    public int getStatusCode() {
-        return statusCode;
-    }
-
-    /**
-     *
-     * @param statusCode
-     */
-    public void setStatusCode(int statusCode) {
-        this.statusCode = statusCode;
-    }
+    private transient String requestId;
 
     /**
      *
@@ -88,16 +71,16 @@ public abstract class Result implements Serializable {
      *
      * @return
      */
-    public String getError() {
-        return error;
+    public String getRequestId() {
+        return requestId;
     }
 
     /**
      *
-     * @param error
+     * @param requestId
      */
-    public void setError(String error) {
-        this.error = error;
+    public void setRequestId(String requestId) {
+        this.requestId = requestId;
     }
 
     @Override
@@ -108,21 +91,21 @@ public abstract class Result implements Serializable {
             return false;
         }
         Result result = (Result) o;
-        return Objects.equals(error, result.error) && Objects.equals(nodename, result.nodename)
+        return Objects.equals(requestId, result.requestId) && Objects.equals(nodename, result.nodename)
                 && nodetime == result.nodetime && Objects.equals(version, result.version);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(error, nodename, nodetime, version);
+        return Objects.hash(requestId, nodename, nodetime, version);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Result{nodename=").append(nodename);
+        sb.append("Result{requestId=").append(requestId);
+        sb.append(", nodename=").append(nodename);
         sb.append(", nodetime=").append(nodetime);
-        sb.append(", error=").append(error);
         sb.append(", version=").append(getVersion());
         sb.append('}');
         return sb.toString();

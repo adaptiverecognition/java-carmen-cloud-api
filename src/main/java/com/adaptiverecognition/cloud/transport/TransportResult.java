@@ -50,12 +50,12 @@ public class TransportResult extends Result {
             return false;
         }
         TransportResult transportResult = (TransportResult) o;
-        return Objects.equals(data, transportResult.data);
+        return super.equals(o) && Objects.equals(data, transportResult.data);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(data);
+        return super.hashCode() + Objects.hash(data);
     }
 
     /**
@@ -65,9 +65,9 @@ public class TransportResult extends Result {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("TransportResult{nodename=").append(getNodename());
+        sb.append("TransportResult{requestId=").append(getRequestId());
+        sb.append(", nodename=").append(getNodename());
         sb.append(", nodetime=").append(getNodetime());
-        sb.append(", error=").append(getError());
         sb.append(", version=").append(getVersion());
         sb.append(", data=").append(data);
         sb.append('}');

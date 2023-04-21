@@ -50,12 +50,12 @@ public class VehicleResult extends Result {
             return false;
         }
         VehicleResult vehicleResult = (VehicleResult) o;
-        return Objects.equals(data, vehicleResult.data);
+        return super.equals(o) && Objects.equals(data, vehicleResult.data);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(data);
+        return super.hashCode() + Objects.hash(data);
     }
 
     /**
@@ -65,9 +65,9 @@ public class VehicleResult extends Result {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("VehicleResult{nodename=").append(getNodename());
+        sb.append("VehicleResult{requestId=").append(getRequestId());
+        sb.append(", nodename=").append(getNodename());
         sb.append(", nodetime=").append(getNodetime());
-        sb.append(", error=").append(getError());
         sb.append(", version=").append(getVersion());
         sb.append(", data=").append(data);
         sb.append('}');

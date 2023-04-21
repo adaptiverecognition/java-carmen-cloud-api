@@ -135,14 +135,14 @@ public class LicensePlate extends AdrPlate {
             return false;
         }
         LicensePlate licensePlate = (LicensePlate) o;
-        return found == licensePlate.found && Objects.equals(daColor, licensePlate.daColor)
+        return super.equals(o) && found == licensePlate.found && Objects.equals(daColor, licensePlate.daColor)
                 && Objects.equals(country, licensePlate.country) && Objects.equals(state, licensePlate.state)
                 && Objects.equals(category, licensePlate.category);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(found, daColor, country, state, category);
+        return super.hashCode() + Objects.hash(found, daColor, country, state, category);
     }
 
     @Override

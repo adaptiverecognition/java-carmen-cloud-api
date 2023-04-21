@@ -255,7 +255,7 @@ public class InputImage {
                 this.imageSource = baos.toByteArray();
             }
             try {
-                ImageMetadata metadata = Imaging.getMetadata(imageSource);
+                ImageMetadata metadata = Imaging.getMetadata(this.originalImageSource);
                 JpegImageMetadata jpegMetadata = metadata instanceof JpegImageMetadata ? (JpegImageMetadata) metadata
                         : null;
                 TiffImageMetadata tiffMetadata = metadata instanceof TiffImageMetadata ? (TiffImageMetadata) metadata
@@ -270,7 +270,9 @@ public class InputImage {
                     this.imageOrientation = ((Number) field.getValue()).shortValue();
                 }
             } catch (Exception e) {
-                LOGGER.log(Level.ERROR, "", e);
+                if (LOGGER.isDebugEnabled()) {
+                    LOGGER.log(Level.DEBUG, "Couldn't get metadata of {}: {}", imageName, e);
+                }
             }
         } else {
             this.image = null;

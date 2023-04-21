@@ -190,14 +190,15 @@ public class TransportRequest<S extends Enum<?>> extends Request<S> {
             return false;
         }
         TransportRequest<?> transportRequest = (TransportRequest<?>) o;
-        return Objects.equals(type, transportRequest.type) && Objects.equals(maxreads, transportRequest.maxreads)
+        return super.equals(o) && Objects.equals(type, transportRequest.type)
+                && Objects.equals(maxreads, transportRequest.maxreads)
                 && Objects.equals(inputImages, transportRequest.inputImages)
                 && Objects.equals(getProperties(), transportRequest.getProperties());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(type, maxreads, inputImages, getProperties());
+        return super.hashCode() + Objects.hash(type, maxreads, inputImages, getProperties());
     }
 
 }

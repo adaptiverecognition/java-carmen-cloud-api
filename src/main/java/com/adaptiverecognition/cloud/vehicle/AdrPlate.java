@@ -138,7 +138,7 @@ public class AdrPlate extends Plate {
             return false;
         }
         AdrPlate adrPlate = (AdrPlate) o;
-        return Objects.equals(plateTypeConfidence, adrPlate.plateTypeConfidence)
+        return super.equals(o) && Objects.equals(plateTypeConfidence, adrPlate.plateTypeConfidence)
                 && Objects.equals(positionConfidence, adrPlate.positionConfidence)
                 && Objects.equals(plateChars, adrPlate.plateChars) && Objects.equals(unicodeText, adrPlate.unicodeText)
                 && Objects.equals(separatedText, adrPlate.separatedText);
@@ -146,7 +146,8 @@ public class AdrPlate extends Plate {
 
     @Override
     public int hashCode() {
-        return Objects.hash(plateTypeConfidence, positionConfidence, plateChars, unicodeText, separatedText);
+        return super.hashCode()
+                + Objects.hash(plateTypeConfidence, positionConfidence, plateChars, unicodeText, separatedText);
     }
 
     @Override
