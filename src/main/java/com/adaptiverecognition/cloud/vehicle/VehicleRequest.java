@@ -387,8 +387,8 @@ public class VehicleRequest<S extends Enum<?>> extends Request<S> {
             return false;
         }
         VehicleRequest<?> vehicleRequest = (VehicleRequest<?>) o;
-        return calculateHash == vehicleRequest.calculateHash && hashTimestamp == vehicleRequest.hashTimestamp
-                && Objects.equals(hashSalt, vehicleRequest.hashSalt)
+        return super.equals(o) && calculateHash == vehicleRequest.calculateHash
+                && hashTimestamp == vehicleRequest.hashTimestamp && Objects.equals(hashSalt, vehicleRequest.hashSalt)
                 && Objects.equals(services, vehicleRequest.services)
                 && Objects.equals(inputImage, vehicleRequest.inputImage)
                 && Objects.equals(region, vehicleRequest.region) && Objects.equals(location, vehicleRequest.location)
@@ -398,8 +398,8 @@ public class VehicleRequest<S extends Enum<?>> extends Request<S> {
 
     @Override
     public int hashCode() {
-        return Objects.hash(calculateHash, hashTimestamp, hashSalt, services, inputImage, region, location, roi,
-                maxreads, getProperties());
+        return super.hashCode() + Objects.hash(calculateHash, hashTimestamp, hashSalt, services, inputImage, region,
+                location, roi, maxreads, getProperties());
     }
 
 }
