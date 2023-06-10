@@ -23,8 +23,9 @@ import java.util.Objects;
 
 /**
  * The Result class is the base class of all result classes.
- * 
+ *
  * @author laszlo.toth@arip.hu
+ * @version $Id: $Id
  */
 public abstract class Result implements Serializable {
 
@@ -34,7 +35,7 @@ public abstract class Result implements Serializable {
     private transient String requestId;
 
     /**
-     * 
+     *
      * Get the protocol version of the API that generated this result.
      *
      * @return the value of version
@@ -46,7 +47,7 @@ public abstract class Result implements Serializable {
     /**
      *
      * Set the protocol version of the API that generated this result.
-     * 
+     *
      * @param version the new value of version
      */
     public void setVersion(String version) {
@@ -56,7 +57,7 @@ public abstract class Result implements Serializable {
     /**
      *
      * Get the name of the node that generated this result.
-     * 
+     *
      * @return the value of nodename
      */
     public String getNodename() {
@@ -66,7 +67,7 @@ public abstract class Result implements Serializable {
     /**
      *
      * Set the name of the node that generated this result.
-     * 
+     *
      * @param nodename the new value of nodename
      */
     public void setNodename(String nodename) {
@@ -77,7 +78,7 @@ public abstract class Result implements Serializable {
      *
      * Get the value of the overall processing time on the node that generated this
      * result.
-     * 
+     *
      * @return the value of nodetime
      */
     public long getNodetime() {
@@ -87,8 +88,7 @@ public abstract class Result implements Serializable {
     /**
      *
      * Set the value of the overall processing time on the node that generated this
-     * 
-     * 
+     *
      * @param nodetime the new value of nodetime
      */
     public void setNodetime(long nodetime) {
@@ -98,7 +98,7 @@ public abstract class Result implements Serializable {
     /**
      *
      * Get the request ID of the request that generated this result.
-     * 
+     *
      * @return the value of requestId
      */
     public String getRequestId() {
@@ -106,7 +106,7 @@ public abstract class Result implements Serializable {
     }
 
     /**
-     * 
+     *
      * Set the request ID of the request that generated this result.
      *
      * @param requestId the new value of requestId
@@ -115,6 +115,7 @@ public abstract class Result implements Serializable {
         this.requestId = requestId;
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean equals(Object o) {
         if (o == this)
@@ -127,11 +128,13 @@ public abstract class Result implements Serializable {
                 && nodetime == result.nodetime && Objects.equals(version, result.version);
     }
 
+    /** {@inheritDoc} */
     @Override
     public int hashCode() {
         return Objects.hash(requestId, nodename, nodetime, version);
     }
 
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

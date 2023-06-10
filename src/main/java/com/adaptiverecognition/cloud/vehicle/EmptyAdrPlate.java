@@ -21,8 +21,9 @@ package com.adaptiverecognition.cloud.vehicle;
 
 /**
  * The EmptyAdrPlate class represents an empty ADR plate or an A-plate.
- * 
+ *
  * @author laszlo.toth@arip.hu
+ * @version $Id: $Id
  */
 public class EmptyAdrPlate extends Plate {
 
@@ -35,13 +36,14 @@ public class EmptyAdrPlate extends Plate {
 
     /**
      * EmptyAdrPlate constructor
-     * 
+     *
      * @param plateTypeCategory the type of the plate to be created
      */
     protected EmptyAdrPlate(TypeCategory plateTypeCategory) {
         setType(plateTypeCategory);
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setType(TypeCategory type) {
         if (type == TypeCategory.EMPTY_ADR_PLATE || type == TypeCategory.A_PLATE) {

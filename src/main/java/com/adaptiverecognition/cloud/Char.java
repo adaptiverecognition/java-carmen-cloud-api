@@ -26,8 +26,9 @@ import java.util.Objects;
  * Char is a simple class that contains the character code, the confidence
  * value, the color and the background color of the character, and the
  * coordinates of the character's bounding box.
- * 
+ *
  * @author laszlo.toth@arip.hu
+ * @version $Id: $Id
  */
 public class Char implements Serializable {
 
@@ -146,6 +147,7 @@ public class Char implements Serializable {
         this.confidence = confidence;
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean equals(Object o) {
         if (o == this)
@@ -159,11 +161,13 @@ public class Char implements Serializable {
                 && confidence == ch.confidence;
     }
 
+    /** {@inheritDoc} */
     @Override
     public int hashCode() {
         return Objects.hash(bgDark, bgColor, charROI, code, color, confidence);
     }
 
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

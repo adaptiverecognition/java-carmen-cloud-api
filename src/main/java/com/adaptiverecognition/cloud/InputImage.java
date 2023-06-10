@@ -45,8 +45,9 @@ import org.apache.logging.log4j.Logger;
 /**
  * This class is used to store the image data and the image metadata of the
  * input image which is sent to the APIs to be processed.
- * 
+ *
  * @author laszlo.toth@arip.hu
+ * @version $Id: $Id
  */
 public class InputImage {
 
@@ -76,7 +77,6 @@ public class InputImage {
     /**
      * Constructor for InputImage. This constructor is used to create an InputImage
      * object and also to resize it.
-     * 
      *
      * @param imageSource image source
      * @param imageName   image name
@@ -180,6 +180,7 @@ public class InputImage {
         return imageName;
     }
 
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -196,6 +197,7 @@ public class InputImage {
         return sb.toString();
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean equals(Object o) {
         if (o == this)
@@ -211,6 +213,7 @@ public class InputImage {
                 && Objects.equals(imageMimeType, inputImage.imageMimeType);
     }
 
+    /** {@inheritDoc} */
     @Override
     public int hashCode() {
         return Objects.hash(image, originalImageSource, imageSource, imageUpscaleFactor, imageOrientation, imageName,

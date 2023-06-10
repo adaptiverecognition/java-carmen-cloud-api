@@ -27,9 +27,9 @@ import com.adaptiverecognition.cloud.vehicle.VehicleRequest.Service;
 /**
  * The VehicleStatistics class represents the statistics of a vehicle
  * recognition.
- * 
+ *
  * @author laszlo.toth@arip.hu
- * 
+ * @version $Id: $Id
  */
 public class VehicleStatistics {
 
@@ -318,8 +318,9 @@ public class VehicleStatistics {
 
     /**
      * Add a read to the list of reads
-     * 
-     * @param hit the read to add
+     *
+     * @param hit the
+     *            {@link com.adaptiverecognition.cloud.vehicle.VehicleStatistics.Read}
      */
     public void addRead(Read hit) {
         if (reads == null) {
@@ -418,6 +419,7 @@ public class VehicleStatistics {
         this.maxreads = maxreads;
     }
 
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return "VehicleStatistics{" + "region=" + region + ", location=" + location + ", services=" + services

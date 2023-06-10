@@ -30,11 +30,10 @@ import com.google.gson.annotations.SerializedName;
 
 /**
  * The VehicleRequest class represents a request to be sent to the Vehicle API.
- * 
+ *
  * @author laszlo.toth@arip.hu
- * 
  * @param <S> the type of the request properties enum
- * 
+ * @version $Id: $Id
  */
 public class VehicleRequest<S extends Enum<?>> extends Request<S> {
 
@@ -226,7 +225,7 @@ public class VehicleRequest<S extends Enum<?>> extends Request<S> {
      *
      * @param imageSource image source
      * @param imageName   image name
-     * @throws java.io.IOException if the image cannot be read
+     * @throws java.io.IOException if the image cannot be read or resized
      */
     public void setImage(byte[] imageSource, String imageName) throws IOException {
         setImage(imageSource, imageName, true);
@@ -250,7 +249,7 @@ public class VehicleRequest<S extends Enum<?>> extends Request<S> {
 
     /**
      * Set the value of maxreads
-     * 
+     *
      * @param maxreads the value of maxreads
      */
     public void setMaxreads(Integer maxreads) {
@@ -259,7 +258,7 @@ public class VehicleRequest<S extends Enum<?>> extends Request<S> {
 
     /**
      * Get the value of maxreads
-     * 
+     *
      * @return the value of maxreads
      */
     public Integer getMaxreads() {
@@ -268,7 +267,7 @@ public class VehicleRequest<S extends Enum<?>> extends Request<S> {
 
     /**
      * Set the value of location
-     * 
+     *
      * @param maxreads the value of location
      * @return Returns a reference to this object so that method calls can be
      *         chained together.
@@ -280,7 +279,7 @@ public class VehicleRequest<S extends Enum<?>> extends Request<S> {
 
     /**
      * Set the value of location
-     * 
+     *
      * @param location the value of location
      */
     public void setLocation(String location) {
@@ -289,7 +288,7 @@ public class VehicleRequest<S extends Enum<?>> extends Request<S> {
 
     /**
      * Get the value of location
-     * 
+     *
      * @return the value of location
      */
     public String getLocation() {
@@ -298,7 +297,7 @@ public class VehicleRequest<S extends Enum<?>> extends Request<S> {
 
     /**
      * Set the value of location
-     * 
+     *
      * @param location the value of location
      * @return Returns a reference to this object so that method calls can be
      *         chained together.
@@ -310,7 +309,7 @@ public class VehicleRequest<S extends Enum<?>> extends Request<S> {
 
     /**
      * Set the value of roi
-     * 
+     *
      * @param roi the value of roi
      */
     public void setRoi(String roi) {
@@ -319,7 +318,7 @@ public class VehicleRequest<S extends Enum<?>> extends Request<S> {
 
     /**
      * Get the value of roi
-     * 
+     *
      * @return the value of roi
      */
     public String getRoi() {
@@ -328,7 +327,7 @@ public class VehicleRequest<S extends Enum<?>> extends Request<S> {
 
     /**
      * Set the value of roi
-     * 
+     *
      * @param roi the value of roi
      * @return Returns a reference to this object so that method calls can be
      *         chained together.
@@ -340,7 +339,7 @@ public class VehicleRequest<S extends Enum<?>> extends Request<S> {
 
     /**
      * Set the value of services
-     * 
+     *
      * @param services the value of services
      * @return Returns a reference to this object so that method calls can be
      *         chained together.
@@ -352,7 +351,7 @@ public class VehicleRequest<S extends Enum<?>> extends Request<S> {
 
     /**
      * Set the value of services
-     * 
+     *
      * @param services the value of services
      * @return Returns a reference to this object so that method calls can be
      *         chained together.
@@ -364,7 +363,7 @@ public class VehicleRequest<S extends Enum<?>> extends Request<S> {
 
     /**
      * Set the value of image
-     * 
+     *
      * @param image     the image source as a byte array
      * @param imageName the name of the image
      * @return Returns a reference to this object so that method calls can be
@@ -377,7 +376,7 @@ public class VehicleRequest<S extends Enum<?>> extends Request<S> {
 
     /**
      * Set the value of image
-     * 
+     *
      * @param image     the image source as a byte array
      * @param imageName the name of the image
      * @param resize    resize the image (on the server-side) if its size is larger
@@ -391,6 +390,7 @@ public class VehicleRequest<S extends Enum<?>> extends Request<S> {
         return this;
     }
 
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -417,6 +417,7 @@ public class VehicleRequest<S extends Enum<?>> extends Request<S> {
         return sb.toString();
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean equals(Object o) {
         if (o == this)
@@ -434,6 +435,7 @@ public class VehicleRequest<S extends Enum<?>> extends Request<S> {
                 && Objects.equals(getProperties(), vehicleRequest.getProperties());
     }
 
+    /** {@inheritDoc} */
     @Override
     public int hashCode() {
         return super.hashCode() + Objects.hash(calculateHash, hashTimestamp, hashSalt, services, inputImage, region,

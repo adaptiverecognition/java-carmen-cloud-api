@@ -26,8 +26,9 @@ import java.util.Objects;
 /**
  * Rectangle is a simple class that contains four points: bottomLeft,
  * bottomRight, topLeft, topRight.
- * 
+ *
  * @author laszlo.toth@arip.hu
+ * @version $Id: $Id
  */
 public class Rectangle implements Serializable {
 
@@ -38,7 +39,7 @@ public class Rectangle implements Serializable {
 
     /**
      * Get the value of bottomLeft
-     * 
+     *
      * @return the value of bottomLeft
      */
     public Point getBottomLeft() {
@@ -108,6 +109,7 @@ public class Rectangle implements Serializable {
         this.topRight = topRight;
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean equals(Object o) {
         if (o == this)
@@ -120,11 +122,13 @@ public class Rectangle implements Serializable {
                 && Objects.equals(topLeft, rectangle.topLeft) && Objects.equals(topRight, rectangle.topRight);
     }
 
+    /** {@inheritDoc} */
     @Override
     public int hashCode() {
         return Objects.hash(bottomLeft, bottomRight, topLeft, topRight);
     }
 
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

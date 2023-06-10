@@ -1,5 +1,21 @@
 /**
- *
+ * Cloud API Java reference implementation.
+
+ * License: Apache License 2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * This file is part of the Adaptive Recognition Hungary Kft. 
+ * Vehicle API and Transportation&Cargo API Java reference implementation.
+ * 
+ * This software is free to use in either commercial or non-commercial applications.
+ * 
+ * This software is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
+ * CONDITIONS OF ANY KIND, either express or implied.
+ * 
+ * Adaptive Recognition Hungary Kft.
+ * H-1023 Budapest, Alkotas u. 41. Hungary
+ * Web: https://adaptiverecognition.com/contact-us/
+ * 
  */
 package com.adaptiverecognition.cloud.transport;
 
@@ -8,24 +24,18 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import javax.imageio.ImageIO;
-
 import com.adaptiverecognition.cloud.InputImage;
 import com.adaptiverecognition.cloud.Request;
 
 /**
+ * The TransportRequest class represents a request to be sent to the
+ * Transportation &amp; Cargo API.
  *
- * @author laszlo.toth
+ * @author laszlo.toth@arip.hu
+ * @param <S> the type of the request properties enum
+ * @version $Id: $Id
  */
 public class TransportRequest<S extends Enum<?>> extends Request<S> {
-
-    static {
-        // ha egy jvm crash után újraindul a lambda/docker image, akkor ennek az
-        // osztálynak az újratöltésekor az ImageIO-val is újraszkenneljük a plugin-eket,
-        // ui. úgy tnűnik, hogy egy ilyen újraindulás után "elvesznek" a korábban
-        // használt image reader-ek
-        ImageIO.scanForPlugins();
-    }
 
     private String type;
 
@@ -52,7 +62,9 @@ public class TransportRequest<S extends Enum<?>> extends Request<S> {
     }
 
     /**
-     * @param type
+     * Set the value of type
+     *
+     * @param type a {@link java.lang.String} object
      * @return Returns a reference to this object so that method calls can be
      *         chained together.
      */
@@ -62,21 +74,33 @@ public class TransportRequest<S extends Enum<?>> extends Request<S> {
     }
 
     /**
-     * @param maxreads
+     * <p>
+     * Setter for the field <code>maxreads</code>.
+     * </p>
+     *
+     * @param maxreads a {@link java.lang.Integer} object
      */
     public void setMaxreads(Integer maxreads) {
         this.maxreads = maxreads;
     }
 
     /**
-     * @return
+     * <p>
+     * Getter for the field <code>maxreads</code>.
+     * </p>
+     *
+     * @return a {@link java.lang.Integer} object
      */
     public Integer getMaxreads() {
         return this.maxreads;
     }
 
     /**
-     * @param maxreads
+     * <p>
+     * Setter for the field <code>maxreads</code>.
+     * </p>
+     *
+     * @param maxreads a {@link java.lang.Integer} object
      * @return Returns a reference to this object so that method calls can be
      *         chained together.
      */
@@ -112,61 +136,61 @@ public class TransportRequest<S extends Enum<?>> extends Request<S> {
     }
 
     /**
-     * Set the value of image, imageName, and imageMimeType
+     * Set the value of image source and image name
      *
      * @param imageSource image source
      * @param imageName   image name
-     * @throws java.io.IOException
+     * @throws java.io.IOException if the image cannot be read or resized
      */
     public void addImage(byte[] imageSource, String imageName) throws IOException {
         addImage(imageSource, imageName, true);
     }
 
     /**
-     * Set the value of image, imageName, and imageMimeType
+     * Add an image to the inputImages list
      *
      * @param imageSource image source
      * @param imageName   image name
-     * @param resize      size the image if its size is larger than full hd
-     * @throws java.io.IOException
+     * @param resize      resize the image if its size is larger than full hd
+     * @throws java.io.IOException if the image cannot be read or resized
      */
     public void addImage(byte[] imageSource, String imageName, boolean resize) throws IOException {
         this.inputImages.add(new InputImage(imageSource, imageName, resize));
     }
 
     /**
-     * @param image
-     * @param imageName
+     * <p>
+     * Add an image to the inputImages list
+     * </p>
+     *
+     * @param image     image source as an array of {@link byte}s
+     * @param imageName image name
      * @return Returns a reference to this object so that method calls can be
      *         chained together.
-     * @throws java.io.IOException
+     * @throws java.io.IOException if the image cannot be read or resized
      */
     public TransportRequest<S> image(byte[] image, String imageName) throws IOException {
         return image(image, imageName, true);
     }
 
     /**
-     * @param image
-     * @param imageName
-     * @param resize
+     * <p>
+     * Add an image to the inputImages list
+     * </p>
+     *
+     * @param image     image source as an array of {@link byte}s
+     * @param imageName image name
+     * @param resize    resize the image if its size is larger than full hd
      * @return Returns a reference to this object so that method calls can be
      *         chained together.
-     * @throws java.io.IOException
+     * @throws java.io.IOException if the image cannot be read or resized
      */
     public TransportRequest<S> image(byte[] image, String imageName, boolean resize) throws IOException {
         addImage(image, imageName, resize);
         return this;
     }
 
-    /**
-     * Returns a string representation of this object. This is useful for testing
-     * and debugging. Sensitive data will be redacted from this string using a
-     * placeholder value.
-     *
-     * @return A string representation of this object.
-     *
-     * @see java.lang.Object#toString()
-     */
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -182,6 +206,7 @@ public class TransportRequest<S extends Enum<?>> extends Request<S> {
         return sb.toString();
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean equals(Object o) {
         if (o == this)
@@ -196,6 +221,7 @@ public class TransportRequest<S extends Enum<?>> extends Request<S> {
                 && Objects.equals(getProperties(), transportRequest.getProperties());
     }
 
+    /** {@inheritDoc} */
     @Override
     public int hashCode() {
         return super.hashCode() + Objects.hash(type, maxreads, inputImages, getProperties());

@@ -22,8 +22,9 @@ package com.adaptiverecognition.cloud;
 /**
  * ARCloudException is a simple exception class that contains an HTTP status
  * code and a message.
- * 
+ *
  * @author laszlo.toth@arip.hu
+ * @version $Id: $Id
  */
 public class ARCloudException extends Exception {
 
@@ -60,6 +61,7 @@ public class ARCloudException extends Exception {
         return this.statusCode;
     }
 
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return super.toString() + " [" + this.statusCode + "]";

@@ -25,8 +25,9 @@ import com.adaptiverecognition.cloud.Color;
 
 /**
  * The LicensePlate class represents a license plate.
- * 
+ *
  * @author laszlo.toth@arip.hu
+ * @version $Id: $Id
  */
 public class LicensePlate extends AdrPlate {
 
@@ -48,11 +49,13 @@ public class LicensePlate extends AdrPlate {
         super(null);
     }
 
+    /** {@inheritDoc} */
     @Override
     public TypeCategory getType() {
         return TypeCategory.LICENSE_PLATE;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setType(TypeCategory type) {
         // do nothing
@@ -148,6 +151,7 @@ public class LicensePlate extends AdrPlate {
         this.state = state;
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean equals(Object o) {
         if (o == this)
@@ -161,11 +165,13 @@ public class LicensePlate extends AdrPlate {
                 && Objects.equals(category, licensePlate.category);
     }
 
+    /** {@inheritDoc} */
     @Override
     public int hashCode() {
         return super.hashCode() + Objects.hash(found, daColor, country, state, category);
     }
 
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return "LicensePlate{" + "found=" + this.found + ", engine=" + getEngine() + ", proctime=" + getProctime()

@@ -26,8 +26,9 @@ import java.util.Objects;
 
 /**
  * The Data class represents the result of a vehicle recognition.
- * 
+ *
  * @author laszlo.toth@arip.hu
+ * @version $Id: $Id
  */
 public class Data implements Serializable {
 
@@ -51,6 +52,7 @@ public class Data implements Serializable {
         this.vehicles = vehicles;
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean equals(Object o) {
         if (o == this)
@@ -62,11 +64,13 @@ public class Data implements Serializable {
         return Objects.equals(vehicles, data.vehicles);
     }
 
+    /** {@inheritDoc} */
     @Override
     public int hashCode() {
         return Objects.hashCode(vehicles);
     }
 
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

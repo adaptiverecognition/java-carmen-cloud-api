@@ -24,9 +24,10 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * The Vehicle class represents the result of a vehicle recognition.
- * 
+ * The Vehicle class represents a single vehicle found on the input image.
+ *
  * @author laszlo.toth@arip.hu
+ * @version $Id: $Id
  */
 public class Vehicle implements Serializable {
 
@@ -107,6 +108,7 @@ public class Vehicle implements Serializable {
         this.bounds = bounds;
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean equals(Object o) {
         if (o == this)
@@ -119,11 +121,13 @@ public class Vehicle implements Serializable {
                 && Objects.equals(markings, vehicle.markings) && Objects.equals(bounds, vehicle.bounds);
     }
 
+    /** {@inheritDoc} */
     @Override
     public int hashCode() {
         return Objects.hash(plate, mmr, markings, bounds);
     }
 
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

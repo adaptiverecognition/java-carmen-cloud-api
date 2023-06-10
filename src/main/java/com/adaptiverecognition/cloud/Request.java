@@ -24,10 +24,10 @@ import java.util.Objects;
 
 /**
  * This is the base class for all request classes used in the Cloud APIs.
- * 
+ *
  * @author laszlo.toth@arip.hu
- * 
  * @param <S> The type of the enum used as key for the properties map
+ * @version $Id: $Id
  */
 public class Request<S extends Enum<?>> {
     private Map<S, Object> properties;
@@ -51,7 +51,7 @@ public class Request<S extends Enum<?>> {
     }
 
     /**
-     * 
+     *
      * Get the value of a property identified by the given key.
      *
      * @param key the key of the property
@@ -64,7 +64,7 @@ public class Request<S extends Enum<?>> {
     /**
      *
      * Set the value of a property identified by the given key.
-     * 
+     *
      * @param key   the key of the property
      * @param value the new value of the property
      */
@@ -75,6 +75,7 @@ public class Request<S extends Enum<?>> {
         this.properties.put(key, value);
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean equals(Object o) {
         if (o == this)
@@ -86,6 +87,7 @@ public class Request<S extends Enum<?>> {
         return Objects.equals(properties, request.properties);
     }
 
+    /** {@inheritDoc} */
     @Override
     public int hashCode() {
         return Objects.hash(properties);

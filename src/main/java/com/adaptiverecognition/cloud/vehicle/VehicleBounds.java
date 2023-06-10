@@ -26,8 +26,9 @@ import com.adaptiverecognition.cloud.Rectangle;
 
 /**
  * The VehicleBounds class represents the bounds of a vehicle.
- * 
+ *
  * @author laszlo.toth@arip.hu
+ * @version $Id: $Id
  */
 public class VehicleBounds implements Serializable {
 
@@ -70,6 +71,7 @@ public class VehicleBounds implements Serializable {
         this.vehicleFrame = vehicleFrame;
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean equals(Object o) {
         if (o == this)
@@ -82,11 +84,13 @@ public class VehicleBounds implements Serializable {
                 && Objects.equals(extendedPlateFrame, vehicleBounds.extendedPlateFrame);
     }
 
+    /** {@inheritDoc} */
     @Override
     public int hashCode() {
         return Objects.hash(vehicleFrame, extendedPlateFrame);
     }
 
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

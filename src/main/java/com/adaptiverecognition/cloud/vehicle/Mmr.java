@@ -27,8 +27,9 @@ import com.adaptiverecognition.cloud.Color;
 
 /**
  * The Mmr class represents the result of a make, model, and color recognition.
- * 
+ *
  * @author laszlo.toth@arip.hu
+ * @version $Id: $Id
  */
 public class Mmr implements Serializable {
     private String engine;
@@ -472,7 +473,7 @@ public class Mmr implements Serializable {
 
     /**
      * Get the value of frameTooltips
-     * 
+     *
      * @return the value of frameTooltips
      */
     public List<String> getFrameTooltips() {
@@ -488,6 +489,7 @@ public class Mmr implements Serializable {
         this.frameTooltips = frameTooltips;
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean equals(Object o) {
         if (o == this)
@@ -512,6 +514,7 @@ public class Mmr implements Serializable {
                 && Objects.equals(imageTooltips, mmr.imageTooltips) && Objects.equals(frameTooltips, mmr.frameTooltips);
     }
 
+    /** {@inheritDoc} */
     @Override
     public int hashCode() {
         return Objects.hash(engine, found, proctime, category, categoryConfidence, colorName, color, colorConfidence,
@@ -520,6 +523,7 @@ public class Mmr implements Serializable {
                 imageTooltips, frameTooltips);
     }
 
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return "Mmr{" + "found=" + found + ", engine=" + engine + ", proctime=" + proctime + ", category=" + category

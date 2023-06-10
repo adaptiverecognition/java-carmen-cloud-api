@@ -26,8 +26,9 @@ import com.adaptiverecognition.cloud.Char;
 
 /**
  * The AdrPlate class represents an ADR plate.
- * 
+ *
  * @author laszlo.toth@arip.hu
+ * @version $Id: $Id
  */
 public class AdrPlate extends Plate {
 
@@ -46,13 +47,14 @@ public class AdrPlate extends Plate {
 
     /**
      * AdrPlate constructor.
-     * 
+     *
      * @param plateTypeCategory the type of the plate to be created
      */
     protected AdrPlate(TypeCategory plateTypeCategory) {
         setType(plateTypeCategory);
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setType(TypeCategory type) {
         if (type == TypeCategory.ADR_PLATE || type == TypeCategory.IMO_ADR_PLATE) {
@@ -152,6 +154,7 @@ public class AdrPlate extends Plate {
         this.plateChars = plateChars;
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean equals(Object o) {
         if (o == this)
@@ -166,12 +169,14 @@ public class AdrPlate extends Plate {
                 && Objects.equals(separatedText, adrPlate.separatedText);
     }
 
+    /** {@inheritDoc} */
     @Override
     public int hashCode() {
         return super.hashCode()
                 + Objects.hash(plateTypeConfidence, positionConfidence, plateChars, unicodeText, separatedText);
     }
 
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return "AdrPlate{" + " engine=" + getEngine() + ", proctime=" + getProctime() + ", bgColor=" + getBgColor()

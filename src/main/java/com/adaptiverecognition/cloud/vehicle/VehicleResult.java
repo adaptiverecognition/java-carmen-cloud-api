@@ -24,10 +24,10 @@ import java.util.Objects;
 import com.adaptiverecognition.cloud.Result;
 
 /**
- * The VehicleRequest class represents a request to be sent to the Vehicle API.
- * 
+ * The VehicleResult class represents the result of a vehicle recognition.
+ *
  * @author laszlo.toth@arip.hu
- * 
+ * @version $Id: $Id
  */
 public class VehicleResult extends Result {
 
@@ -60,6 +60,7 @@ public class VehicleResult extends Result {
         this.data = data;
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean equals(Object o) {
         if (o == this)
@@ -71,11 +72,13 @@ public class VehicleResult extends Result {
         return super.equals(o) && Objects.equals(data, vehicleResult.data);
     }
 
+    /** {@inheritDoc} */
     @Override
     public int hashCode() {
         return super.hashCode() + Objects.hash(data);
     }
 
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

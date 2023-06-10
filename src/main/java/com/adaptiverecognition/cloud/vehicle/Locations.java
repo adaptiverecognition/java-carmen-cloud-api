@@ -26,8 +26,9 @@ import java.util.Optional;
 
 /**
  * The Locations class represents the result of the /countries request.
- * 
+ *
  * @author laszlo.toth@arip.hu
+ * @version $Id: $Id
  */
 public class Locations implements Serializable {
     /**
@@ -125,7 +126,7 @@ public class Locations implements Serializable {
 
     /**
      * Create a Locations object from the given list of Location objects.
-     * 
+     *
      * @param locations the list of Location objects.
      */
     public Locations(List<Location> locations) {
@@ -134,7 +135,7 @@ public class Locations implements Serializable {
 
     /**
      * Get the list of Location objects.
-     * 
+     *
      * @return the list of Location objects.
      */
     public List<Location> getLocations() {
@@ -143,7 +144,7 @@ public class Locations implements Serializable {
 
     /**
      * Find the Location object with the given country and state.
-     * 
+     *
      * @param country the country.
      * @param state   the state.
      * @return the Location object.
@@ -160,7 +161,7 @@ public class Locations implements Serializable {
 
     /**
      * Find the Location object with the given location.
-     * 
+     *
      * @param location the location.
      * @return the Location object.
      */
@@ -169,6 +170,7 @@ public class Locations implements Serializable {
         return lo.isPresent() ? lo.get() : null;
     }
 
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return locations != null ? locations.toString() : null;

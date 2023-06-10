@@ -28,8 +28,9 @@ import com.google.gson.annotations.SerializedName;
 
 /**
  * The Plate class represents the result of a number plate recognition.
- * 
+ *
  * @author laszlo.toth@arip.hu
+ * @version $Id: $Id
  */
 public class Plate implements Serializable {
 
@@ -343,6 +344,7 @@ public class Plate implements Serializable {
         this.plateROI = plateROI;
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean equals(Object o) {
         if (o == this)
@@ -360,12 +362,14 @@ public class Plate implements Serializable {
                 && Objects.equals(type, plate.type);
     }
 
+    /** {@inheritDoc} */
     @Override
     public int hashCode() {
         return Objects.hash(engine, proctime, bgDark, bgColor, color, confidence, plateROI, plateType, type,
                 plateSizeSource, plateWidth, plateHeight);
     }
 
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return "Plate{" + " engine=" + engine + ", proctime=" + proctime + ", bgDark=" + bgDark + ", bgColor=" + bgColor

@@ -25,8 +25,9 @@ import java.util.Objects;
 /**
  * Color is a simple class that contains three integer values: r, g, b (red,
  * green, blue).
- * 
+ *
  * @author laszlo.toth@arip.hu
+ * @version $Id: $Id
  */
 public class Color implements Serializable {
 
@@ -88,6 +89,7 @@ public class Color implements Serializable {
         this.b = b;
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean equals(Object o) {
         if (o == this)
@@ -99,11 +101,13 @@ public class Color implements Serializable {
         return r == color.r && g == color.g && b == color.b;
     }
 
+    /** {@inheritDoc} */
     @Override
     public int hashCode() {
         return Objects.hash(r, g, b);
     }
 
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
