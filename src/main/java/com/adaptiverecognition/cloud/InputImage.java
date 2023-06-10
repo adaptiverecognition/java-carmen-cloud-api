@@ -1,5 +1,21 @@
 /**
- *
+ * Cloud API Java reference implementation.
+
+ * License: Apache License 2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * This file is part of the Adaptive Recognition Hungary Kft. 
+ * Vehicle API and Transportation&Cargo API Java reference implementation.
+ * 
+ * This software is free to use in either commercial or non-commercial applications.
+ * 
+ * This software is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
+ * CONDITIONS OF ANY KIND, either express or implied.
+ * 
+ * Adaptive Recognition Hungary Kft.
+ * H-1023 Budapest, Alkotas u. 41. Hungary
+ * Web: https://adaptiverecognition.com/contact-us/
+ * 
  */
 package com.adaptiverecognition.cloud;
 
@@ -27,16 +43,17 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 /**
- *
- * @author laszlo.toth
+ * This class is used to store the image data and the image metadata of the
+ * input image which is sent to the APIs to be processed.
+ * 
+ * @author laszlo.toth@arip.hu
  */
 public class InputImage {
 
     static {
-        // ha egy jvm crash után újraindul a lambda/docker image, akkor ennek az
-        // osztálynak az újratöltésekor az ImageIO-val is újraszkenneljük a plugin-eket,
-        // ui. úgy tnűnik, hogy egy ilyen újraindulás után "elvesznek" a korábban
-        // használt image reader-ek
+        /*
+         * This is a workaround for a bug in the ImageIO library after a JVM crash.
+         */
         ImageIO.scanForPlugins();
     }
 
@@ -57,21 +74,26 @@ public class InputImage {
     private String imageMimeType;
 
     /**
+     * Constructor for InputImage. This constructor is used to create an InputImage
+     * object and also to resize it.
+     * 
      *
      * @param imageSource image source
      * @param imageName   image name
-     * @throws java.io.IOException
+     * @throws java.io.IOException thrown if the image cannot be read or resized
      */
     public InputImage(byte[] imageSource, String imageName) throws IOException {
         this(imageSource, imageName, true);
     }
 
     /**
+     * Another constructor for InputImage. The resize parameter can be set (it
+     * defaults to true in the other constructor).
      *
      * @param imageSource image source
      * @param imageName   image name
-     * @param imageName   resize the image
-     * @throws java.io.IOException
+     * @param resize      resize the image
+     * @throws java.io.IOException thrown if the image cannot be read or resized
      */
     public InputImage(byte[] imageSource, String imageName, boolean resize) throws IOException {
         setImage(imageSource, imageName, resize);
@@ -158,15 +180,6 @@ public class InputImage {
         return imageName;
     }
 
-    /**
-     * Returns a string representation of this object. This is useful for testing
-     * and debugging. Sensitive data will be redacted from this string using a
-     * placeholder value.
-     *
-     * @return A string representation of this object.
-     *
-     * @see java.lang.Object#toString()
-     */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -175,10 +188,10 @@ public class InputImage {
             sb.append("Image: ").append(getImageName()).append(" (").append(getImageSize()).append(" bytes),");
         }
         if (getImageMimeType() != null) {
-            sb.append("Image MimeType: ").append(getImageMimeType()).append(",");
+            sb.append("Image mime type: ").append(getImageMimeType()).append(",");
         }
-        sb.append("Image AspectRatio: ").append(getImageUpscaleFactor()).append(",");
-        sb.append("Image Orientation: ").append(getImageOrientation()).append(",");
+        sb.append("Image aspect ratio: ").append(getImageUpscaleFactor()).append(",");
+        sb.append("Image orientation: ").append(getImageOrientation()).append(",");
         sb.append("}");
         return sb.toString();
     }

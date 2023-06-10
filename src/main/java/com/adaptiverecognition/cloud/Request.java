@@ -1,6 +1,20 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+/**
+ * Cloud API Java reference implementation.
+
+ * License: Apache License 2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * This file is part of the Adaptive Recognition Hungary Kft. 
+ * Vehicle API and Transportation&Cargo API Java reference implementation.
+ * 
+ * This software is free to use in either commercial or non-commercial applications.
+ * 
+ * This software is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
+ * CONDITIONS OF ANY KIND, either express or implied.
+ * 
+ * Adaptive Recognition Hungary Kft.
+ * H-1023 Budapest, Alkotas u. 41. Hungary
+ * Web: https://adaptiverecognition.com/contact-us/
  */
 package com.adaptiverecognition.cloud;
 
@@ -9,8 +23,11 @@ import java.util.Map;
 import java.util.Objects;
 
 /**
- *
- * @author laszlo.toth
+ * This is the base class for all request classes used in the Cloud APIs.
+ * 
+ * @author laszlo.toth@arip.hu
+ * 
+ * @param <S> The type of the enum used as key for the properties map
  */
 public class Request<S extends Enum<?>> {
     private Map<S, Object> properties;
@@ -34,9 +51,11 @@ public class Request<S extends Enum<?>> {
     }
 
     /**
+     * 
+     * Get the value of a property identified by the given key.
      *
-     * @param key
-     * @return
+     * @param key the key of the property
+     * @return the value of the property
      */
     public Object getProperty(S key) {
         return properties != null ? properties.get(key) : null;
@@ -44,8 +63,10 @@ public class Request<S extends Enum<?>> {
 
     /**
      *
-     * @param key
-     * @param value
+     * Set the value of a property identified by the given key.
+     * 
+     * @param key   the key of the property
+     * @param value the new value of the property
      */
     public void setProperty(S key, Object value) {
         if (this.properties == null) {

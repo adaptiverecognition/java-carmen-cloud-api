@@ -1,7 +1,21 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Cloud API Java reference implementation.
+
+ * License: Apache License 2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * This file is part of the Adaptive Recognition Hungary Kft. 
+ * Vehicle API and Transportation&Cargo API Java reference implementation.
+ * 
+ * This software is free to use in either commercial or non-commercial applications.
+ * 
+ * This software is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
+ * CONDITIONS OF ANY KIND, either express or implied.
+ * 
+ * Adaptive Recognition Hungary Kft.
+ * H-1023 Budapest, Alkotas u. 41. Hungary
+ * Web: https://adaptiverecognition.com/contact-us/
+ * 
  */
 package com.adaptiverecognition.cloud.vehicle;
 
@@ -11,8 +25,9 @@ import java.util.Objects;
 import com.adaptiverecognition.cloud.Rectangle;
 
 /**
- *
- * @author laszlo.toth
+ * The VehicleBounds class represents the bounds of a vehicle.
+ * 
+ * @author laszlo.toth@arip.hu
  */
 public class VehicleBounds implements Serializable {
 
@@ -20,32 +35,36 @@ public class VehicleBounds implements Serializable {
     private Rectangle extendedPlateFrame;
 
     /**
+     * Get the extended plate frame.
      *
-     * @return
+     * @return the extended plate frame
      */
     public Rectangle getExtendedPlateFrame() {
         return extendedPlateFrame;
     }
 
     /**
+     * Set the extended plate frame.
      *
-     * @param extendedPlateFrame
+     * @param extendedPlateFrame the extended plate frame
      */
     public void setExtendedPlateFrame(Rectangle extendedPlateFrame) {
         this.extendedPlateFrame = extendedPlateFrame;
     }
 
     /**
+     * Get the vehicle frame.
      *
-     * @return
+     * @return the vehicle frame
      */
     public Rectangle getVehicleFrame() {
         return vehicleFrame;
     }
 
     /**
+     * Set the vehicle frame.
      *
-     * @param vehicleFrame
+     * @param vehicleFrame the vehicle frame
      */
     public void setVehicleFrame(Rectangle vehicleFrame) {
         this.vehicleFrame = vehicleFrame;
@@ -68,10 +87,6 @@ public class VehicleBounds implements Serializable {
         return Objects.hash(vehicleFrame, extendedPlateFrame);
     }
 
-    /**
-     *
-     * @return
-     */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

@@ -1,7 +1,21 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Cloud API Java reference implementation.
+
+ * License: Apache License 2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * This file is part of the Adaptive Recognition Hungary Kft. 
+ * Vehicle API and Transportation&Cargo API Java reference implementation.
+ * 
+ * This software is free to use in either commercial or non-commercial applications.
+ * 
+ * This software is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
+ * CONDITIONS OF ANY KIND, either express or implied.
+ * 
+ * Adaptive Recognition Hungary Kft.
+ * H-1023 Budapest, Alkotas u. 41. Hungary
+ * Web: https://adaptiverecognition.com/contact-us/
+ * 
  */
 package com.adaptiverecognition.cloud.vehicle;
 
@@ -12,8 +26,9 @@ import java.util.Objects;
 import com.adaptiverecognition.cloud.Color;
 
 /**
- *
- * @author laszlo.toth
+ * The Mmr class represents the result of a make, model, and color recognition.
+ * 
+ * @author laszlo.toth@arip.hu
  */
 public class Mmr implements Serializable {
     private String engine;
@@ -150,288 +165,324 @@ public class Mmr implements Serializable {
     }
 
     /**
+     * Get the value of category
      *
-     * @return
+     * @return the value of category
      */
     public String getCategory() {
         return category;
     }
 
     /**
+     * Get the value of category
      *
-     * @param category
+     * @param category new value of category
      */
     public void setCategory(String category) {
         this.category = category;
     }
 
     /**
+     * Get the value of make
      *
-     * @return
+     * @return the value of make
      */
     public String getMake() {
         return make;
     }
 
     /**
+     * Set the value of make
      *
-     * @param make
+     * @param make new value of make
      */
     public void setMake(String make) {
         this.make = make;
     }
 
     /**
+     * Get the value of model
      *
-     * @return
+     * @return the value of model
      */
     public String getModel() {
         return model;
     }
 
     /**
+     * Set the value of model
      *
-     * @param model
+     * @param model new value of model
      */
     public void setModel(String model) {
         this.model = model;
     }
 
     /**
+     * Get the value of bodyType
      *
-     * @return
+     * @return the value of bodyType
      */
     public String getBodyType() {
         return bodyType;
     }
 
     /**
+     * Set the value of bodyType
      *
-     * @param bodyType
+     * @param bodyType new value of bodyType
      */
     public void setBodyType(String bodyType) {
         this.bodyType = bodyType;
     }
 
     /**
+     * Get the value of generation
      *
-     * @return
+     * @return the value of generation
      */
     public String getGeneration() {
         return generation;
     }
 
     /**
+     * Set the value of generation
      *
-     * @param generation
+     * @param generation new value of generation
      */
     public void setGeneration(String generation) {
         this.generation = generation;
     }
 
     /**
+     * Get the value of variation
      *
-     * @return
+     * @return the value of variation
      */
     public String getVariation() {
         return variation;
     }
 
     /**
+     * Set the value of variation
      *
-     * @param variation
+     * @param variation new value of variation
      */
     public void setVariation(String variation) {
         this.variation = variation;
     }
 
     /**
+     * Get the value of color
      *
-     * @return
+     * @return the value of color
      */
     public Color getColor() {
         return color;
     }
 
     /**
+     * Set the value of color
      *
-     * @param color
+     * @param color new value of color
      */
     public void setColor(Color color) {
         this.color = color;
     }
 
     /**
+     * Get the value of colorName
      *
-     * @return
+     * @return the value of colorName
      */
     public String getColorName() {
         return colorName;
     }
 
     /**
+     * Set the value of colorName
      *
-     * @param colorName
+     * @param colorName new value of colorName
      */
     public void setColorName(String colorName) {
         this.colorName = colorName;
     }
 
     /**
+     * Get the value of proctime
      *
-     * @return
+     * @return the value of proctime
      */
     public long getProctime() {
         return proctime;
     }
 
     /**
+     * Set the value of proctime
      *
-     * @param proctime
+     * @param proctime new value of proctime
      */
     public void setProctime(long proctime) {
         this.proctime = proctime;
     }
 
     /**
+     * Get the value of categoryConfidence
      *
-     * @return
+     * @return the value of categoryConfidence
      */
     public Integer getCategoryConfidence() {
         return categoryConfidence;
     }
 
     /**
+     * Set the value of categoryConfidence
      *
-     * @param categoryConfidence
+     * @param categoryConfidence new value of categoryConfidence
      */
     public void setCategoryConfidence(Integer categoryConfidence) {
         this.categoryConfidence = categoryConfidence;
     }
 
     /**
+     * Get the value of colorConfidence
      *
-     * @return
+     * @return the value of colorConfidence
      */
     public Integer getColorConfidence() {
         return colorConfidence;
     }
 
     /**
+     * Set the value of colorConfidence
      *
-     * @param colorConfidence
+     * @param colorConfidence new value of colorConfidence
      */
     public void setColorConfidence(Integer colorConfidence) {
         this.colorConfidence = colorConfidence;
     }
 
     /**
+     * Get the value of makeConfidence
      *
-     * @return
+     * @return the value of makeConfidence
      */
     public Integer getMakeConfidence() {
         return makeConfidence;
     }
 
     /**
+     * Set the value of makeConfidence
      *
-     * @param makeConfidence
+     * @param makeConfidence new value of makeConfidence
      */
     public void setMakeConfidence(Integer makeConfidence) {
         this.makeConfidence = makeConfidence;
     }
 
     /**
+     * Get the value of modelConfidence
      *
-     * @return
+     * @return the value of modelConfidence
      */
     public Integer getModelConfidence() {
         return modelConfidence;
     }
 
     /**
+     * Set the value of modelConfidence
      *
-     * @param modelConfidence
+     * @param modelConfidence new value of modelConfidence
      */
     public void setModelConfidence(Integer modelConfidence) {
         this.modelConfidence = modelConfidence;
     }
 
     /**
+     * Get the value of bodyTypeConfidence
      *
-     * @return
+     * @return the value of bodyTypeConfidence
      */
     public Integer getBodyTypeConfidence() {
         return bodyTypeConfidence;
     }
 
     /**
+     * Set the value of bodyTypeConfidence
      *
-     * @param bodyTypeConfidence
+     * @param bodyTypeConfidence new value of bodyTypeConfidence
      */
     public void setBodyTypeConfidence(Integer bodyTypeConfidence) {
         this.bodyTypeConfidence = bodyTypeConfidence;
     }
 
     /**
+     * Get the value of generationConfidence
      *
-     * @return
+     * @return the value of generationConfidence
      */
     public Integer getGenerationConfidence() {
         return generationConfidence;
     }
 
     /**
+     * Set the value of generationConfidence
      *
-     * @param generationConfidence
+     * @param generationConfidence new value of generationConfidence
      */
     public void setGenerationConfidence(Integer generationConfidence) {
         this.generationConfidence = generationConfidence;
     }
 
     /**
+     * Get the value of variationConfidence
      *
-     * @return
+     * @return the value of variationConfidence
      */
     public Integer getVariationConfidence() {
         return variationConfidence;
     }
 
     /**
+     * Set the value of variationConfidence
      *
-     * @param variationConfidence
+     * @param variationConfidence new value of variationConfidence
      */
     public void setVariationConfidence(Integer variationConfidence) {
         this.variationConfidence = variationConfidence;
     }
 
     /**
+     * Get the value of imageTooltips
      *
-     * @return
+     * @return the value of imageTooltips
      */
     public List<String> getImageTooltips() {
         return imageTooltips;
     }
 
     /**
+     * Set the value of imageTooltips
      *
-     * @param imageTooltips
+     * @param imageTooltips new value of imageTooltips
      */
     public void setImageTooltips(List<String> imageTooltips) {
         this.imageTooltips = imageTooltips;
     }
 
     /**
-     *
-     * @return
+     * Get the value of frameTooltips
+     * 
+     * @return the value of frameTooltips
      */
     public List<String> getFrameTooltips() {
         return frameTooltips;
     }
 
     /**
+     * Set the value of frameTooltips
      *
-     * @param frameTooltips
+     * @param frameTooltips new value of frameTooltips
      */
     public void setFrameTooltips(List<String> frameTooltips) {
         this.frameTooltips = frameTooltips;
@@ -469,10 +520,6 @@ public class Mmr implements Serializable {
                 imageTooltips, frameTooltips);
     }
 
-    /**
-     *
-     * @return
-     */
     @Override
     public String toString() {
         return "Mmr{" + "found=" + found + ", engine=" + engine + ", proctime=" + proctime + ", category=" + category

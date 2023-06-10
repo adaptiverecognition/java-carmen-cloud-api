@@ -1,7 +1,21 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Cloud API Java reference implementation.
+
+ * License: Apache License 2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * This file is part of the Adaptive Recognition Hungary Kft. 
+ * Vehicle API and Transportation&Cargo API Java reference implementation.
+ * 
+ * This software is free to use in either commercial or non-commercial applications.
+ * 
+ * This software is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
+ * CONDITIONS OF ANY KIND, either express or implied.
+ * 
+ * Adaptive Recognition Hungary Kft.
+ * H-1023 Budapest, Alkotas u. 41. Hungary
+ * Web: https://adaptiverecognition.com/contact-us/
+ * 
  */
 package com.adaptiverecognition.cloud.vehicle;
 
@@ -11,8 +25,9 @@ import java.util.Objects;
 import com.adaptiverecognition.cloud.Char;
 
 /**
- *
- * @author laszlo.toth
+ * The AdrPlate class represents an ADR plate.
+ * 
+ * @author laszlo.toth@arip.hu
  */
 public class AdrPlate extends Plate {
 
@@ -23,17 +38,18 @@ public class AdrPlate extends Plate {
     private String separatedText;
 
     /**
-     * 
+     * AdrPlate constructor.
      */
     public AdrPlate() {
         this(TypeCategory.ADR_PLATE);
     }
 
     /**
+     * AdrPlate constructor.
      * 
-     * @param plateTypeCategory
+     * @param plateTypeCategory the type of the plate to be created
      */
-    public AdrPlate(TypeCategory plateTypeCategory) {
+    protected AdrPlate(TypeCategory plateTypeCategory) {
         setType(plateTypeCategory);
     }
 
@@ -83,48 +99,54 @@ public class AdrPlate extends Plate {
     }
 
     /**
+     * Get the value of unicodeText
      *
-     * @return
+     * @return the value of unicodeText
      */
     public String getUnicodeText() {
         return unicodeText;
     }
 
     /**
+     * Set the value of unicodeText
      *
-     * @param unicodeText
+     * @param unicodeText new value of unicodeText
      */
     public void setUnicodeText(String unicodeText) {
         this.unicodeText = unicodeText;
     }
 
     /**
+     * Get the value of separatedText
      *
-     * @return
+     * @return the value of separatedText
      */
     public String getSeparatedText() {
         return separatedText;
     }
 
     /**
+     * Set the value of separatedText
      *
-     * @param separatedText
+     * @param separatedText new value of separatedText
      */
     public void setSeparatedText(String separatedText) {
         this.separatedText = separatedText;
     }
 
     /**
+     * Get the value of plateChars
      *
-     * @return
+     * @return the value of plateChars
      */
     public List<Char> getPlateChars() {
         return plateChars;
     }
 
     /**
+     * Set the value of plateChars
      *
-     * @param plateChars
+     * @param plateChars new value of plateChars
      */
     public void setPlateChars(List<Char> plateChars) {
         this.plateChars = plateChars;

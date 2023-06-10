@@ -1,7 +1,21 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Cloud API Java reference implementation.
+
+ * License: Apache License 2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * This file is part of the Adaptive Recognition Hungary Kft. 
+ * Vehicle API and Transportation&Cargo API Java reference implementation.
+ * 
+ * This software is free to use in either commercial or non-commercial applications.
+ * 
+ * This software is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
+ * CONDITIONS OF ANY KIND, either express or implied.
+ * 
+ * Adaptive Recognition Hungary Kft.
+ * H-1023 Budapest, Alkotas u. 41. Hungary
+ * Web: https://adaptiverecognition.com/contact-us/
+ * 
  */
 package com.adaptiverecognition.cloud.vehicle;
 
@@ -10,8 +24,10 @@ import java.util.Objects;
 import com.adaptiverecognition.cloud.Result;
 
 /**
- *
- * @author laszlo.toth
+ * The VehicleRequest class represents a request to be sent to the Vehicle API.
+ * 
+ * @author laszlo.toth@arip.hu
+ * 
  */
 public class VehicleResult extends Result {
 
@@ -20,23 +36,25 @@ public class VehicleResult extends Result {
     private Data data = new Data();
 
     /**
-     *
+     * Constructor.
      */
     public VehicleResult() {
         super.setVersion(VERSION);
     }
 
     /**
+     * Get the data of the recognition result.
      *
-     * @return
+     * @return the data of the recognition result
      */
     public Data getData() {
         return data;
     }
 
     /**
+     * Set the data of the recognition result.
      *
-     * @param data
+     * @param data the data of the recognition result
      */
     public void setData(Data data) {
         this.data = data;
@@ -58,10 +76,6 @@ public class VehicleResult extends Result {
         return super.hashCode() + Objects.hash(data);
     }
 
-    /**
-     *
-     * @return
-     */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

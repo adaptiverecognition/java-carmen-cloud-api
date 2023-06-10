@@ -1,7 +1,21 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Cloud API Java reference implementation.
+
+ * License: Apache License 2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * This file is part of the Adaptive Recognition Hungary Kft. 
+ * Vehicle API and Transportation&Cargo API Java reference implementation.
+ * 
+ * This software is free to use in either commercial or non-commercial applications.
+ * 
+ * This software is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
+ * CONDITIONS OF ANY KIND, either express or implied.
+ * 
+ * Adaptive Recognition Hungary Kft.
+ * H-1023 Budapest, Alkotas u. 41. Hungary
+ * Web: https://adaptiverecognition.com/contact-us/
+ * 
  */
 package com.adaptiverecognition.cloud;
 
@@ -10,8 +24,10 @@ import java.io.Serializable;
 import java.util.Objects;
 
 /**
- *
- * @author laszlo.toth
+ * Rectangle is a simple class that contains four points: bottomLeft,
+ * bottomRight, topLeft, topRight.
+ * 
+ * @author laszlo.toth@arip.hu
  */
 public class Rectangle implements Serializable {
 
@@ -21,64 +37,72 @@ public class Rectangle implements Serializable {
     private Point topRight;
 
     /**
-     *
-     * @return
+     * Get the value of bottomLeft
+     * 
+     * @return the value of bottomLeft
      */
     public Point getBottomLeft() {
         return bottomLeft;
     }
 
     /**
+     * Set the value of bottomLeft
      *
-     * @param bottomLeft
+     * @param bottomLeft new value of bottomLeft
      */
     public void setBottomLeft(Point bottomLeft) {
         this.bottomLeft = bottomLeft;
     }
 
     /**
+     * Get the value of bottomRight
      *
-     * @return
+     * @return the value of bottomRight
      */
     public Point getBottomRight() {
         return bottomRight;
     }
 
     /**
+     * Set the value of bottomRight
      *
-     * @param bottomRight
+     * @param bottomRight new value of bottomRight
      */
     public void setBottomRight(Point bottomRight) {
         this.bottomRight = bottomRight;
     }
 
     /**
+     * Get the value of topLeft
      *
-     * @return
+     * @return the value of topLeft
      */
     public Point getTopLeft() {
         return topLeft;
     }
 
     /**
+     * Set the value of topLeft
      *
-     * @param topLeft
+     * @param topLeft new value of topLeft
      */
     public void setTopLeft(Point topLeft) {
         this.topLeft = topLeft;
     }
 
     /**
+     * Get the value of topRight
      *
-     * @return
+     * @return the value of topRight
      */
     public Point getTopRight() {
         return topRight;
     }
 
     /**
+     * Set the value of topRight
      *
-     * @param topRight
+     * @param topRight new value of topRight
      */
     public void setTopRight(Point topRight) {
         this.topRight = topRight;
@@ -101,11 +125,6 @@ public class Rectangle implements Serializable {
         return Objects.hash(bottomLeft, bottomRight, topLeft, topRight);
     }
 
-    /**
-     *
-     * 
-     * @return
-     */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

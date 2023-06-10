@@ -1,7 +1,21 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Cloud API Java reference implementation.
+
+ * License: Apache License 2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * This file is part of the Adaptive Recognition Hungary Kft. 
+ * Vehicle API and Transportation&Cargo API Java reference implementation.
+ * 
+ * This software is free to use in either commercial or non-commercial applications.
+ * 
+ * This software is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
+ * CONDITIONS OF ANY KIND, either express or implied.
+ * 
+ * Adaptive Recognition Hungary Kft.
+ * H-1023 Budapest, Alkotas u. 41. Hungary
+ * Web: https://adaptiverecognition.com/contact-us/
+ * 
  */
 package com.adaptiverecognition.cloud;
 
@@ -9,8 +23,11 @@ import java.io.Serializable;
 import java.util.Objects;
 
 /**
- *
- * @author laszlo.toth
+ * Char is a simple class that contains the character code, the confidence
+ * value, the color and the background color of the character, and the
+ * coordinates of the character's bounding box.
+ * 
+ * @author laszlo.toth@arip.hu
  */
 public class Char implements Serializable {
 
@@ -22,96 +39,108 @@ public class Char implements Serializable {
     private int confidence;
 
     /**
+     * Get the value of background color
      *
-     * @return
+     * @return the value of background color
      */
     public Color getBgColor() {
         return bgColor;
     }
 
     /**
+     * Set the value of background color
      *
-     * @param bgColor
+     * @param bgColor new value of background color
      */
     public void setBgColor(Color bgColor) {
         this.bgColor = bgColor;
     }
 
     /**
+     * Get the value of the character's bounding box
      *
-     * @return
+     * @return the value of the character's bounding box
      */
     public Rectangle getCharROI() {
         return charROI;
     }
 
     /**
+     * Set the value of the character's bounding box
      *
-     * @param charROI
+     * @param charROI new value of the character's bounding box
      */
     public void setCharROI(Rectangle charROI) {
         this.charROI = charROI;
     }
 
     /**
+     * Get the value of the character code
      *
-     * @return
+     * @return the value of the character code
      */
     public int getCode() {
         return code;
     }
 
     /**
+     * Set the value of the character code
      *
-     * @param code
+     * @param code new value of the character code
      */
     public void setCode(int code) {
         this.code = code;
     }
 
     /**
+     * Returns true if the background color is darker than the characters' color
      *
-     * @return
+     * @return true if the background color is darker than the characters' color
      */
     public Boolean getBgDark() {
         return bgDark;
     }
 
     /**
+     * Sets the value of the gbDark property
      *
-     * @param bgDark
+     * @param bgDark new value of the gbDark property
      */
     public void setBgDark(Boolean bgDark) {
         this.bgDark = bgDark;
     }
 
     /**
+     * Get the value of the character's color
      *
-     * @return
+     * @return the value of the character's color
      */
     public Color getColor() {
         return color;
     }
 
     /**
+     * Set the value of the character's color
      *
-     * @param color
+     * @param color new value of the character's color
      */
     public void setColor(Color color) {
         this.color = color;
     }
 
     /**
+     * Get the value of the confidence
      *
-     * @return
+     * @return the value of the confidence
      */
     public int getConfidence() {
         return confidence;
     }
 
     /**
+     * Set the value of the confidence
      *
-     * @param confidence
+     * @param confidence new value of the confidence
      */
     public void setConfidence(int confidence) {
         this.confidence = confidence;
@@ -135,10 +164,6 @@ public class Char implements Serializable {
         return Objects.hash(bgDark, bgColor, charROI, code, color, confidence);
     }
 
-    /**
-     *
-     * @return
-     */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

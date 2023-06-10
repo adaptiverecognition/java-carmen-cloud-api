@@ -1,7 +1,21 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Cloud API Java reference implementation.
+
+ * License: Apache License 2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * This file is part of the Adaptive Recognition Hungary Kft. 
+ * Vehicle API and Transportation&Cargo API Java reference implementation.
+ * 
+ * This software is free to use in either commercial or non-commercial applications.
+ * 
+ * This software is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
+ * CONDITIONS OF ANY KIND, either express or implied.
+ * 
+ * Adaptive Recognition Hungary Kft.
+ * H-1023 Budapest, Alkotas u. 41. Hungary
+ * Web: https://adaptiverecognition.com/contact-us/
+ * 
  */
 package com.adaptiverecognition.cloud.vehicle;
 
@@ -10,8 +24,9 @@ import java.util.Objects;
 import com.adaptiverecognition.cloud.Color;
 
 /**
- *
- * @author laszlo.toth
+ * The LicensePlate class represents a license plate.
+ * 
+ * @author laszlo.toth@arip.hu
  */
 public class LicensePlate extends AdrPlate {
 
@@ -22,12 +37,14 @@ public class LicensePlate extends AdrPlate {
     private String category;
 
     /**
-     * 
+     * LicensePlate constructor
      */
     public LicensePlate() {
-        // LicensePlate esetén nem töltjük ki a type property-t, mert felesleges lenne
-        // visszaadni a json-ben. A vehicle.plate csak licensePlate lehet, nem kell
-        // megkülönböztetni
+        /*
+         * We do not fill the type property in case of LicensePlate, because it would be
+         * unnecessary to return it in the json. The vehicle.plate can only be
+         * licensePlate, there is no need to distinguish
+         */
         super(null);
     }
 
@@ -60,7 +77,7 @@ public class LicensePlate extends AdrPlate {
     }
 
     /**
-     * Get the value of daColor
+     * Get the value of daColor (dedicated area color)
      *
      * @return the value of daColor
      */
@@ -69,7 +86,7 @@ public class LicensePlate extends AdrPlate {
     }
 
     /**
-     * Set the value of daColor
+     * Set the value of daColor (dedicated area color)
      *
      * @param daColor new value of daColor
      */
@@ -78,50 +95,54 @@ public class LicensePlate extends AdrPlate {
     }
 
     /**
-     * Get the value of category
+     * Get the value of plate category
      *
-     * @return the value of category
+     * @return the value of plate category
      */
     public String getCategory() {
         return category;
     }
 
     /**
-     * Set the value of category
+     * Set the value of plate category
      *
-     * @param category new value of category
+     * @param category new value of plate category
      */
     public void setCategory(String category) {
         this.category = category;
     }
 
     /**
+     * Get the country of origin of the license plate
      *
-     * @return
+     * @return the value of country
      */
     public String getCountry() {
         return country;
     }
 
     /**
+     * Set the country of origin of the license plate
      *
-     * @param country
+     * @param country new value of country
      */
     public void setCountry(String country) {
         this.country = country;
     }
 
     /**
+     * Get the state of origin of the license plate
      *
-     * @return
+     * @return the value of state
      */
     public String getState() {
         return state;
     }
 
     /**
+     * Set the state of origin of the license plate
      *
-     * @param state
+     * @param state new value of state
      */
     public void setState(String state) {
         this.state = state;
