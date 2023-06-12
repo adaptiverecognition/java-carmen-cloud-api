@@ -28,11 +28,10 @@ import java.util.Optional;
  * The Locations class represents the result of the /countries request.
  *
  * @author laszlo.toth@arip.hu
- * @version $Id: $Id
  */
 public class Locations implements Serializable {
     /**
-     * 
+     * The Location class represents a location in the /countries response.
      */
     public static class Location implements Serializable {
         private String region;
@@ -41,13 +40,17 @@ public class Locations implements Serializable {
         private String state;
 
         /**
+         * <p>
          * Create an empty Location object.
+         * </p>
          */
         public Location() {
         }
 
         /**
+         * <p>
          * Create a Location object with the given parameters.
+         * </p>
          * 
          * @param region   the region.
          * @param location the location.
@@ -62,7 +65,9 @@ public class Locations implements Serializable {
         }
 
         /**
+         * <p>
          * Get the region.
+         * </p>
          * 
          * @return the region.
          */
@@ -71,7 +76,9 @@ public class Locations implements Serializable {
         }
 
         /**
+         * <p>
          * Get the location.
+         * </p>
          * 
          * @return the location.
          */
@@ -80,7 +87,9 @@ public class Locations implements Serializable {
         }
 
         /**
+         * <p>
          * Get the country.
+         * </p>
          * 
          * @return the country.
          */
@@ -89,7 +98,9 @@ public class Locations implements Serializable {
         }
 
         /**
+         * <p>
          * Get the state.
+         * </p>
          * 
          * @return the state.
          */
@@ -125,7 +136,9 @@ public class Locations implements Serializable {
     private final List<Location> locations;
 
     /**
+     * <p>
      * Create a Locations object from the given list of Location objects.
+     * </p>
      *
      * @param locations the list of Location objects.
      */
@@ -134,7 +147,9 @@ public class Locations implements Serializable {
     }
 
     /**
+     * <p>
      * Get the list of Location objects.
+     * </p>
      *
      * @return the list of Location objects.
      */
@@ -143,7 +158,9 @@ public class Locations implements Serializable {
     }
 
     /**
+     * <p>
      * Find the Location object with the given country and state.
+     * </p>
      *
      * @param country the country.
      * @param state   the state.
@@ -160,7 +177,9 @@ public class Locations implements Serializable {
     }
 
     /**
+     * <p>
      * Find the Location object with the given location.
+     * </p>
      *
      * @param location the location.
      * @return the Location object.

@@ -30,7 +30,6 @@ import com.google.gson.annotations.SerializedName;
  * The Plate class represents the result of a number plate recognition.
  *
  * @author laszlo.toth@arip.hu
- * @version $Id: $Id
  */
 public class Plate implements Serializable {
 

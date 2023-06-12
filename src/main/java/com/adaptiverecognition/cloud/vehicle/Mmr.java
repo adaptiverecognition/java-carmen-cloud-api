@@ -29,7 +29,6 @@ import com.adaptiverecognition.cloud.Color;
  * The Mmr class represents the result of a make, model, and color recognition.
  *
  * @author laszlo.toth@arip.hu
- * @version $Id: $Id
  */
 public class Mmr implements Serializable {
     private String engine;
@@ -58,7 +57,9 @@ public class Mmr implements Serializable {
     private List<String> frameTooltips;
 
     /**
+     * <p>
      * Get the value of found
+     * </p>
      *
      * @return the value of found
      */
@@ -67,7 +68,9 @@ public class Mmr implements Serializable {
     }
 
     /**
+     * <p>
      * Set the value of found
+     * </p>
      *
      * @param found new value of found
      */
@@ -76,7 +79,9 @@ public class Mmr implements Serializable {
     }
 
     /**
+     * <p>
      * Get the value of engine
+     * </p>
      *
      * @return the value of engine
      */
@@ -85,7 +90,9 @@ public class Mmr implements Serializable {
     }
 
     /**
+     * <p>
      * Set the value of engine
+     * </p>
      *
      * @param engine new value of engine
      */
@@ -94,7 +101,9 @@ public class Mmr implements Serializable {
     }
 
     /**
+     * <p>
      * Get the value of headingConfidence
+     * </p>
      *
      * @return the value of headingConfidence
      */
@@ -103,7 +112,9 @@ public class Mmr implements Serializable {
     }
 
     /**
+     * <p>
      * Set the value of headingConfidence
+     * </p>
      *
      * @param headingConfidence new value of headingConfidence
      */
@@ -112,7 +123,9 @@ public class Mmr implements Serializable {
     }
 
     /**
+     * <p>
      * Get the value of heading
+     * </p>
      *
      * @return the value of heading
      */
@@ -121,7 +134,9 @@ public class Mmr implements Serializable {
     }
 
     /**
+     * <p>
      * Set the value of heading
+     * </p>
      *
      * @param heading new value of heading
      */
@@ -130,7 +145,9 @@ public class Mmr implements Serializable {
     }
 
     /**
+     * <p>
      * Get the value of viewPointConfidence
+     * </p>
      *
      * @return the value of viewPointConfidence
      */
@@ -139,7 +156,9 @@ public class Mmr implements Serializable {
     }
 
     /**
+     * <p>
      * Set the value of viewPointConfidence
+     * </p>
      *
      * @param viewPointConfidence new value of viewPointConfidence
      */
@@ -148,7 +167,9 @@ public class Mmr implements Serializable {
     }
 
     /**
+     * <p>
      * Get the value of viewPoint
+     * </p>
      *
      * @return the value of viewPoint
      */
@@ -157,7 +178,9 @@ public class Mmr implements Serializable {
     }
 
     /**
+     * <p>
      * Set the value of viewPoint
+     * </p>
      *
      * @param viewPoint new value of viewPoint
      */
@@ -166,7 +189,9 @@ public class Mmr implements Serializable {
     }
 
     /**
+     * <p>
      * Get the value of category
+     * </p>
      *
      * @return the value of category
      */
@@ -175,7 +200,9 @@ public class Mmr implements Serializable {
     }
 
     /**
+     * <p>
      * Get the value of category
+     * </p>
      *
      * @param category new value of category
      */
@@ -184,7 +211,9 @@ public class Mmr implements Serializable {
     }
 
     /**
+     * <p>
      * Get the value of make
+     * </p>
      *
      * @return the value of make
      */
@@ -193,7 +222,9 @@ public class Mmr implements Serializable {
     }
 
     /**
+     * <p>
      * Set the value of make
+     * </p>
      *
      * @param make new value of make
      */
@@ -202,7 +233,9 @@ public class Mmr implements Serializable {
     }
 
     /**
+     * <p>
      * Get the value of model
+     * </p>
      *
      * @return the value of model
      */
@@ -211,7 +244,9 @@ public class Mmr implements Serializable {
     }
 
     /**
+     * <p>
      * Set the value of model
+     * </p>
      *
      * @param model new value of model
      */
@@ -220,7 +255,9 @@ public class Mmr implements Serializable {
     }
 
     /**
+     * <p>
      * Get the value of bodyType
+     * </p>
      *
      * @return the value of bodyType
      */
@@ -229,7 +266,9 @@ public class Mmr implements Serializable {
     }
 
     /**
+     * <p>
      * Set the value of bodyType
+     * </p>
      *
      * @param bodyType new value of bodyType
      */
@@ -238,7 +277,9 @@ public class Mmr implements Serializable {
     }
 
     /**
+     * <p>
      * Get the value of generation
+     * </p>
      *
      * @return the value of generation
      */
@@ -247,7 +288,9 @@ public class Mmr implements Serializable {
     }
 
     /**
+     * <p>
      * Set the value of generation
+     * </p>
      *
      * @param generation new value of generation
      */
@@ -256,7 +299,9 @@ public class Mmr implements Serializable {
     }
 
     /**
+     * <p>
      * Get the value of variation
+     * </p>
      *
      * @return the value of variation
      */
@@ -265,7 +310,9 @@ public class Mmr implements Serializable {
     }
 
     /**
+     * <p>
      * Set the value of variation
+     * </p>
      *
      * @param variation new value of variation
      */
@@ -274,7 +321,9 @@ public class Mmr implements Serializable {
     }
 
     /**
+     * <p>
      * Get the value of color
+     * </p>
      *
      * @return the value of color
      */
@@ -283,7 +332,9 @@ public class Mmr implements Serializable {
     }
 
     /**
+     * <p>
      * Set the value of color
+     * </p>
      *
      * @param color new value of color
      */
@@ -292,7 +343,9 @@ public class Mmr implements Serializable {
     }
 
     /**
+     * <p>
      * Get the value of colorName
+     * </p>
      *
      * @return the value of colorName
      */
@@ -301,7 +354,9 @@ public class Mmr implements Serializable {
     }
 
     /**
+     * <p>
      * Set the value of colorName
+     * </p>
      *
      * @param colorName new value of colorName
      */
@@ -310,7 +365,9 @@ public class Mmr implements Serializable {
     }
 
     /**
+     * <p>
      * Get the value of proctime
+     * </p>
      *
      * @return the value of proctime
      */
@@ -319,7 +376,9 @@ public class Mmr implements Serializable {
     }
 
     /**
+     * <p>
      * Set the value of proctime
+     * </p>
      *
      * @param proctime new value of proctime
      */
@@ -328,7 +387,9 @@ public class Mmr implements Serializable {
     }
 
     /**
+     * <p>
      * Get the value of categoryConfidence
+     * </p>
      *
      * @return the value of categoryConfidence
      */
@@ -337,7 +398,9 @@ public class Mmr implements Serializable {
     }
 
     /**
+     * <p>
      * Set the value of categoryConfidence
+     * </p>
      *
      * @param categoryConfidence new value of categoryConfidence
      */
@@ -346,7 +409,9 @@ public class Mmr implements Serializable {
     }
 
     /**
+     * <p>
      * Get the value of colorConfidence
+     * </p>
      *
      * @return the value of colorConfidence
      */
@@ -355,7 +420,9 @@ public class Mmr implements Serializable {
     }
 
     /**
+     * <p>
      * Set the value of colorConfidence
+     * </p>
      *
      * @param colorConfidence new value of colorConfidence
      */
@@ -364,7 +431,9 @@ public class Mmr implements Serializable {
     }
 
     /**
+     * <p>
      * Get the value of makeConfidence
+     * </p>
      *
      * @return the value of makeConfidence
      */
@@ -373,7 +442,9 @@ public class Mmr implements Serializable {
     }
 
     /**
+     * <p>
      * Set the value of makeConfidence
+     * </p>
      *
      * @param makeConfidence new value of makeConfidence
      */
@@ -382,7 +453,9 @@ public class Mmr implements Serializable {
     }
 
     /**
+     * <p>
      * Get the value of modelConfidence
+     * </p>
      *
      * @return the value of modelConfidence
      */
@@ -391,7 +464,9 @@ public class Mmr implements Serializable {
     }
 
     /**
+     * <p>
      * Set the value of modelConfidence
+     * </p>
      *
      * @param modelConfidence new value of modelConfidence
      */
@@ -400,7 +475,9 @@ public class Mmr implements Serializable {
     }
 
     /**
+     * <p>
      * Get the value of bodyTypeConfidence
+     * </p>
      *
      * @return the value of bodyTypeConfidence
      */
@@ -409,7 +486,9 @@ public class Mmr implements Serializable {
     }
 
     /**
+     * <p>
      * Set the value of bodyTypeConfidence
+     * </p>
      *
      * @param bodyTypeConfidence new value of bodyTypeConfidence
      */
@@ -418,7 +497,9 @@ public class Mmr implements Serializable {
     }
 
     /**
+     * <p>
      * Get the value of generationConfidence
+     * </p>
      *
      * @return the value of generationConfidence
      */
@@ -427,7 +508,9 @@ public class Mmr implements Serializable {
     }
 
     /**
+     * <p>
      * Set the value of generationConfidence
+     * </p>
      *
      * @param generationConfidence new value of generationConfidence
      */
@@ -436,7 +519,9 @@ public class Mmr implements Serializable {
     }
 
     /**
+     * <p>
      * Get the value of variationConfidence
+     * </p>
      *
      * @return the value of variationConfidence
      */
@@ -445,7 +530,9 @@ public class Mmr implements Serializable {
     }
 
     /**
+     * <p>
      * Set the value of variationConfidence
+     * </p>
      *
      * @param variationConfidence new value of variationConfidence
      */
@@ -454,7 +541,9 @@ public class Mmr implements Serializable {
     }
 
     /**
+     * <p>
      * Get the value of imageTooltips
+     * </p>
      *
      * @return the value of imageTooltips
      */
@@ -463,7 +552,9 @@ public class Mmr implements Serializable {
     }
 
     /**
+     * <p>
      * Set the value of imageTooltips
+     * </p>
      *
      * @param imageTooltips new value of imageTooltips
      */
@@ -472,7 +563,9 @@ public class Mmr implements Serializable {
     }
 
     /**
+     * <p>
      * Get the value of frameTooltips
+     * </p>
      *
      * @return the value of frameTooltips
      */
@@ -481,7 +574,9 @@ public class Mmr implements Serializable {
     }
 
     /**
+     * <p>
      * Set the value of frameTooltips
+     * </p>
      *
      * @param frameTooltips new value of frameTooltips
      */

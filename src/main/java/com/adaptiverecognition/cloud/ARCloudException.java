@@ -24,14 +24,15 @@ package com.adaptiverecognition.cloud;
  * code and a message.
  *
  * @author laszlo.toth@arip.hu
- * @version $Id: $Id
  */
 public class ARCloudException extends Exception {
 
     private final int statusCode;
 
     /**
+     * <p>
      * Default constructor
+     * </p>
      *
      * @param statusCode HTTP status code
      * @param message    message
@@ -41,7 +42,9 @@ public class ARCloudException extends Exception {
     }
 
     /**
+     * <p>
      * Another constructor, the cause can be specified
+     * </p>
      *
      * @param statusCode HTTP status code
      * @param message    message
@@ -53,7 +56,9 @@ public class ARCloudException extends Exception {
     }
 
     /**
+     * <p>
      * Get the value of HTTP status code
+     * </p>
      *
      * @return the value of HTTP status code
      */

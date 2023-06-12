@@ -28,7 +28,6 @@ import java.util.Objects;
  * bottomRight, topLeft, topRight.
  *
  * @author laszlo.toth@arip.hu
- * @version $Id: $Id
  */
 public class Rectangle implements Serializable {
 
@@ -38,7 +37,9 @@ public class Rectangle implements Serializable {
     private Point topRight;
 
     /**
+     * <p>
      * Get the value of bottomLeft
+     * </p>
      *
      * @return the value of bottomLeft
      */
@@ -47,7 +48,9 @@ public class Rectangle implements Serializable {
     }
 
     /**
+     * <p>
      * Set the value of bottomLeft
+     * </p>
      *
      * @param bottomLeft new value of bottomLeft
      */
@@ -56,7 +59,9 @@ public class Rectangle implements Serializable {
     }
 
     /**
+     * <p>
      * Get the value of bottomRight
+     * </p>
      *
      * @return the value of bottomRight
      */
@@ -65,7 +70,9 @@ public class Rectangle implements Serializable {
     }
 
     /**
+     * <p>
      * Set the value of bottomRight
+     * </p>
      *
      * @param bottomRight new value of bottomRight
      */
@@ -74,7 +81,9 @@ public class Rectangle implements Serializable {
     }
 
     /**
+     * <p>
      * Get the value of topLeft
+     * </p>
      *
      * @return the value of topLeft
      */
@@ -83,7 +92,9 @@ public class Rectangle implements Serializable {
     }
 
     /**
+     * <p>
      * Set the value of topLeft
+     * </p>
      *
      * @param topLeft new value of topLeft
      */
@@ -92,7 +103,9 @@ public class Rectangle implements Serializable {
     }
 
     /**
+     * <p>
      * Get the value of topRight
+     * </p>
      *
      * @return the value of topRight
      */
@@ -101,7 +114,9 @@ public class Rectangle implements Serializable {
     }
 
     /**
+     * <p>
      * Set the value of topRight
+     * </p>
      *
      * @param topRight new value of topRight
      */

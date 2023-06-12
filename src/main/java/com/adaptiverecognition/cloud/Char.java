@@ -28,7 +28,6 @@ import java.util.Objects;
  * coordinates of the character's bounding box.
  *
  * @author laszlo.toth@arip.hu
- * @version $Id: $Id
  */
 public class Char implements Serializable {
 
@@ -40,7 +39,9 @@ public class Char implements Serializable {
     private int confidence;
 
     /**
+     * <p>
      * Get the value of background color
+     * </p>
      *
      * @return the value of background color
      */
@@ -49,7 +50,9 @@ public class Char implements Serializable {
     }
 
     /**
+     * <p>
      * Set the value of background color
+     * </p>
      *
      * @param bgColor new value of background color
      */
@@ -58,7 +61,9 @@ public class Char implements Serializable {
     }
 
     /**
+     * <p>
      * Get the value of the character's bounding box
+     * </p>
      *
      * @return the value of the character's bounding box
      */
@@ -67,7 +72,9 @@ public class Char implements Serializable {
     }
 
     /**
+     * <p>
      * Set the value of the character's bounding box
+     * </p>
      *
      * @param charROI new value of the character's bounding box
      */
@@ -76,7 +83,9 @@ public class Char implements Serializable {
     }
 
     /**
+     * <p>
      * Get the value of the character code
+     * </p>
      *
      * @return the value of the character code
      */
@@ -85,7 +94,9 @@ public class Char implements Serializable {
     }
 
     /**
+     * <p>
      * Set the value of the character code
+     * </p>
      *
      * @param code new value of the character code
      */
@@ -94,7 +105,9 @@ public class Char implements Serializable {
     }
 
     /**
+     * <p>
      * Returns true if the background color is darker than the characters' color
+     * </p>
      *
      * @return true if the background color is darker than the characters' color
      */
@@ -103,16 +116,20 @@ public class Char implements Serializable {
     }
 
     /**
-     * Sets the value of the gbDark property
+     * <p>
+     * Sets the value of the bgDark property
+     * </p>
      *
-     * @param bgDark new value of the gbDark property
+     * @param bgDark new value of the bgDark property
      */
     public void setBgDark(Boolean bgDark) {
         this.bgDark = bgDark;
     }
 
     /**
+     * <p>
      * Get the value of the character's color
+     * </p>
      *
      * @return the value of the character's color
      */
@@ -121,7 +138,9 @@ public class Char implements Serializable {
     }
 
     /**
+     * <p>
      * Set the value of the character's color
+     * </p>
      *
      * @param color new value of the character's color
      */
@@ -130,7 +149,9 @@ public class Char implements Serializable {
     }
 
     /**
+     * <p>
      * Get the value of the confidence
+     * </p>
      *
      * @return the value of the confidence
      */
@@ -139,7 +160,9 @@ public class Char implements Serializable {
     }
 
     /**
+     * <p>
      * Set the value of the confidence
+     * </p>
      *
      * @param confidence new value of the confidence
      */

@@ -47,7 +47,6 @@ import org.apache.logging.log4j.Logger;
  * input image which is sent to the APIs to be processed.
  *
  * @author laszlo.toth@arip.hu
- * @version $Id: $Id
  */
 public class InputImage {
 
@@ -75,8 +74,10 @@ public class InputImage {
     private String imageMimeType;
 
     /**
+     * <p>
      * Constructor for InputImage. This constructor is used to create an InputImage
      * object and also to resize it.
+     * </p>
      *
      * @param imageSource image source
      * @param imageName   image name
@@ -87,8 +88,10 @@ public class InputImage {
     }
 
     /**
+     * <p>
      * Another constructor for InputImage. The resize parameter can be set (it
      * defaults to true in the other constructor).
+     * </p>
      *
      * @param imageSource image source
      * @param imageName   image name
@@ -100,7 +103,9 @@ public class InputImage {
     }
 
     /**
+     * <p>
      * Get the value of imageSource
+     * </p>
      *
      * @return the value of imageSource
      */
@@ -109,7 +114,9 @@ public class InputImage {
     }
 
     /**
+     * <p>
      * Get the value of originalImageSource
+     * </p>
      *
      * @return the value of originalImageSource
      */
@@ -118,7 +125,9 @@ public class InputImage {
     }
 
     /**
-     * Get the value of image
+     * <p>
+     * Get the value of image as a BufferedImage.
+     * </p>
      *
      * @return the value of image
      */
@@ -127,7 +136,9 @@ public class InputImage {
     }
 
     /**
+     * <p>
      * Get the value of imageSize
+     * </p>
      *
      * @return the value of imageSize
      */
@@ -136,7 +147,9 @@ public class InputImage {
     }
 
     /**
+     * <p>
      * Get the value of originalImageSize
+     * </p>
      *
      * @return the value of originalImageSize
      */
@@ -145,7 +158,9 @@ public class InputImage {
     }
 
     /**
+     * <p>
      * Get the value of imageUpscaleFactor
+     * </p>
      *
      * @return the value of imageUpscaleFactor
      */
@@ -154,7 +169,9 @@ public class InputImage {
     }
 
     /**
+     * <p>
      * Get the value of imageOrientation
+     * </p>
      *
      * @return the value of imageOrientation
      */
@@ -163,7 +180,9 @@ public class InputImage {
     }
 
     /**
+     * <p>
      * Get the value of imageMimeType
+     * </p>
      *
      * @return the value of imageMimeType
      */
@@ -172,7 +191,9 @@ public class InputImage {
     }
 
     /**
+     * <p>
      * Get the value of imageName
+     * </p>
      *
      * @return the value of imageName
      */

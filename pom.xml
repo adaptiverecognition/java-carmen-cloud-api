@@ -6,18 +6,48 @@
     <artifactId>cloud-api</artifactId>
     <version>4.2-SNAPSHOT</version>
     <packaging>jar</packaging>
-    <name>AR Cloud API</name>
+    <name>Adaptive Recognition Cloud API</name>
+    <description>Adaptive Recognition Cloud API</description>
+    <url>https://cloud.adaptiverecognition.com</url>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
     </properties>
+    <scm>
+        <connection>scm:git:git://github.com/adaptiverecognition/cloud-api.git</connection>
+        <developerConnection>scm:git:git@github.com:adaptiverecognition/cloud-api.git</developerConnection>
+        <url>https://github.com/adaptiverecognition/cloud-api</url>
+    </scm>
+    <organization>
+        <name>Adaptive Recognition Ltd.</name>
+        <url>https://adaptiverecognition.com/</url>
+    </organization>
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    <developers>
+        <developer>
+            <id>tothl74</id>
+            <name>Laszlo Toth</name>
+            <email>laszlo.toth@arip.hu</email>
+            <timezone>+2</timezone>
+            <roles>
+                <role>project owner</role>
+                <role>developer</role>
+            </roles>
+        </developer>
+    </developers>
     <build>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.10.1</version>
+                <version>3.11.0</version>
                 <configuration>
                     <source>${maven.compiler.source}</source>
                     <target>${maven.compiler.target}</target>
@@ -33,6 +63,12 @@
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <version>3.5.0</version>
                 <executions>
+                    <execution>
+                        <id>update</id>
+                        <goals>
+                            <goal>fix</goal>
+                        </goals>
+                    </execution>
                     <execution>
                         <id>attach-javadoc</id>
                         <goals>
@@ -73,9 +109,6 @@
                                 </goals>
                             </execution>
                         </executions>
-                        <configuration>
-                            <doclint>all,-missing</doclint>
-                        </configuration>
                     </plugin>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>

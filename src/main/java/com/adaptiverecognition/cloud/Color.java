@@ -27,7 +27,6 @@ import java.util.Objects;
  * green, blue).
  *
  * @author laszlo.toth@arip.hu
- * @version $Id: $Id
  */
 public class Color implements Serializable {
 
@@ -36,7 +35,9 @@ public class Color implements Serializable {
     private int b;
 
     /**
+     * <p>
      * Get the value of red component
+     * </p>
      *
      * @return the value of red component
      */
@@ -45,7 +46,9 @@ public class Color implements Serializable {
     }
 
     /**
+     * <p>
      * Set the value of red component
+     * </p>
      *
      * @param r new value of red component
      */
@@ -54,7 +57,9 @@ public class Color implements Serializable {
     }
 
     /**
+     * <p>
      * Get the value of green component
+     * </p>
      *
      * @return the value of green component
      */
@@ -63,7 +68,9 @@ public class Color implements Serializable {
     }
 
     /**
+     * <p>
      * Set the value of green component
+     * </p>
      *
      * @param g new value of green component
      */
@@ -72,7 +79,9 @@ public class Color implements Serializable {
     }
 
     /**
+     * <p>
      * Get the value of blue component
+     * </p>
      *
      * @return the value of blue component
      */
@@ -81,7 +90,9 @@ public class Color implements Serializable {
     }
 
     /**
+     * <p>
      * Set the value of blue component
+     * </p>
      *
      * @param b new value of blue component
      */

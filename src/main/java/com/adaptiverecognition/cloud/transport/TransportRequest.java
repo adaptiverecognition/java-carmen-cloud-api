@@ -33,7 +33,6 @@ import com.adaptiverecognition.cloud.Request;
  *
  * @author laszlo.toth@arip.hu
  * @param <S> the type of the request properties enum
- * @version $Id: $Id
  */
 public class TransportRequest<S extends Enum<?>> extends Request<S> {
 
@@ -44,7 +43,9 @@ public class TransportRequest<S extends Enum<?>> extends Request<S> {
     private Integer maxreads;
 
     /**
+     * <p>
      * Get the value of type
+     * </p>
      *
      * @return the value of type
      */
@@ -53,7 +54,9 @@ public class TransportRequest<S extends Enum<?>> extends Request<S> {
     }
 
     /**
+     * <p>
      * Set the value of type
+     * </p>
      *
      * @param type new value of type
      */
@@ -62,7 +65,9 @@ public class TransportRequest<S extends Enum<?>> extends Request<S> {
     }
 
     /**
+     * <p>
      * Set the value of type
+     * </p>
      *
      * @param type a {@link java.lang.String} object
      * @return Returns a reference to this object so that method calls can be
@@ -110,7 +115,9 @@ public class TransportRequest<S extends Enum<?>> extends Request<S> {
     }
 
     /**
+     * <p>
      * Get the value of inputImages
+     * </p>
      *
      * @return the value of inputImages
      */
@@ -119,7 +126,9 @@ public class TransportRequest<S extends Enum<?>> extends Request<S> {
     }
 
     /**
+     * <p>
      * Set the value of inputImages
+     * </p>
      *
      * @param inputImages new value of inputImages
      */
@@ -129,14 +138,18 @@ public class TransportRequest<S extends Enum<?>> extends Request<S> {
     }
 
     /**
+     * <p>
      * Clears input image list
+     * </p>
      */
     public void clearInputImages() {
         this.inputImages.clear();
     }
 
     /**
+     * <p>
      * Set the value of image source and image name
+     * </p>
      *
      * @param imageSource image source
      * @param imageName   image name
@@ -147,7 +160,9 @@ public class TransportRequest<S extends Enum<?>> extends Request<S> {
     }
 
     /**
+     * <p>
      * Add an image to the inputImages list
+     * </p>
      *
      * @param imageSource image source
      * @param imageName   image name

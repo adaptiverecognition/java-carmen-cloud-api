@@ -27,7 +27,6 @@ import java.util.Objects;
  * The Data class represents the result of an ocr recognition.
  *
  * @author laszlo.toth@arip.hu
- * @version $Id: $Id
  */
 public class Data {
 

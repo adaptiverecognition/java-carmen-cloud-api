@@ -27,7 +27,6 @@ import com.adaptiverecognition.cloud.Result;
  * The TransportResult class represents the result of a ocr recognition.
  *
  * @author laszlo.toth@arip.hu
- * @version $Id: $Id
  */
 public class TransportResult extends Result {
 

@@ -26,7 +26,6 @@ import java.util.Objects;
  * The Code class represents a single code found on the input images.
  *
  * @author laszlo.toth@arip.hu
- * @version $Id: $Id
  */
 public class Code {
 

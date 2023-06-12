@@ -27,13 +27,14 @@ import java.util.Objects;
  *
  * @author laszlo.toth@arip.hu
  * @param <S> The type of the enum used as key for the properties map
- * @version $Id: $Id
  */
 public class Request<S extends Enum<?>> {
     private Map<S, Object> properties;
 
     /**
+     * <p>
      * Get the value of properties
+     * </p>
      *
      * @return the value of properties
      */
@@ -42,7 +43,9 @@ public class Request<S extends Enum<?>> {
     }
 
     /**
+     * <p>
      * Set the value of properties
+     * </p>
      *
      * @param properties new value of properties
      */
@@ -52,7 +55,9 @@ public class Request<S extends Enum<?>> {
 
     /**
      *
+     * <p>
      * Get the value of a property identified by the given key.
+     * </p>
      *
      * @param key the key of the property
      * @return the value of the property
@@ -63,7 +68,9 @@ public class Request<S extends Enum<?>> {
 
     /**
      *
+     * <p>
      * Set the value of a property identified by the given key.
+     * </p>
      *
      * @param key   the key of the property
      * @param value the new value of the property

@@ -29,7 +29,6 @@ import com.adaptiverecognition.cloud.Char;
  * image.
  *
  * @author laszlo.toth@arip.hu
- * @version $Id: $Id
  */
 public class ImageResult {
 

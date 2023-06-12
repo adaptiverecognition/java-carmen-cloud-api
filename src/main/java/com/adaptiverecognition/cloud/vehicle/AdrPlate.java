@@ -28,7 +28,6 @@ import com.adaptiverecognition.cloud.Char;
  * The AdrPlate class represents an ADR plate.
  *
  * @author laszlo.toth@arip.hu
- * @version $Id: $Id
  */
 public class AdrPlate extends Plate {
 
@@ -39,14 +38,18 @@ public class AdrPlate extends Plate {
     private String separatedText;
 
     /**
+     * <p>
      * AdrPlate constructor.
+     * </p>
      */
     public AdrPlate() {
         this(TypeCategory.ADR_PLATE);
     }
 
     /**
+     * <p>
      * AdrPlate constructor.
+     * </p>
      *
      * @param plateTypeCategory the type of the plate to be created
      */
@@ -65,7 +68,9 @@ public class AdrPlate extends Plate {
     }
 
     /**
+     * <p>
      * Get the value of positionConfidence
+     * </p>
      *
      * @return the value of positionConfidence
      */
@@ -74,7 +79,9 @@ public class AdrPlate extends Plate {
     }
 
     /**
+     * <p>
      * Set the value of positionConfidence
+     * </p>
      *
      * @param positionConfidence new value of positionConfidence
      */
@@ -83,7 +90,9 @@ public class AdrPlate extends Plate {
     }
 
     /**
+     * <p>
      * Get the value of plateTypeConfidence
+     * </p>
      *
      * @return the value of plateTypeConfidence
      */
@@ -92,7 +101,9 @@ public class AdrPlate extends Plate {
     }
 
     /**
+     * <p>
      * Set the value of plateTypeConfidence
+     * </p>
      *
      * @param plateTypeConfidence new value of plateTypeConfidence
      */
@@ -101,7 +112,9 @@ public class AdrPlate extends Plate {
     }
 
     /**
+     * <p>
      * Get the value of unicodeText
+     * </p>
      *
      * @return the value of unicodeText
      */
@@ -110,7 +123,9 @@ public class AdrPlate extends Plate {
     }
 
     /**
+     * <p>
      * Set the value of unicodeText
+     * </p>
      *
      * @param unicodeText new value of unicodeText
      */
@@ -119,7 +134,9 @@ public class AdrPlate extends Plate {
     }
 
     /**
+     * <p>
      * Get the value of separatedText
+     * </p>
      *
      * @return the value of separatedText
      */
@@ -128,7 +145,9 @@ public class AdrPlate extends Plate {
     }
 
     /**
+     * <p>
      * Set the value of separatedText
+     * </p>
      *
      * @param separatedText new value of separatedText
      */
@@ -137,7 +156,9 @@ public class AdrPlate extends Plate {
     }
 
     /**
+     * <p>
      * Get the value of plateChars
+     * </p>
      *
      * @return the value of plateChars
      */
@@ -146,7 +167,9 @@ public class AdrPlate extends Plate {
     }
 
     /**
+     * <p>
      * Set the value of plateChars
+     * </p>
      *
      * @param plateChars new value of plateChars
      */

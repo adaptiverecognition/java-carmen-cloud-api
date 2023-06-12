@@ -25,7 +25,6 @@ import java.util.Objects;
  * The Result class is the base class of all result classes.
  *
  * @author laszlo.toth@arip.hu
- * @version $Id: $Id
  */
 public abstract class Result implements Serializable {
 
@@ -36,7 +35,9 @@ public abstract class Result implements Serializable {
 
     /**
      *
+     * <p>
      * Get the protocol version of the API that generated this result.
+     * </p>
      *
      * @return the value of version
      */
@@ -46,7 +47,9 @@ public abstract class Result implements Serializable {
 
     /**
      *
+     * <p>
      * Set the protocol version of the API that generated this result.
+     * </p>
      *
      * @param version the new value of version
      */
@@ -56,7 +59,9 @@ public abstract class Result implements Serializable {
 
     /**
      *
+     * <p>
      * Get the name of the node that generated this result.
+     * </p>
      *
      * @return the value of nodename
      */
@@ -66,7 +71,9 @@ public abstract class Result implements Serializable {
 
     /**
      *
+     * <p>
      * Set the name of the node that generated this result.
+     * </p>
      *
      * @param nodename the new value of nodename
      */
@@ -76,8 +83,10 @@ public abstract class Result implements Serializable {
 
     /**
      *
+     * <p>
      * Get the value of the overall processing time on the node that generated this
      * result.
+     * </p>
      *
      * @return the value of nodetime
      */
@@ -87,7 +96,10 @@ public abstract class Result implements Serializable {
 
     /**
      *
+     * <p>
      * Set the value of the overall processing time on the node that generated this
+     * result.
+     * </p>
      *
      * @param nodetime the new value of nodetime
      */
@@ -97,7 +109,9 @@ public abstract class Result implements Serializable {
 
     /**
      *
+     * <p>
      * Get the request ID of the request that generated this result.
+     * </p>
      *
      * @return the value of requestId
      */
@@ -107,7 +121,9 @@ public abstract class Result implements Serializable {
 
     /**
      *
+     * <p>
      * Set the request ID of the request that generated this result.
+     * </p>
      *
      * @param requestId the new value of requestId
      */

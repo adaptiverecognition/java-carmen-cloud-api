@@ -26,7 +26,6 @@ import java.util.List;
  * The TransportStatistics class contains the statistics of a ocr recognition.
  *
  * @author laszlo.toth@arip.hu
- * @version $Id: $Id
  */
 public class TransportStatistics {
 
@@ -40,7 +39,9 @@ public class TransportStatistics {
         private long proctime;
 
         /**
+         * <p>
          * Get the value of imageCount
+         * </p>
          *
          * @return the value of imageCount
          */
@@ -49,7 +50,9 @@ public class TransportStatistics {
         }
 
         /**
+         * <p>
          * Set the value of imageCount
+         * </p>
          *
          * @param imageCount new value of imageCount
          */
@@ -58,7 +61,9 @@ public class TransportStatistics {
         }
 
         /**
+         * <p>
          * Get the value of succeeded
+         * </p>
          *
          * @return the value of succeeded
          */
@@ -67,7 +72,9 @@ public class TransportStatistics {
         }
 
         /**
+         * <p>
          * Set the value of succeeded
+         * </p>
          *
          * @param succeeded new value of succeeded
          */
@@ -76,7 +83,9 @@ public class TransportStatistics {
         }
 
         /**
+         * <p>
          * Get the value of proctime
+         * </p>
          *
          * @return the value of anpproctimerProctime
          */
@@ -85,7 +94,9 @@ public class TransportStatistics {
         }
 
         /**
+         * <p>
          * Set the value of proctime
+         * </p>
          *
          * @param proctime new value of proctime
          */
@@ -104,8 +115,11 @@ public class TransportStatistics {
     private List<Read> reads;
 
     /**
-     * * Add a read to the list of reads
-     * 
+     * *
+     * <p>
+     * Add a read to the list of reads
+     * </p>
+     *
      * @param hit a
      *            {@link com.adaptiverecognition.cloud.transport.TransportStatistics.Read}
      *            object
@@ -118,7 +132,9 @@ public class TransportStatistics {
     }
 
     /**
+     * <p>
      * Get the value of type
+     * </p>
      *
      * @return the value of type
      */
@@ -127,7 +143,9 @@ public class TransportStatistics {
     }
 
     /**
+     * <p>
      * Set the value of type
+     * </p>
      *
      * @param type new value of type
      */
@@ -136,7 +154,9 @@ public class TransportStatistics {
     }
 
     /**
+     * <p>
      * Get the value of reads
+     * </p>
      *
      * @return the value of reads
      */
@@ -145,7 +165,9 @@ public class TransportStatistics {
     }
 
     /**
+     * <p>
      * Set the value of reads
+     * </p>
      *
      * @param reads new value of reads
      */
@@ -154,7 +176,9 @@ public class TransportStatistics {
     }
 
     /**
+     * <p>
      * Get the value of maxreads
+     * </p>
      *
      * @return the value of maxreads
      */
@@ -163,7 +187,9 @@ public class TransportStatistics {
     }
 
     /**
+     * <p>
      * Set the value of maxreads
+     * </p>
      *
      * @param maxreads new value of maxreads
      */

@@ -28,14 +28,15 @@ import java.util.Objects;
  * The Data class represents the result of a vehicle recognition.
  *
  * @author laszlo.toth@arip.hu
- * @version $Id: $Id
  */
 public class Data implements Serializable {
 
     private List<Vehicle> vehicles = new ArrayList<>();
 
     /**
+     * <p>
      * Get the list of vehicles.
+     * </p>
      *
      * @return the list of vehicles
      */
@@ -44,7 +45,9 @@ public class Data implements Serializable {
     }
 
     /**
+     * <p>
      * Set the list of vehicles.
+     * </p>
      *
      * @param vehicles the list of vehicles
      */

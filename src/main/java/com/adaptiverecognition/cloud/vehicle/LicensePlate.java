@@ -27,7 +27,6 @@ import com.adaptiverecognition.cloud.Color;
  * The LicensePlate class represents a license plate.
  *
  * @author laszlo.toth@arip.hu
- * @version $Id: $Id
  */
 public class LicensePlate extends AdrPlate {
 
@@ -38,7 +37,9 @@ public class LicensePlate extends AdrPlate {
     private String category;
 
     /**
+     * <p>
      * LicensePlate constructor
+     * </p>
      */
     public LicensePlate() {
         /*
@@ -62,7 +63,9 @@ public class LicensePlate extends AdrPlate {
     }
 
     /**
+     * <p>
      * Get the value of found
+     * </p>
      *
      * @return the value of found
      */
@@ -71,7 +74,9 @@ public class LicensePlate extends AdrPlate {
     }
 
     /**
+     * <p>
      * Set the value of found
+     * </p>
      *
      * @param found new value of found
      */
@@ -80,7 +85,9 @@ public class LicensePlate extends AdrPlate {
     }
 
     /**
+     * <p>
      * Get the value of daColor (dedicated area color)
+     * </p>
      *
      * @return the value of daColor
      */
@@ -89,7 +96,9 @@ public class LicensePlate extends AdrPlate {
     }
 
     /**
+     * <p>
      * Set the value of daColor (dedicated area color)
+     * </p>
      *
      * @param daColor new value of daColor
      */
@@ -98,7 +107,9 @@ public class LicensePlate extends AdrPlate {
     }
 
     /**
+     * <p>
      * Get the value of plate category
+     * </p>
      *
      * @return the value of plate category
      */
@@ -107,7 +118,9 @@ public class LicensePlate extends AdrPlate {
     }
 
     /**
+     * <p>
      * Set the value of plate category
+     * </p>
      *
      * @param category new value of plate category
      */
@@ -116,7 +129,9 @@ public class LicensePlate extends AdrPlate {
     }
 
     /**
+     * <p>
      * Get the country of origin of the license plate
+     * </p>
      *
      * @return the value of country
      */
@@ -125,7 +140,9 @@ public class LicensePlate extends AdrPlate {
     }
 
     /**
+     * <p>
      * Set the country of origin of the license plate
+     * </p>
      *
      * @param country new value of country
      */
@@ -134,7 +151,9 @@ public class LicensePlate extends AdrPlate {
     }
 
     /**
+     * <p>
      * Get the state of origin of the license plate
+     * </p>
      *
      * @return the value of state
      */
@@ -143,7 +162,9 @@ public class LicensePlate extends AdrPlate {
     }
 
     /**
+     * <p>
      * Set the state of origin of the license plate
+     * </p>
      *
      * @param state new value of state
      */
