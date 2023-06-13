@@ -94,12 +94,6 @@ public class VehicleRequest<S extends Enum<?>> extends Request<S> {
         }
     }
 
-    private boolean calculateHash;
-
-    private long hashTimestamp;
-
-    private String hashSalt;
-
     private List<Service> services;
 
     private InputImage inputImage;
@@ -111,60 +105,6 @@ public class VehicleRequest<S extends Enum<?>> extends Request<S> {
     private String roi;
 
     private Integer maxreads;
-
-    /**
-     * Is it a hash request? (Used by some video processing tools)
-     *
-     * @return true if it is a hash request
-     */
-    public boolean isCalculateHash() {
-        return calculateHash;
-    }
-
-    /**
-     * Set it to true if it is a hash request
-     *
-     * @param calculateHash true if it is a hash request
-     */
-    public void setCalculateHash(boolean calculateHash) {
-        this.calculateHash = calculateHash;
-    }
-
-    /**
-     * Get the timestamp of the hash request
-     *
-     * @return the timestamp of the hash request
-     */
-    public long getHashTimestamp() {
-        return hashTimestamp;
-    }
-
-    /**
-     * Set the timestamp of the hash request
-     *
-     * @param hashTimestamp the timestamp of the hash request
-     */
-    public void setHashTimestamp(long hashTimestamp) {
-        this.hashTimestamp = hashTimestamp;
-    }
-
-    /**
-     * Get the salt of the hash request
-     *
-     * @return the salt of the hash request
-     */
-    public String getHashSalt() {
-        return hashSalt;
-    }
-
-    /**
-     * Set the salt of the hash request
-     *
-     * @param hashSalt the salt of the hash request
-     */
-    public void setHashSalt(String hashSalt) {
-        this.hashSalt = hashSalt;
-    }
 
     /**
      * Get the value of region
@@ -426,9 +366,7 @@ public class VehicleRequest<S extends Enum<?>> extends Request<S> {
             return false;
         }
         VehicleRequest<?> vehicleRequest = (VehicleRequest<?>) o;
-        return super.equals(o) && calculateHash == vehicleRequest.calculateHash
-                && hashTimestamp == vehicleRequest.hashTimestamp && Objects.equals(hashSalt, vehicleRequest.hashSalt)
-                && Objects.equals(services, vehicleRequest.services)
+        return super.equals(o) && Objects.equals(services, vehicleRequest.services)
                 && Objects.equals(inputImage, vehicleRequest.inputImage)
                 && Objects.equals(region, vehicleRequest.region) && Objects.equals(location, vehicleRequest.location)
                 && Objects.equals(roi, vehicleRequest.roi) && Objects.equals(maxreads, vehicleRequest.maxreads)
@@ -438,8 +376,7 @@ public class VehicleRequest<S extends Enum<?>> extends Request<S> {
     /** {@inheritDoc} */
     @Override
     public int hashCode() {
-        return super.hashCode() + Objects.hash(calculateHash, hashTimestamp, hashSalt, services, inputImage, region,
-                location, roi, maxreads, getProperties());
+        return super.hashCode() + Objects.hash(services, inputImage, region, location, roi, maxreads, getProperties());
     }
 
 }

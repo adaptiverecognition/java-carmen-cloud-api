@@ -31,7 +31,7 @@ jobs:
           git config --global user.name "GitHub Action"
           git commit --all --allow-empty --message "Releasing version $VERSION"
           git tag --annotate --message "Releasing version $VERSION" $VERSION
-          git push --tags origin main
+          git push --tags origin master
 
   release:
     name: Release
@@ -41,7 +41,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
         with:
-          ref: main
+          ref: master
           fetch-depth: 0
 
       - name: Setup Java

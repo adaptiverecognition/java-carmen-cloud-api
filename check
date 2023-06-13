@@ -1,1 +1,0 @@
-mvn clean verify sonar:sonar -Dsonar.projectKey=AR-Cloud-API -Dsonar.host.url=http://localhost:9000 -Dsonar.login=d67f1bca12a97d24bfcc64d8c605005ee5f4efe5
