@@ -1,0 +1,30 @@
+project:
+  name: Adaptive Recognition Cloud API
+  description: Adaptive Recognition Cloud API
+  longDescription: Adaptive Recognition Cloud API
+  links:
+    homepage: https://github.com/adaptiverecognition/cloud-api
+  authors:
+    - Laszlo Toth
+  license: APACHE-2.0
+  inceptionYear: 2020
+  stereotype: cli
+  java:
+    version: 11
+    groupId: com.adaptiverecognition
+    artifactId: cloud-api
+
+release:
+  github:
+    overwrite: true
+    changelog:
+      formatted: ALWAYS
+      preset: conventional-commits
+      contributors:
+        format: '- {{contributorName}}{{#contributorUsernameAsLink}} ({{.}}){{/contributorUsernameAsLink}}'
+
+distributions:
+  helloworld:
+    type: SINGLE_JAR
+    artifacts:
+      - path: target/{{distributionName}}-{{projectVersion}}.jar
