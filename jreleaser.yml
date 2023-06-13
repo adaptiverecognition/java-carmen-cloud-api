@@ -3,7 +3,7 @@ project:
   description: Adaptive Recognition Cloud API
   longDescription: Adaptive Recognition Cloud API
   links:
-    homepage: https://github.com/adaptiverecognition/cloud-api
+    homepage: https://github.com/adaptiverecognition/carmen-cloud-api
   authors:
     - Laszlo Toth
   license: APACHE-2.0
