@@ -1,3 +1,22 @@
+/**
+ * Cloud API Java reference implementation.
+
+ * License: Apache License 2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * This file is part of the Adaptive Recognition Hungary Kft. 
+ * Vehicle API and Transportation&Cargo API Java reference implementation.
+ * 
+ * This software is free to use in either commercial or non-commercial applications.
+ * 
+ * This software is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
+ * CONDITIONS OF ANY KIND, either express or implied.
+ * 
+ * Adaptive Recognition Hungary Kft.
+ * H-1023 Budapest, Alkotas u. 41. Hungary
+ * Web: https://adaptiverecognition.com/contact-us/
+ * 
+ */
 package com.adaptiverecognition.cloud.vehicle;
 
 import java.io.Serializable;
@@ -5,9 +24,14 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * The Locations class represents the result of the /countries request.
+ *
+ * @author laszlo.toth@arip.hu
+ */
 public class Locations implements Serializable {
     /**
-     * 
+     * The Location class represents a location in the /countries response.
      */
     public static class Location implements Serializable {
         private String region;
@@ -16,17 +40,22 @@ public class Locations implements Serializable {
         private String state;
 
         /**
-         * 
+         * <p>
+         * Create an empty Location object.
+         * </p>
          */
         public Location() {
         }
 
         /**
+         * <p>
+         * Create a Location object with the given parameters.
+         * </p>
          * 
-         * @param region
-         * @param location
-         * @param country
-         * @param state
+         * @param region   the region.
+         * @param location the location.
+         * @param country  the country.
+         * @param state    the state.
          */
         public Location(String region, String location, String country, String state) {
             this.region = region;
@@ -36,32 +65,44 @@ public class Locations implements Serializable {
         }
 
         /**
+         * <p>
+         * Get the region.
+         * </p>
          * 
-         * @return
+         * @return the region.
          */
         public String getRegion() {
             return region;
         }
 
         /**
+         * <p>
+         * Get the location.
+         * </p>
          * 
-         * @return
+         * @return the location.
          */
         public String getLocation() {
             return location;
         }
 
         /**
+         * <p>
+         * Get the country.
+         * </p>
          * 
-         * @return
+         * @return the country.
          */
         public String getCountry() {
             return country;
         }
 
         /**
+         * <p>
+         * Get the state.
+         * </p>
          * 
-         * @return
+         * @return the state.
          */
         public String getState() {
             return state;
@@ -95,26 +136,35 @@ public class Locations implements Serializable {
     private final List<Location> locations;
 
     /**
-     * 
-     * @param locations
+     * <p>
+     * Create a Locations object from the given list of Location objects.
+     * </p>
+     *
+     * @param locations the list of Location objects.
      */
     public Locations(List<Location> locations) {
         this.locations = locations;
     }
 
     /**
-     * 
-     * @return
+     * <p>
+     * Get the list of Location objects.
+     * </p>
+     *
+     * @return the list of Location objects.
      */
     public List<Location> getLocations() {
         return this.locations;
     }
 
     /**
-     * 
-     * @param country
-     * @param state
-     * @return
+     * <p>
+     * Find the Location object with the given country and state.
+     * </p>
+     *
+     * @param country the country.
+     * @param state   the state.
+     * @return the Location object.
      */
     public Location findByCountryAndState(String country, String state) {
         Optional<Location> lo = this.locations.stream()
@@ -127,15 +177,19 @@ public class Locations implements Serializable {
     }
 
     /**
-     * 
-     * @param location
-     * @return
+     * <p>
+     * Find the Location object with the given location.
+     * </p>
+     *
+     * @param location the location.
+     * @return the Location object.
      */
     public Location findByLocation(String location) {
         Optional<Location> lo = this.locations.stream().filter(l -> equalsIgnoreCase(l.location, location)).findFirst();
         return lo.isPresent() ? lo.get() : null;
     }
 
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return locations != null ? locations.toString() : null;

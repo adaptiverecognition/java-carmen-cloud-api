@@ -1,7 +1,21 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Cloud API Java reference implementation.
+
+ * License: Apache License 2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * This file is part of the Adaptive Recognition Hungary Kft. 
+ * Vehicle API and Transportation&Cargo API Java reference implementation.
+ * 
+ * This software is free to use in either commercial or non-commercial applications.
+ * 
+ * This software is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
+ * CONDITIONS OF ANY KIND, either express or implied.
+ * 
+ * Adaptive Recognition Hungary Kft.
+ * H-1023 Budapest, Alkotas u. 41. Hungary
+ * Web: https://adaptiverecognition.com/contact-us/
+ * 
  */
 package com.adaptiverecognition.cloud.vehicle;
 
@@ -10,8 +24,10 @@ import java.util.List;
 import java.util.Objects;
 
 /**
+ * The Vehicle class represents a single vehicle found on the input image.
  *
- * @author laszlo.toth
+ * @author laszlo.toth@arip.hu
+ * @version $Id: $Id
  */
 public class Vehicle implements Serializable {
 
@@ -21,69 +37,78 @@ public class Vehicle implements Serializable {
     private VehicleBounds bounds;
 
     /**
+     * Get the license plate.
      *
-     * @return
+     * @return the license plate
      */
     public LicensePlate getPlate() {
         return plate;
     }
 
     /**
+     * Set the license plate.
      *
-     * @param plate
+     * @param plate the license plate
      */
     public void setPlate(LicensePlate plate) {
         this.plate = plate;
     }
 
     /**
+     * Get the MMR (make, model, color recognition) result of the vehicle.
      *
-     * @return
+     * @return the MMR result
      */
     public Mmr getMmr() {
         return mmr;
     }
 
     /**
+     * Set the MMR (make, model, color recognition) result of the vehicle.
      *
-     * @param mmr
+     * @param mmr the MMR result
      */
     public void setMmr(Mmr mmr) {
         this.mmr = mmr;
     }
 
     /**
+     * Get the list of markings (ADR plates) of the vehicle.
      *
-     * @return
+     * @return the list of markings
      */
     public List<Plate> getMarkings() {
         return markings;
     }
 
     /**
+     * Set the list of markings (ADR plates) of the vehicle.
      *
-     * @param markings
+     * @param markings the list of markings
      */
     public void setMarkings(List<Plate> markings) {
         this.markings = markings;
     }
 
     /**
+     * Get the bounds of the vehicle.
      *
-     * @return
+     * @return the bounds
      */
     public VehicleBounds getBounds() {
         return bounds;
     }
 
     /**
+     * Set the bounds of the vehicle.
      *
-     * @param bounds
+     * @param bounds the bounds
      */
     public void setBounds(VehicleBounds bounds) {
         this.bounds = bounds;
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean equals(Object o) {
         if (o == this)
@@ -96,15 +121,13 @@ public class Vehicle implements Serializable {
                 && Objects.equals(markings, vehicle.markings) && Objects.equals(bounds, vehicle.bounds);
     }
 
+    /** {@inheritDoc} */
     @Override
     public int hashCode() {
         return Objects.hash(plate, mmr, markings, bounds);
     }
 
-    /**
-     *
-     * @return
-     */
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

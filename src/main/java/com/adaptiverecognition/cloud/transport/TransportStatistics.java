@@ -1,7 +1,21 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Cloud API Java reference implementation.
+
+ * License: Apache License 2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * This file is part of the Adaptive Recognition Hungary Kft. 
+ * Vehicle API and Transportation&Cargo API Java reference implementation.
+ * 
+ * This software is free to use in either commercial or non-commercial applications.
+ * 
+ * This software is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
+ * CONDITIONS OF ANY KIND, either express or implied.
+ * 
+ * Adaptive Recognition Hungary Kft.
+ * H-1023 Budapest, Alkotas u. 41. Hungary
+ * Web: https://adaptiverecognition.com/contact-us/
+ * 
  */
 package com.adaptiverecognition.cloud.transport;
 
@@ -9,11 +23,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * The TransportStatistics class contains the statistics of a ocr recognition.
  *
- * @author laszlo.toth
+ * @author laszlo.toth@arip.hu
  */
 public class TransportStatistics {
 
+    /**
+     * The Read class contains the statistics of a single search on the given images
+     */
     public static class Read {
 
         private int imageCount;
@@ -21,7 +39,9 @@ public class TransportStatistics {
         private long proctime;
 
         /**
+         * <p>
          * Get the value of imageCount
+         * </p>
          *
          * @return the value of imageCount
          */
@@ -30,7 +50,9 @@ public class TransportStatistics {
         }
 
         /**
+         * <p>
          * Set the value of imageCount
+         * </p>
          *
          * @param imageCount new value of imageCount
          */
@@ -39,7 +61,9 @@ public class TransportStatistics {
         }
 
         /**
+         * <p>
          * Get the value of succeeded
+         * </p>
          *
          * @return the value of succeeded
          */
@@ -48,7 +72,9 @@ public class TransportStatistics {
         }
 
         /**
+         * <p>
          * Set the value of succeeded
+         * </p>
          *
          * @param succeeded new value of succeeded
          */
@@ -57,7 +83,9 @@ public class TransportStatistics {
         }
 
         /**
+         * <p>
          * Get the value of proctime
+         * </p>
          *
          * @return the value of anpproctimerProctime
          */
@@ -66,7 +94,9 @@ public class TransportStatistics {
         }
 
         /**
+         * <p>
          * Set the value of proctime
+         * </p>
          *
          * @param proctime new value of proctime
          */
@@ -84,6 +114,16 @@ public class TransportStatistics {
     private int maxreads;
     private List<Read> reads;
 
+    /**
+     * *
+     * <p>
+     * Add a read to the list of reads
+     * </p>
+     *
+     * @param hit a
+     *            {@link com.adaptiverecognition.cloud.transport.TransportStatistics.Read}
+     *            object
+     */
     public void addRead(Read hit) {
         if (reads == null) {
             reads = new ArrayList<>();
@@ -92,7 +132,9 @@ public class TransportStatistics {
     }
 
     /**
+     * <p>
      * Get the value of type
+     * </p>
      *
      * @return the value of type
      */
@@ -101,7 +143,9 @@ public class TransportStatistics {
     }
 
     /**
+     * <p>
      * Set the value of type
+     * </p>
      *
      * @param type new value of type
      */
@@ -110,7 +154,9 @@ public class TransportStatistics {
     }
 
     /**
+     * <p>
      * Get the value of reads
+     * </p>
      *
      * @return the value of reads
      */
@@ -119,7 +165,9 @@ public class TransportStatistics {
     }
 
     /**
+     * <p>
      * Set the value of reads
+     * </p>
      *
      * @param reads new value of reads
      */
@@ -128,7 +176,9 @@ public class TransportStatistics {
     }
 
     /**
+     * <p>
      * Get the value of maxreads
+     * </p>
      *
      * @return the value of maxreads
      */
@@ -137,7 +187,9 @@ public class TransportStatistics {
     }
 
     /**
+     * <p>
      * Set the value of maxreads
+     * </p>
      *
      * @param maxreads new value of maxreads
      */
@@ -145,6 +197,7 @@ public class TransportStatistics {
         this.maxreads = maxreads;
     }
 
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return "TransportStatistics{" + "type=" + type + ", maxreads=" + maxreads + ", reads=" + reads + '}';
