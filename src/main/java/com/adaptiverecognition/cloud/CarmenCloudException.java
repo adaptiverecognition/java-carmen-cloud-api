@@ -20,12 +20,12 @@
 package com.adaptiverecognition.cloud;
 
 /**
- * ARCloudException is a simple exception class that contains an HTTP status
+ * CarmenCloudException is a simple exception class that contains an HTTP status
  * code and a message.
  *
  * @author laszlo.toth@arip.hu
  */
-public class ARCloudException extends Exception {
+public class CarmenCloudException extends Exception {
 
     private final int statusCode;
 
@@ -37,7 +37,7 @@ public class ARCloudException extends Exception {
      * @param statusCode HTTP status code
      * @param message    message
      */
-    public ARCloudException(int statusCode, String message) {
+    public CarmenCloudException(int statusCode, String message) {
         this(statusCode, message, null);
     }
 
@@ -50,7 +50,7 @@ public class ARCloudException extends Exception {
      * @param message    message
      * @param cause      cause
      */
-    public ARCloudException(int statusCode, String message, Throwable cause) {
+    public CarmenCloudException(int statusCode, String message, Throwable cause) {
         super(message, cause);
         this.statusCode = statusCode;
     }
