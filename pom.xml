@@ -8,7 +8,7 @@
     <packaging>jar</packaging>
     <name>Carmen Cloud API</name>
     <description>Carmen Cloud API</description>
-    <url>https://github.com/adaptiverecognition/cloud-api</url>
+    <url>https://github.com/adaptiverecognition/carmen-cloud-api</url>
     <inceptionYear>2020</inceptionYear>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
