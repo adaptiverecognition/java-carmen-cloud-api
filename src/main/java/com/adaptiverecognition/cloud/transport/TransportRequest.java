@@ -32,9 +32,15 @@ import com.adaptiverecognition.cloud.Request;
  * Transportation &amp; Cargo API.
  *
  * @author laszlo.toth@arip.hu
- * @param <S> the type of the request properties enum
  */
-public class TransportRequest<S extends Enum<?>> extends Request<S> {
+public class TransportRequest extends Request<TransportRequest.RequestProperties> {
+
+    /**
+     * 
+     */
+    public enum RequestProperties {
+        WIDE_RANGE_ANALYSIS, CHECKSUM_CHECK, FULL_US_ACCR_CODE, ISO_CODE
+    }
 
     private String type;
 
@@ -73,7 +79,7 @@ public class TransportRequest<S extends Enum<?>> extends Request<S> {
      * @return Returns a reference to this object so that method calls can be
      *         chained together.
      */
-    public TransportRequest<S> type(String type) {
+    public TransportRequest type(String type) {
         setType(type);
         return this;
     }
@@ -109,7 +115,7 @@ public class TransportRequest<S extends Enum<?>> extends Request<S> {
      * @return Returns a reference to this object so that method calls can be
      *         chained together.
      */
-    public TransportRequest<S> maxreads(Integer maxreads) {
+    public TransportRequest maxreads(Integer maxreads) {
         setMaxreads(maxreads);
         return this;
     }
@@ -184,7 +190,7 @@ public class TransportRequest<S extends Enum<?>> extends Request<S> {
      *         chained together.
      * @throws java.io.IOException if the image cannot be read or resized
      */
-    public TransportRequest<S> image(byte[] image, String imageName) throws IOException {
+    public TransportRequest image(byte[] image, String imageName) throws IOException {
         return image(image, imageName, true);
     }
 
@@ -200,7 +206,7 @@ public class TransportRequest<S extends Enum<?>> extends Request<S> {
      *         chained together.
      * @throws java.io.IOException if the image cannot be read or resized
      */
-    public TransportRequest<S> image(byte[] image, String imageName, boolean resize) throws IOException {
+    public TransportRequest image(byte[] image, String imageName, boolean resize) throws IOException {
         addImage(image, imageName, resize);
         return this;
     }
@@ -229,7 +235,7 @@ public class TransportRequest<S extends Enum<?>> extends Request<S> {
         if (!(o instanceof TransportRequest)) {
             return false;
         }
-        TransportRequest<?> transportRequest = (TransportRequest<?>) o;
+        TransportRequest transportRequest = (TransportRequest) o;
         return super.equals(o) && Objects.equals(type, transportRequest.type)
                 && Objects.equals(maxreads, transportRequest.maxreads)
                 && Objects.equals(inputImages, transportRequest.inputImages)
