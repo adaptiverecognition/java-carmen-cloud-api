@@ -131,6 +131,18 @@ public class VehicleRequest extends Request<VehicleRequest.RequestProperties> {
     }
 
     /**
+     * Set the value of region
+     *
+     * @param region the value of region
+     * @return Returns a reference to this object so that method calls can be
+     *         chained together.
+     */
+    public VehicleRequest region(String region) {
+        setRegion(region);
+        return this;
+    }
+
+    /**
      * Get the value of services
      *
      * @return the value of services
@@ -155,6 +167,30 @@ public class VehicleRequest extends Request<VehicleRequest.RequestProperties> {
      */
     public void setServices(Service... services) {
         this.services = services != null ? Arrays.asList(services) : null;
+    }
+
+    /**
+     * Set the value of services
+     *
+     * @param services the value of services
+     * @return Returns a reference to this object so that method calls can be
+     *         chained together.
+     */
+    public VehicleRequest services(List<Service> services) {
+        setServices(services);
+        return this;
+    }
+
+    /**
+     * Set the value of services
+     *
+     * @param services the value of services
+     * @return Returns a reference to this object so that method calls can be
+     *         chained together.
+     */
+    public VehicleRequest services(Service... services) {
+        setServices(services);
+        return this;
     }
 
     /**
@@ -191,6 +227,35 @@ public class VehicleRequest extends Request<VehicleRequest.RequestProperties> {
         } else {
             this.inputImage = null;
         }
+    }
+
+    /**
+     * Set the value of image
+     *
+     * @param image     the image source as a byte array
+     * @param imageName the name of the image
+     * @return Returns a reference to this object so that method calls can be
+     *         chained together.
+     * @throws java.io.IOException if the image cannot be read or resized
+     */
+    public VehicleRequest image(byte[] image, String imageName) throws IOException {
+        return image(image, imageName, true);
+    }
+
+    /**
+     * Set the value of image
+     *
+     * @param image     the image source as a byte array
+     * @param imageName the name of the image
+     * @param resize    resize the image (on the server-side) if its size is larger
+     *                  than full hd
+     * @return Returns a reference to this object so that method calls can be
+     *         chained together.
+     * @throws java.io.IOException if the image cannot be read or resized
+     */
+    public VehicleRequest image(byte[] image, String imageName, boolean resize) throws IOException {
+        setImage(image, imageName, resize);
+        return this;
     }
 
     /**
@@ -280,59 +345,6 @@ public class VehicleRequest extends Request<VehicleRequest.RequestProperties> {
      */
     public VehicleRequest roi(String roi) {
         setRoi(roi);
-        return this;
-    }
-
-    /**
-     * Set the value of services
-     *
-     * @param services the value of services
-     * @return Returns a reference to this object so that method calls can be
-     *         chained together.
-     */
-    public VehicleRequest services(List<Service> services) {
-        setServices(services);
-        return this;
-    }
-
-    /**
-     * Set the value of services
-     *
-     * @param services the value of services
-     * @return Returns a reference to this object so that method calls can be
-     *         chained together.
-     */
-    public VehicleRequest services(Service... services) {
-        setServices(services);
-        return this;
-    }
-
-    /**
-     * Set the value of image
-     *
-     * @param image     the image source as a byte array
-     * @param imageName the name of the image
-     * @return Returns a reference to this object so that method calls can be
-     *         chained together.
-     * @throws java.io.IOException if the image cannot be read or resized
-     */
-    public VehicleRequest image(byte[] image, String imageName) throws IOException {
-        return image(image, imageName, true);
-    }
-
-    /**
-     * Set the value of image
-     *
-     * @param image     the image source as a byte array
-     * @param imageName the name of the image
-     * @param resize    resize the image (on the server-side) if its size is larger
-     *                  than full hd
-     * @return Returns a reference to this object so that method calls can be
-     *         chained together.
-     * @throws java.io.IOException if the image cannot be read or resized
-     */
-    public VehicleRequest image(byte[] image, String imageName, boolean resize) throws IOException {
-        setImage(image, imageName, resize);
         return this;
     }
 
