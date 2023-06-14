@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.adaptiverecognition</groupId>
     <artifactId>carmen-cloud-api</artifactId>
-    <version>4.2.0</version>
+    <version>4.2.1-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>Carmen Cloud API</name>
     <description>Carmen Cloud API</description>
