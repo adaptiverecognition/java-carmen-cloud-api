@@ -1,7 +1,7 @@
 project:
-  name: Adaptive Recognition Cloud API
-  description: Adaptive Recognition Cloud API
-  longDescription: Adaptive Recognition Cloud API
+  name: Carmen Cloud API
+  description: Carmen Cloud API
+  longDescription: Carmen Cloud API
   links:
     homepage: https://github.com/adaptiverecognition/carmen-cloud-api
   authors:
