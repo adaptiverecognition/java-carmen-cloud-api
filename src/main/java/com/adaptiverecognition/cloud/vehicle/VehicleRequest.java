@@ -32,10 +32,16 @@ import com.google.gson.annotations.SerializedName;
  * The VehicleRequest class represents a request to be sent to the Vehicle API.
  *
  * @author laszlo.toth@arip.hu
- * @param <S> the type of the request properties enum
- * @version $Id: $Id
  */
-public class VehicleRequest<S extends Enum<?>> extends Request<S> {
+public class VehicleRequest extends Request<VehicleRequest.RequestProperties> {
+
+    /**
+     * The RequestProperties enum represents the possible properties of the Vehicle
+     * API request.
+     */
+    public enum RequestProperties {
+        CALL_STATISTICS, WIDE_RANGE_ANALYSIS, UNIDENTIFIED_LICENSE_PLATE
+    }
 
     /**
      * The Service enum represents the possible services of the Vehicle API.
@@ -212,7 +218,7 @@ public class VehicleRequest<S extends Enum<?>> extends Request<S> {
      * @return Returns a reference to this object so that method calls can be
      *         chained together.
      */
-    public VehicleRequest<S> maxreads(Integer maxreads) {
+    public VehicleRequest maxreads(Integer maxreads) {
         setMaxreads(maxreads);
         return this;
     }
@@ -242,7 +248,7 @@ public class VehicleRequest<S extends Enum<?>> extends Request<S> {
      * @return Returns a reference to this object so that method calls can be
      *         chained together.
      */
-    public VehicleRequest<S> location(String location) {
+    public VehicleRequest location(String location) {
         setLocation(location);
         return this;
     }
@@ -272,7 +278,7 @@ public class VehicleRequest<S extends Enum<?>> extends Request<S> {
      * @return Returns a reference to this object so that method calls can be
      *         chained together.
      */
-    public VehicleRequest<S> roi(String roi) {
+    public VehicleRequest roi(String roi) {
         setRoi(roi);
         return this;
     }
@@ -284,7 +290,7 @@ public class VehicleRequest<S extends Enum<?>> extends Request<S> {
      * @return Returns a reference to this object so that method calls can be
      *         chained together.
      */
-    public VehicleRequest<S> services(List<Service> services) {
+    public VehicleRequest services(List<Service> services) {
         setServices(services);
         return this;
     }
@@ -296,7 +302,7 @@ public class VehicleRequest<S extends Enum<?>> extends Request<S> {
      * @return Returns a reference to this object so that method calls can be
      *         chained together.
      */
-    public VehicleRequest<S> services(Service... services) {
+    public VehicleRequest services(Service... services) {
         setServices(services);
         return this;
     }
@@ -310,7 +316,7 @@ public class VehicleRequest<S extends Enum<?>> extends Request<S> {
      *         chained together.
      * @throws java.io.IOException if the image cannot be read or resized
      */
-    public VehicleRequest<S> image(byte[] image, String imageName) throws IOException {
+    public VehicleRequest image(byte[] image, String imageName) throws IOException {
         return image(image, imageName, true);
     }
 
@@ -325,7 +331,7 @@ public class VehicleRequest<S extends Enum<?>> extends Request<S> {
      *         chained together.
      * @throws java.io.IOException if the image cannot be read or resized
      */
-    public VehicleRequest<S> image(byte[] image, String imageName, boolean resize) throws IOException {
+    public VehicleRequest image(byte[] image, String imageName, boolean resize) throws IOException {
         setImage(image, imageName, resize);
         return this;
     }
@@ -365,7 +371,7 @@ public class VehicleRequest<S extends Enum<?>> extends Request<S> {
         if (!(o instanceof VehicleRequest)) {
             return false;
         }
-        VehicleRequest<?> vehicleRequest = (VehicleRequest<?>) o;
+        VehicleRequest vehicleRequest = (VehicleRequest) o;
         return super.equals(o) && Objects.equals(services, vehicleRequest.services)
                 && Objects.equals(inputImage, vehicleRequest.inputImage)
                 && Objects.equals(region, vehicleRequest.region) && Objects.equals(location, vehicleRequest.location)

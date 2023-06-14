@@ -4,11 +4,11 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.adaptiverecognition</groupId>
     <artifactId>carmen-cloud-api</artifactId>
-    <version>4.3.0</version>
+    <version>4.3.0-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>Carmen Cloud API</name>
     <description>Carmen Cloud API</description>
-    <url>https://github.com/adaptiverecognition/cloud-api</url>
+    <url>https://github.com/adaptiverecognition/carmen-cloud-api</url>
     <inceptionYear>2020</inceptionYear>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -48,6 +48,10 @@
             <id>ossrh</id>
             <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
         </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
     </distributionManagement>
     <build>
         <plugins>
@@ -166,8 +170,8 @@
                                             <maven-central>
                                                 <active>ALWAYS</active>
                                                 <url>https://s01.oss.sonatype.org/service/local</url>;
-                                                <closeRepository>false</closeRepository>
-                                                <releaseRepository>false</releaseRepository>
+                                                <closeRepository>true</closeRepository>
+                                                <releaseRepository>true</releaseRepository>
                                                 <stagingRepositories>target/staging-deploy</stagingRepositories>
                                             </maven-central>
                                         </nexus2>
