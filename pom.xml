@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.adaptiverecognition</groupId>
     <artifactId>carmen-cloud-api</artifactId>
-    <version>4.4.0</version>
+    <version>4.4.1-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>Carmen Cloud API</name>
     <description>Carmen Cloud API</description>
@@ -12,8 +12,7 @@
     <inceptionYear>2020</inceptionYear>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
+        <maven.compiler.release>11</maven.compiler.release>
     </properties>
     <scm>
         <connection>scm:git:git://github.com/adaptiverecognition/carmen-cloud-api.git</connection>
@@ -77,6 +76,9 @@
                         </goals>
                     </execution>
                 </executions>
+                <configuration>
+                    <doclint>all,-missing</doclint>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
