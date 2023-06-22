@@ -36,10 +36,36 @@ import com.adaptiverecognition.cloud.Request;
 public class TransportRequest extends Request<TransportRequest.RequestProperties> {
 
     /**
-     * 
+     * <p>
+     * The RequestProperties enum represents the possible properties of the
+     * Transportation&amp;Cargo API request.
+     * </p>
      */
     public enum RequestProperties {
-        WIDE_RANGE_ANALYSIS, CHECKSUM_CHECK, FULL_US_ACCR_CODE, ISO_CODE
+        /**
+         * <p>
+         * Request property for turning on the wide range analysis
+         * </p>
+         */
+        WIDE_RANGE_ANALYSIS,
+        /**
+         * <p>
+         * Request property for turning off the checksum check
+         * </p>
+         */
+        CHECKSUM_CHECK,
+        /**
+         * <p>
+         * Request property for turning on the full US accr code
+         * </p>
+         */
+        FULL_US_ACCR_CODE,
+        /**
+         * <p>
+         * Request property for turning off the ISO code
+         * </p>
+         */
+        ISO_CODE
     }
 
     private String type;

@@ -40,7 +40,24 @@ public class VehicleRequest extends Request<VehicleRequest.RequestProperties> {
      * API request.
      */
     public enum RequestProperties {
-        CALL_STATISTICS, WIDE_RANGE_ANALYSIS, UNIDENTIFIED_LICENSE_PLATE
+        /**
+         * <p>
+         * Request property for turning off the call statistics
+         * </p>
+         */
+        CALL_STATISTICS,
+        /**
+         * <p>
+         * Request property for turning on the wide range analysis
+         * </p>
+         */
+        WIDE_RANGE_ANALYSIS,
+        /**
+         * <p>
+         * Request property for turning on the unidentified license plate resulta
+         * </p>
+         */
+        UNIDENTIFIED_LICENSE_PLATE
     }
 
     /**
