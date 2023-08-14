@@ -38,9 +38,8 @@ import org.apache.commons.imaging.formats.jpeg.JpegImageMetadata;
 import org.apache.commons.imaging.formats.tiff.TiffField;
 import org.apache.commons.imaging.formats.tiff.TiffImageMetadata;
 import org.apache.commons.imaging.formats.tiff.constants.TiffTagConstants;
-import org.apache.logging.log4j.Level;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * This class is used to store the image data and the image metadata of the
@@ -57,7 +56,7 @@ public class InputImage {
         ImageIO.scanForPlugins();
     }
 
-    private static final Logger LOGGER = LogManager.getLogger(InputImage.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(InputImage.class);
 
     private BufferedImage image;
 
@@ -269,13 +268,13 @@ public class InputImage {
                 this.imageSource = imageSource;
             } else {
                 if (LOGGER.isDebugEnabled()) {
-                    LOGGER.log(Level.DEBUG, "Original image size: {}x{}", img.getWidth(), img.getHeight());
+                    LOGGER.debug("Original image size: {}x{}", img.getWidth(), img.getHeight());
                 }
                 this.imageUpscaleFactor = Math.sqrt(q);
                 int scaledWidth = (int) Math.round(img.getWidth() / this.imageUpscaleFactor);
                 int scaledHeight = (int) Math.round(img.getHeight() / this.imageUpscaleFactor);
                 if (LOGGER.isDebugEnabled()) {
-                    LOGGER.log(Level.DEBUG, "Resampling image to size: {}x{}", scaledWidth, scaledHeight);
+                    LOGGER.debug("Resampling image to size: {}x{}", scaledWidth, scaledHeight);
                 }
                 BufferedImage outputImage = new BufferedImage(scaledWidth, scaledHeight, img.getType());
                 Graphics2D graphics2D = outputImage.createGraphics();
@@ -308,7 +307,7 @@ public class InputImage {
                 }
             } catch (Exception e) {
                 if (LOGGER.isDebugEnabled()) {
-                    LOGGER.log(Level.DEBUG, "Couldn't get metadata of {}: {}", imageName, e);
+                    LOGGER.debug("Couldn't get metadata of {}: {}", imageName, e);
                 }
             }
         } else {
