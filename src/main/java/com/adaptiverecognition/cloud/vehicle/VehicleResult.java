@@ -84,8 +84,9 @@ public class VehicleResult extends Result {
         StringBuilder sb = new StringBuilder();
         sb.append("VehicleResult{requestId=").append(getRequestId());
         sb.append(", nodename=").append(getNodename());
+        sb.append(", startuptime=").append(getStartuptime());
         sb.append(", nodetime=").append(getNodetime());
-        sb.append(", recognitionTime=").append(getRecognitionTime());
+        sb.append(", recognitiontime=").append(getRecognitiontime());
         sb.append(", version=").append(getVersion());
         sb.append(", data=").append(data);
         sb.append('}');
