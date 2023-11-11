@@ -405,13 +405,15 @@ public class VehicleRequest extends Request<VehicleRequest.RequestProperties> {
                 && Objects.equals(inputImage, vehicleRequest.inputImage)
                 && Objects.equals(region, vehicleRequest.region) && Objects.equals(location, vehicleRequest.location)
                 && Objects.equals(roi, vehicleRequest.roi) && Objects.equals(maxreads, vehicleRequest.maxreads)
+                && getRequestTime() == vehicleRequest.getRequestTime()
                 && Objects.equals(getProperties(), vehicleRequest.getProperties());
     }
 
     /** {@inheritDoc} */
     @Override
     public int hashCode() {
-        return super.hashCode() + Objects.hash(services, inputImage, region, location, roi, maxreads, getProperties());
+        return super.hashCode() + Objects.hash(services, inputImage, region, location, roi, maxreads, getRequestTime(),
+                getProperties());
     }
 
 }

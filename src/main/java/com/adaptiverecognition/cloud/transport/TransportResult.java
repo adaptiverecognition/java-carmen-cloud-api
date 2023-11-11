@@ -90,6 +90,7 @@ public class TransportResult extends Result {
         sb.append("TransportResult{requestId=").append(getRequestId());
         sb.append(", nodename=").append(getNodename());
         sb.append(", nodetime=").append(getNodetime());
+        sb.append(", recognitionTime=").append(getRecognitionTime());
         sb.append(", version=").append(getVersion());
         sb.append(", data=").append(data);
         sb.append('}');

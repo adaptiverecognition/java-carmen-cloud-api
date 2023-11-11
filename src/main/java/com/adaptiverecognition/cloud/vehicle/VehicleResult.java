@@ -85,6 +85,7 @@ public class VehicleResult extends Result {
         sb.append("VehicleResult{requestId=").append(getRequestId());
         sb.append(", nodename=").append(getNodename());
         sb.append(", nodetime=").append(getNodetime());
+        sb.append(", recognitionTime=").append(getRecognitionTime());
         sb.append(", version=").append(getVersion());
         sb.append(", data=").append(data);
         sb.append('}');
