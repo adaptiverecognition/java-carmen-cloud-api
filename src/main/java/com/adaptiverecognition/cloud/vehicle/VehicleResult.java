@@ -31,7 +31,7 @@ import com.adaptiverecognition.cloud.Result;
  */
 public class VehicleResult extends Result {
 
-    private static final String VERSION = "1.4";
+    private static final String VERSION = "1.4.1";
 
     private Data data = new Data();
 
@@ -85,6 +85,7 @@ public class VehicleResult extends Result {
         sb.append("VehicleResult{requestId=").append(getRequestId());
         sb.append(", nodename=").append(getNodename());
         sb.append(", nodetime=").append(getNodetime());
+        sb.append(", recognitionTime=").append(getRecognitionTime());
         sb.append(", version=").append(getVersion());
         sb.append(", data=").append(data);
         sb.append('}');

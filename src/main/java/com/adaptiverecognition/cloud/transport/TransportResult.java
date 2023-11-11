@@ -30,7 +30,7 @@ import com.adaptiverecognition.cloud.Result;
  */
 public class TransportResult extends Result {
 
-    private static final String VERSION = "1.0";
+    private static final String VERSION = "1.0.1";
 
     private Data data = new Data();
 
@@ -90,6 +90,7 @@ public class TransportResult extends Result {
         sb.append("TransportResult{requestId=").append(getRequestId());
         sb.append(", nodename=").append(getNodename());
         sb.append(", nodetime=").append(getNodetime());
+        sb.append(", recognitionTime=").append(getRecognitionTime());
         sb.append(", version=").append(getVersion());
         sb.append(", data=").append(data);
         sb.append('}');

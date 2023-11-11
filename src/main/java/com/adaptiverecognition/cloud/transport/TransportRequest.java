@@ -265,13 +265,14 @@ public class TransportRequest extends Request<TransportRequest.RequestProperties
         return super.equals(o) && Objects.equals(type, transportRequest.type)
                 && Objects.equals(maxreads, transportRequest.maxreads)
                 && Objects.equals(inputImages, transportRequest.inputImages)
+                && getRequestTime() == transportRequest.getRequestTime()
                 && Objects.equals(getProperties(), transportRequest.getProperties());
     }
 
     /** {@inheritDoc} */
     @Override
     public int hashCode() {
-        return super.hashCode() + Objects.hash(type, maxreads, inputImages, getProperties());
+        return super.hashCode() + Objects.hash(type, maxreads, inputImages, getRequestTime(), getProperties());
     }
 
 }

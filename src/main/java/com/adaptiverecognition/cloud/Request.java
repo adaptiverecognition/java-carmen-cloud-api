@@ -29,7 +29,30 @@ import java.util.Objects;
  * @param <S> The type of the enum used as key for the properties map
  */
 public class Request<S extends Enum<?>> {
+    private long requestTime = System.currentTimeMillis();
     private Map<S, Object> properties;
+
+    /**
+     * <p>
+     * Get the value of requestTime
+     * </p>
+     *
+     * @return the value of requestTime
+     */
+    public long getRequestTime() {
+        return requestTime;
+    }
+
+    /**
+     * <p>
+     * Set the value of requestTime
+     * </p>
+     *
+     * @param requestTime new value of requestTime
+     */
+    public void setRequestTime(long requestTime) {
+        this.requestTime = requestTime;
+    }
 
     /**
      * <p>
@@ -91,13 +114,13 @@ public class Request<S extends Enum<?>> {
             return false;
         }
         Request<?> request = (Request<?>) o;
-        return Objects.equals(properties, request.properties);
+        return requestTime == request.requestTime && Objects.equals(properties, request.properties);
     }
 
     /** {@inheritDoc} */
     @Override
     public int hashCode() {
-        return Objects.hash(properties);
+        return Objects.hash(requestTime, properties);
     }
 
 }
