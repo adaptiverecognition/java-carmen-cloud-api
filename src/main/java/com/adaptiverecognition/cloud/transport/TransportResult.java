@@ -30,7 +30,7 @@ import com.adaptiverecognition.cloud.Result;
  */
 public class TransportResult extends Result {
 
-    private static final String VERSION = "1.0";
+    private static final String VERSION = "1.0.1";
 
     private Data data = new Data();
 
