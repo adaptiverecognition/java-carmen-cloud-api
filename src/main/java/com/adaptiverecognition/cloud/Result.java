@@ -30,7 +30,8 @@ public abstract class Result implements Serializable {
 
     private String nodename;
     private long nodetime;
-    private long recognitionTime;
+    private long startuptime;
+    private long recognitiontime;
     private String version;
     private transient String requestId;
 
@@ -85,32 +86,6 @@ public abstract class Result implements Serializable {
     /**
      *
      * <p>
-     * Get the value of the overall recognition time on the node that generated this
-     * result.
-     * </p>
-     *
-     * @return the value of recognitionTime
-     */
-    public long getRecognitionTime() {
-        return recognitionTime;
-    }
-
-    /**
-     *
-     * <p>
-     * Set the value of the overall recognition time on the node that generated this
-     * result.
-     * </p>
-     *
-     * @param recognitionTime the new value of recognitionTime
-     */
-    public void setRecognitionTime(long recognitionTime) {
-        this.recognitionTime = recognitionTime;
-    }
-
-    /**
-     *
-     * <p>
      * Get the value of the overall processing time on the node that generated this
      * result.
      * </p>
@@ -132,6 +107,58 @@ public abstract class Result implements Serializable {
      */
     public void setNodetime(long nodetime) {
         this.nodetime = nodetime;
+    }
+
+    /**
+     *
+     * <p>
+     * Get the value of the overall recognition time on the node that generated this
+     * result.
+     * </p>
+     *
+     * @return the value of recognitiontime
+     */
+    public long getRecognitiontime() {
+        return recognitiontime;
+    }
+
+    /**
+     *
+     * <p>
+     * Set the value of the overall recognition time on the node that generated this
+     * result.
+     * </p>
+     *
+     * @param recognitiontime the new value of recognitiontime
+     */
+    public void setRecognitiontime(long recognitiontime) {
+        this.recognitiontime = recognitiontime;
+    }
+
+    /**
+     *
+     * <p>
+     * Get the value of the overall startup time on the node that generated this
+     * result.
+     * </p>
+     *
+     * @return the value of startuptime
+     */
+    public long getStartuptime() {
+        return startuptime;
+    }
+
+    /**
+     *
+     * <p>
+     * Set the value of the overall startup time on the node that generated this
+     * result.
+     * </p>
+     *
+     * @param startuptime the new value of startuptime
+     */
+    public void setStartuptime(long startuptime) {
+        this.startuptime = startuptime;
     }
 
     /**
@@ -168,14 +195,14 @@ public abstract class Result implements Serializable {
         }
         Result result = (Result) o;
         return Objects.equals(requestId, result.requestId) && Objects.equals(nodename, result.nodename)
-                && nodetime == result.nodetime && recognitionTime == result.recognitionTime
-                && Objects.equals(version, result.version);
+                && nodetime == result.nodetime && startuptime == result.startuptime
+                && recognitiontime == result.recognitiontime && Objects.equals(version, result.version);
     }
 
     /** {@inheritDoc} */
     @Override
     public int hashCode() {
-        return Objects.hash(requestId, nodename, nodetime, recognitionTime, version);
+        return Objects.hash(requestId, nodename, nodetime, startuptime, recognitiontime, version);
     }
 
     /** {@inheritDoc} */
@@ -184,8 +211,9 @@ public abstract class Result implements Serializable {
         StringBuilder sb = new StringBuilder();
         sb.append("Result{requestId=").append(requestId);
         sb.append(", nodename=").append(nodename);
+        sb.append(", startuptime=").append(startuptime);
         sb.append(", nodetime=").append(nodetime);
-        sb.append(", recognitionTime=").append(recognitionTime);
+        sb.append(", recognitiontime=").append(recognitiontime);
         sb.append(", version=").append(getVersion());
         sb.append('}');
         return sb.toString();
