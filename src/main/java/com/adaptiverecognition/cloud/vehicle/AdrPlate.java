@@ -33,6 +33,8 @@ public class AdrPlate extends Plate {
 
     private Integer plateTypeConfidence;
     private Integer positionConfidence;
+    private Integer textConfidence;
+    private Integer normalizedConfidence;
     private List<Char> plateChars;
     private String unicodeText;
     private String separatedText;
@@ -113,6 +115,50 @@ public class AdrPlate extends Plate {
 
     /**
      * <p>
+     * Get the value of textConfidence
+     * </p>
+     *
+     * @return the value of textConfidence
+     */
+    public Integer getTextConfidence() {
+        return textConfidence;
+    }
+
+    /**
+     * <p>
+     * Set the value of textConfidence
+     * </p>
+     *
+     * @param textConfidence new value of textConfidence
+     */
+    public void setTextConfidence(Integer textConfidence) {
+        this.textConfidence = textConfidence;
+    }
+
+    /**
+     * <p>
+     * Get the value of normalizedConfidence
+     * </p>
+     *
+     * @return the value of normalizedConfidence
+     */
+    public Integer getNormalizedConfidence() {
+        return normalizedConfidence;
+    }
+
+    /**
+     * <p>
+     * Set the value of normalizedConfidence
+     * </p>
+     *
+     * @param normalizedConfidence new value of normalizedConfidence
+     */
+    public void setNormalizedConfidence(Integer normalizedConfidence) {
+        this.normalizedConfidence = normalizedConfidence;
+    }
+
+    /**
+     * <p>
      * Get the value of unicodeText
      * </p>
      *
@@ -188,6 +234,8 @@ public class AdrPlate extends Plate {
         AdrPlate adrPlate = (AdrPlate) o;
         return super.equals(o) && Objects.equals(plateTypeConfidence, adrPlate.plateTypeConfidence)
                 && Objects.equals(positionConfidence, adrPlate.positionConfidence)
+                && Objects.equals(textConfidence, adrPlate.textConfidence)
+                && Objects.equals(normalizedConfidence, adrPlate.normalizedConfidence)
                 && Objects.equals(plateChars, adrPlate.plateChars) && Objects.equals(unicodeText, adrPlate.unicodeText)
                 && Objects.equals(separatedText, adrPlate.separatedText);
     }
@@ -195,8 +243,8 @@ public class AdrPlate extends Plate {
     /** {@inheritDoc} */
     @Override
     public int hashCode() {
-        return super.hashCode()
-                + Objects.hash(plateTypeConfidence, positionConfidence, plateChars, unicodeText, separatedText);
+        return super.hashCode() + Objects.hash(plateTypeConfidence, positionConfidence, textConfidence,
+                normalizedConfidence, plateChars, unicodeText, separatedText);
     }
 
     /** {@inheritDoc} */
@@ -206,7 +254,8 @@ public class AdrPlate extends Plate {
                 + ", color=" + getColor() + ", confidence=" + getConfidence() + ", country=" + ", plateChars="
                 + plateChars + ", plateROI=" + getPlateROI() + ", plateType=" + getPlateType() + ", plateTypeCategory="
                 + getType() + ", unicodeText=" + unicodeText + ", plateTypeConfidence=" + plateTypeConfidence
-                + ", positionConfidence=" + positionConfidence + '}';
+                + ", positionConfidence=" + positionConfidence + ", textConfidence=" + textConfidence
+                + ", normalizedConfidence=" + normalizedConfidence + '}';
     }
 
 }
