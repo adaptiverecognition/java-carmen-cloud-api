@@ -241,80 +241,84 @@ public class InputImage {
     }
 
     private void setImage(byte[] imageSource, String imageName, boolean resize) throws IOException {
+        this.image = null;
+        this.imageSource = null;
+        this.imageName = null;
+        this.imageMimeType = null;
         this.imageUpscaleFactor = 1;
         this.imageOrientation = 1;
         this.originalImageSource = imageSource;
         if (imageSource != null) {
-            ImageInputStream iis = ImageIO.createImageInputStream(new ByteArrayInputStream(imageSource));
-            Iterator<ImageReader> imageReaders = ImageIO.getImageReaders(iis);
-            if (!imageReaders.hasNext()) {
-                throw new IOException("Invalid image format");
+            try (ImageInputStream iis = ImageIO.createImageInputStream(new ByteArrayInputStream(imageSource))) {
+                Iterator<ImageReader> imageReaders = ImageIO.getImageReaders(iis);
+                if (!imageReaders.hasNext()) {
+                    throw new IOException("Invalid image format");
+                }
+                ImageReader reader = imageReaders.next();
+                reader.setInput(iis);
+                BufferedImage img;
+                double q;
+                try {
+                    img = reader.read(0, reader.getDefaultReadParam());
+                    this.imageMimeType = reader.getFormatName();
+                    this.imageName = imageName;
+                    q = (img.getWidth() * img.getHeight()) / (double) (1920 * 1080);
+                } catch (RuntimeException re) {
+                    throw new IOException(re.getMessage(), re);
+                } finally {
+                    reader.dispose();
+                }
+                if (q <= 1 || !resize) {
+                    this.image = img;
+                    this.imageSource = imageSource;
+                } else {
+                    if (LOGGER.isDebugEnabled()) {
+                        LOGGER.debug("Original image size: {}x{}", img.getWidth(), img.getHeight());
+                    }
+                    this.imageUpscaleFactor = Math.sqrt(q);
+                    int scaledWidth = (int) Math.round(img.getWidth() / this.imageUpscaleFactor);
+                    int scaledHeight = (int) Math.round(img.getHeight() / this.imageUpscaleFactor);
+                    if (LOGGER.isDebugEnabled()) {
+                        LOGGER.debug("Resampling image to size: {}x{}", scaledWidth, scaledHeight);
+                    }
+                    BufferedImage outputImage = new BufferedImage(scaledWidth, scaledHeight, img.getType());
+                    Graphics2D graphics2D = outputImage.createGraphics();
+                    graphics2D.setRenderingHint(RenderingHints.KEY_INTERPOLATION,
+                            RenderingHints.VALUE_INTERPOLATION_BICUBIC);
+                    graphics2D.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+                    graphics2D.setRenderingHint(RenderingHints.KEY_ALPHA_INTERPOLATION,
+                            RenderingHints.VALUE_ALPHA_INTERPOLATION_QUALITY);
+                    graphics2D.drawImage(img, 0, 0, scaledWidth, scaledHeight, null);
+                    graphics2D.dispose();
+                    try (ByteArrayOutputStream baos = new ByteArrayOutputStream()) {
+                        ImageIO.write(outputImage, reader.getFormatName(), baos);
+                        this.image = outputImage;
+                        this.imageSource = baos.toByteArray();
+                    }
+                }
+                try {
+                    ImageMetadata metadata = Imaging.getMetadata(this.originalImageSource);
+                    JpegImageMetadata jpegMetadata = metadata instanceof JpegImageMetadata
+                            ? (JpegImageMetadata) metadata
+                            : null;
+                    TiffImageMetadata tiffMetadata = metadata instanceof TiffImageMetadata
+                            ? (TiffImageMetadata) metadata
+                            : null;
+                    TiffField field = null;
+                    if (jpegMetadata != null) {
+                        field = jpegMetadata.findEXIFValueWithExactMatch(TiffTagConstants.TIFF_TAG_ORIENTATION);
+                    } else if (tiffMetadata != null) {
+                        field = tiffMetadata.findField(TiffTagConstants.TIFF_TAG_ORIENTATION, true);
+                    }
+                    if (field != null && field.getValue() instanceof Number) {
+                        this.imageOrientation = ((Number) field.getValue()).shortValue();
+                    }
+                } catch (Exception e) {
+                    if (LOGGER.isDebugEnabled()) {
+                        LOGGER.debug("Couldn't get metadata of {}: {}", imageName, e);
+                    }
+                }
             }
-            ImageReader reader = imageReaders.next();
-            reader.setInput(iis);
-            BufferedImage img;
-            double q;
-            try {
-                img = reader.read(0, reader.getDefaultReadParam());
-                this.imageMimeType = reader.getFormatName();
-                this.imageName = imageName;
-                reader.dispose();
-                q = (img.getWidth() * img.getHeight()) / (double) (1920 * 1080);
-            } catch (RuntimeException re) {
-                throw new IOException(re.getMessage(), re);
-            }
-            if (q <= 1 || !resize) {
-                this.image = img;
-                this.imageSource = imageSource;
-            } else {
-                if (LOGGER.isDebugEnabled()) {
-                    LOGGER.debug("Original image size: {}x{}", img.getWidth(), img.getHeight());
-                }
-                this.imageUpscaleFactor = Math.sqrt(q);
-                int scaledWidth = (int) Math.round(img.getWidth() / this.imageUpscaleFactor);
-                int scaledHeight = (int) Math.round(img.getHeight() / this.imageUpscaleFactor);
-                if (LOGGER.isDebugEnabled()) {
-                    LOGGER.debug("Resampling image to size: {}x{}", scaledWidth, scaledHeight);
-                }
-                BufferedImage outputImage = new BufferedImage(scaledWidth, scaledHeight, img.getType());
-                Graphics2D graphics2D = outputImage.createGraphics();
-                graphics2D.setRenderingHint(RenderingHints.KEY_INTERPOLATION,
-                        RenderingHints.VALUE_INTERPOLATION_BICUBIC);
-                graphics2D.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
-                graphics2D.setRenderingHint(RenderingHints.KEY_ALPHA_INTERPOLATION,
-                        RenderingHints.VALUE_ALPHA_INTERPOLATION_QUALITY);
-                graphics2D.drawImage(img, 0, 0, scaledWidth, scaledHeight, null);
-                graphics2D.dispose();
-                ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                ImageIO.write(outputImage, reader.getFormatName(), baos);
-                this.image = outputImage;
-                this.imageSource = baos.toByteArray();
-            }
-            try {
-                ImageMetadata metadata = Imaging.getMetadata(this.originalImageSource);
-                JpegImageMetadata jpegMetadata = metadata instanceof JpegImageMetadata ? (JpegImageMetadata) metadata
-                        : null;
-                TiffImageMetadata tiffMetadata = metadata instanceof TiffImageMetadata ? (TiffImageMetadata) metadata
-                        : null;
-                TiffField field = null;
-                if (jpegMetadata != null) {
-                    field = jpegMetadata.findEXIFValueWithExactMatch(TiffTagConstants.TIFF_TAG_ORIENTATION);
-                } else if (tiffMetadata != null) {
-                    field = tiffMetadata.findField(TiffTagConstants.TIFF_TAG_ORIENTATION, true);
-                }
-                if (field != null && field.getValue() instanceof Number) {
-                    this.imageOrientation = ((Number) field.getValue()).shortValue();
-                }
-            } catch (Exception e) {
-                if (LOGGER.isDebugEnabled()) {
-                    LOGGER.debug("Couldn't get metadata of {}: {}", imageName, e);
-                }
-            }
-        } else {
-            this.image = null;
-            this.imageSource = null;
-            this.imageName = null;
-            this.imageMimeType = null;
         }
     }
 
