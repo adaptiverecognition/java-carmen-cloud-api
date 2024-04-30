@@ -201,7 +201,8 @@ public class LicensePlate extends AdrPlate {
                 + ", plateROI=" + getPlateROI() + ", plateType=" + getPlateType() + ", plateTypeCategory=" + getType()
                 + ", unicodeText=" + getUnicodeText() + ", separatedText=" + getSeparatedText()
                 + ", plateTypeConfidence=" + getPlateTypeConfidence() + ", positionConfidence="
-                + getPositionConfidence() + ", category=" + category + '}';
+                + getPositionConfidence() + ", textConfidence=" + getTextConfidence() + ", normalizedConfidence="
+                + getNormalizedConfidence() + ", category=" + category + '}';
     }
 
 }
