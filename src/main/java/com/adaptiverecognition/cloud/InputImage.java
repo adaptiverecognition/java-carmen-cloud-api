@@ -306,7 +306,7 @@ public class InputImage {
                             : null;
                     TiffField field = null;
                     if (jpegMetadata != null) {
-                        field = jpegMetadata.findEXIFValueWithExactMatch(TiffTagConstants.TIFF_TAG_ORIENTATION);
+                        field = jpegMetadata.findExifValueWithExactMatch(TiffTagConstants.TIFF_TAG_ORIENTATION);
                     } else if (tiffMetadata != null) {
                         field = tiffMetadata.findField(TiffTagConstants.TIFF_TAG_ORIENTATION, true);
                     }
