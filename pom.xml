@@ -93,15 +93,9 @@
     <profiles>
         <profile>
             <id>default</id>
-            <properties>
-                <profile>dev</profile>
-            </properties>
         </profile>
         <profile>
-            <id>prod</id>
-            <properties>
-                <profile>prod</profile>
-            </properties>
+            <id>release</id>
             <build>
                 <plugins>
                     <plugin>
