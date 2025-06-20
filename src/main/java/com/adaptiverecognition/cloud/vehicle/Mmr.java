@@ -37,8 +37,10 @@ public class Mmr implements Serializable {
     private String category;
     private Integer categoryConfidence;
     private String colorName;
+    private String standardColorName;
     private Color color;
     private Integer colorConfidence;
+    private Dimensions dimensions;
     private String make;
     private String model;
     private String bodyType;
@@ -366,6 +368,28 @@ public class Mmr implements Serializable {
 
     /**
      * <p>
+     * Get the value of standardColorName
+     * </p>
+     *
+     * @return the value of standardColorName
+     */
+    public String getStandardColorName() {
+        return standardColorName;
+    }
+
+    /**
+     * <p>
+     * Set the value of standardColorName
+     * </p>
+     *
+     * @param standardColorName new value of standardColorName
+     */
+    public void setStandardColorName(String standardColorName) {
+        this.standardColorName = standardColorName;
+    }
+
+    /**
+     * <p>
      * Get the value of proctime
      * </p>
      *
@@ -406,6 +430,28 @@ public class Mmr implements Serializable {
      */
     public void setCategoryConfidence(Integer categoryConfidence) {
         this.categoryConfidence = categoryConfidence;
+    }
+
+    /**
+     * <p>
+     * Get the value of dimensions
+     * </p>
+     *
+     * @return the value of dimensions
+     */
+    public Dimensions getDimensions() {
+        return dimensions;
+    }
+
+    /**
+     * <p>
+     * Set the value of dimensions
+     * </p>
+     *
+     * @param dimensions new value of dimensions
+     */
+    public void setDimensions(Dimensions dimensions) {
+        this.dimensions = dimensions;
     }
 
     /**
@@ -595,7 +641,8 @@ public class Mmr implements Serializable {
         Mmr mmr = (Mmr) o;
         return Objects.equals(engine, mmr.engine) && found == mmr.found && proctime == mmr.proctime
                 && Objects.equals(category, mmr.category) && Objects.equals(categoryConfidence, mmr.categoryConfidence)
-                && Objects.equals(colorName, mmr.colorName) && Objects.equals(color, mmr.color)
+                && Objects.equals(colorName, mmr.colorName) && Objects.equals(standardColorName, mmr.standardColorName)
+                && Objects.equals(dimensions, mmr.dimensions) && Objects.equals(color, mmr.color)
                 && Objects.equals(colorConfidence, mmr.colorConfidence) && Objects.equals(make, mmr.make)
                 && Objects.equals(model, mmr.model) && Objects.equals(bodyType, mmr.bodyType)
                 && Objects.equals(generation, mmr.generation) && Objects.equals(variation, mmr.variation)
@@ -612,24 +659,24 @@ public class Mmr implements Serializable {
     /** {@inheritDoc} */
     @Override
     public int hashCode() {
-        return Objects.hash(engine, found, proctime, category, categoryConfidence, colorName, color, colorConfidence,
-                make, model, bodyType, generation, variation, makeConfidence, modelConfidence, bodyTypeConfidence,
-                generationConfidence, variationConfidence, heading, headingConfidence, viewPoint, viewPointConfidence,
-                imageTooltips, frameTooltips);
+        return Objects.hash(engine, found, proctime, category, categoryConfidence, colorName, standardColorName, color,
+                colorConfidence, dimensions, make, model, bodyType, generation, variation, makeConfidence,
+                modelConfidence, bodyTypeConfidence, generationConfidence, variationConfidence, heading,
+                headingConfidence, viewPoint, viewPointConfidence, imageTooltips, frameTooltips);
     }
 
     /** {@inheritDoc} */
     @Override
     public String toString() {
         return "Mmr{" + "found=" + found + ", engine=" + engine + ", proctime=" + proctime + ", category=" + category
-                + ", categoryConfidence=" + categoryConfidence + ", colorName=" + colorName + ", color=" + color
-                + ", colorConfidence=" + colorConfidence + ", make=" + make + ", model=" + model + ", bodyType="
-                + bodyType + ", generation=" + generation + ", variation=" + variation + ", makeConfidence="
-                + makeConfidence + ", modelConfidence=" + modelConfidence + ", bodyTypeConfidence=" + bodyTypeConfidence
-                + ", generationConfidence=" + generationConfidence + ", variationConfidence=" + variationConfidence
-                + ", heading=" + heading + ", headingConfidence=" + headingConfidence + ", viewPoint=" + viewPoint
-                + ", viewPointConfidence=" + viewPointConfidence + ", imageTooltips=" + imageTooltips
-                + ", frameTooltips=" + frameTooltips + '}';
+                + ", categoryConfidence=" + categoryConfidence + ", colorName=" + colorName + ", standardColorName="
+                + standardColorName + ", color=" + color + ", colorConfidence=" + colorConfidence + ", dimensions="
+                + dimensions + ", make=" + make + ", model=" + model + ", bodyType=" + bodyType + ", generation="
+                + generation + ", variation=" + variation + ", makeConfidence=" + makeConfidence + ", modelConfidence="
+                + modelConfidence + ", bodyTypeConfidence=" + bodyTypeConfidence + ", generationConfidence="
+                + generationConfidence + ", variationConfidence=" + variationConfidence + ", heading=" + heading
+                + ", headingConfidence=" + headingConfidence + ", viewPoint=" + viewPoint + ", viewPointConfidence="
+                + viewPointConfidence + ", imageTooltips=" + imageTooltips + ", frameTooltips=" + frameTooltips + '}';
     }
 
 }
