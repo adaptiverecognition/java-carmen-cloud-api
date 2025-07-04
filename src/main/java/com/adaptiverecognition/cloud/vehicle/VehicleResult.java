@@ -31,7 +31,7 @@ import com.adaptiverecognition.cloud.Result;
  */
 public class VehicleResult extends Result {
 
-    private static final String VERSION = "1.4.1";
+    private static final String VERSION = "1.4.2";
 
     private Data data = new Data();
 
