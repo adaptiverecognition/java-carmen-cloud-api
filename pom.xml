@@ -61,7 +61,7 @@
                     <execution>
                         <id>update</id>
                         <goals>
-                            <goal>fix</goal>
+                            <goal>javadoc</goal>
                         </goals>
                     </execution>
                     <execution>
